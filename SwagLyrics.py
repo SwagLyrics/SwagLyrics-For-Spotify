@@ -1,16 +1,19 @@
 from bs4 import BeautifulSoup
 import requests
 import spotify
+import re
 
 song = spotify.song()
 artist = spotify.artist()
 
 
 def stripper(song, artist):
+	song = re.sub(r'\([^)]*\)', '', song).strip()
 	song_data = artist + '-' + song
 	url_data = song_data.replace(' ', '-')
-	url_data = url_data.replace(',', '')
-	url_data = url_data.replace("'", '')
+	for ch in [',', "'", '!']:
+		if ch in url_data:
+			url_data = url_data.replace(ch, '')
 	return url_data
 
 
