@@ -5,19 +5,33 @@ import spotify
 song = spotify.song()
 artist = spotify.artist()
 
-if song and artist:
-	song_data = artist+'-'+song
+
+def stripper(song, artist):
+	song_data = artist + '-' + song
 	url_data = song_data.replace(' ', '-')
 	url_data = url_data.replace(',', '')
 	url_data = url_data.replace("'", '')
-	URL = 'https://genius.com/{}-lyrics'.format(url_data)
-	page = requests.get(URL)
+	return url_data
+
+
+def get_lyrics(song, artist):
+	url_data = stripper(song, artist)
+	url = 'https://genius.com/{}-lyrics'.format(url_data)
+	page = requests.get(url)
 	html = BeautifulSoup(page.text, "html.parser")
 	lyrics_path = html.find("div", class_="lyrics")
 	if lyrics_path is None:
-		print('Could not get lyrics for {song} by {artist}.'.format(song=song, artist=artist))
+		lyrics = 'Could not get lyrics for {song} by {artist}.'.format(song=song, artist=artist)
 	else:
 		lyrics = lyrics_path.get_text().encode('ascii', 'ignore').decode('utf-8')
-		print(lyrics)
-else:
-	print("Nothing playing at the moment.")
+	return lyrics
+
+
+def lyrics(song, artist):
+	if song and artist:
+		return get_lyrics(song, artist)
+	else:
+		return 'Nothing playing at the moment.'
+
+
+print(lyrics(song, artist))
