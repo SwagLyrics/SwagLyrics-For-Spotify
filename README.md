@@ -1,4 +1,5 @@
 #SwagLyrics-For-Spotify
+
 Fetch lyrics of song playing in Spotify for 
 Windows from Genius and displays them via 
 command line.
