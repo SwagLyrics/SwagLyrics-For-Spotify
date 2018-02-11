@@ -37,4 +37,5 @@ def lyrics(song, artist):
 		return 'Nothing playing at the moment.'
 
 
-print(lyrics(song, artist))
+if __name__ == "__main__":
+	print(lyrics(song, artist))
