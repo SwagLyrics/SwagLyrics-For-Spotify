@@ -5,9 +5,6 @@ import re
 import sys
 import time
 
-song = spotify.song()
-artist = spotify.artist()
-
 
 def stripper(song, artist):
 	song = re.sub(r'\([^)]*\)', '', song).strip()
@@ -35,9 +32,17 @@ def get_lyrics(song, artist):
 
 def lyrics(song, artist):
 	if song and artist:
-		return 1
+		print('Getting lyrics for {song} by {artist} '.format(song=song, artist=artist), end='')
+		for _ in range(30):
+			sys.stdout.write(next(spinner))
+			sys.stdout.flush()
+			time.sleep(0.1)
+			sys.stdout.write('\b')
+		sys.stdout.write('\b   \n')
+		sys.stdout.flush()
+		return get_lyrics(song, artist)
 	else:
-		return 0
+		return 'Nothing playing at the moment.'
 
 
 def spinning_cursor():
@@ -49,34 +54,13 @@ def spinning_cursor():
 spinner = spinning_cursor()
 
 if __name__ == "__main__":
-	if lyrics(song, artist):
-		print('Getting lyrics for {song} by {artist} '.format(song=song, artist=artist), end='')
-		for _ in range(30):
-			sys.stdout.write(next(spinner))
-			sys.stdout.flush()
-			time.sleep(0.1)
-			sys.stdout.write('\b')
-		sys.stdout.write('\b   \n')
-		sys.stdout.flush()
-		print(get_lyrics(song, artist))
-	else:
-		print('Nothing playing at the moment.')
+	song = spotify.song()
+	artist = spotify.artist()
+	print(lyrics(song, artist))
 	while True:
 		if song == spotify.song()and artist == spotify.artist():
 			time.sleep(5)
 		else:
 			song = spotify.song()
 			artist = spotify.artist()
-			if lyrics(song, artist):
-				print('Getting lyrics for {song} by {artist} '.format(song=song, artist=artist), end='')
-				for _ in range(30):
-					sys.stdout.write(next(spinner))
-					sys.stdout.flush()
-					time.sleep(0.1)
-					sys.stdout.write('\b')
-				sys.stdout.write('\b   \n')
-				sys.stdout.flush()
-				print(get_lyrics(song, artist))
-			else:
-				print('Nothing playing at the moment.')
-				break
+			print(lyrics(song, artist))
