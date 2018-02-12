@@ -25,7 +25,8 @@ class Tests(unittest.TestCase):
 
 	def test_that_wrong_song_or_artist_does_not_break_stuff(self):
 		self.assertEqual(get_lyrics('Get Schwifty', 'lol'), 'Couldn\'t get lyrics for Get Schwifty by lol.')
-		self.assertFalse(get_lyrics('Get Schwifty', 'Rick Sanchez') == 'Couldn\'t get lyrics for Get Schwifty by lol.')
+		self.assertFalse(get_lyrics(
+			'Get Schwifty', 'Rick Sanchez') == 'Couldn\'t get lyrics for Get Schwifty by Rick Sanchez.')
 
 
 if __name__ == '__main__':

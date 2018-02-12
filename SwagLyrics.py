@@ -39,6 +39,7 @@ def lyrics(song, artist):
 	else:
 		return 0
 
+
 def spinning_cursor():
 	while True:
 		for cursor in '|/-\\':
