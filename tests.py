@@ -16,6 +16,7 @@ class Tests(unittest.TestCase):
 			'Justin-Timberlake-CANT-STOP-THE-FEELING')
 		self.assertEqual(stripper('Ain\'t My Fault - R3hab Remix', 'Zara Larsson'), 'Zara-Larsson-Aint-My-Fault')
 		self.assertEqual(stripper('1800-273-8255', 'Logic'), 'Logic-1800-273-8255')
+		# TODO: Add william example as test
 
 	def test_that_no_song_or_artist_does_not_break_stuff(self):
 		self.assertEqual(lyrics(None, 'lol'), 'Nothing playing at the moment.')
