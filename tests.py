@@ -1,5 +1,5 @@
 import unittest
-from SwagLyrics import stripper, lyrics
+from SwagLyrics import stripper, lyrics, get_lyrics
 
 
 class Tests(unittest.TestCase):
@@ -18,9 +18,14 @@ class Tests(unittest.TestCase):
 		self.assertEqual(stripper('1800-273-8255', 'Logic'), 'Logic-1800-273-8255')
 
 	def test_that_no_song_or_artist_does_not_break_stuff(self):
-		self.assertEqual(lyrics(None, 'lol'), 'Nothing playing at the moment.')
-		self.assertEqual(lyrics('lol', None), 'Nothing playing at the moment.')
-		self.assertEqual(lyrics(None, None), 'Nothing playing at the moment.')
+		self.assertFalse(lyrics(None, 'lol'))
+		self.assertFalse(lyrics('lol', None))
+		self.assertFalse(lyrics(None, None))
+		self.assertTrue(lyrics('Get Schwifty', 'Rick Sanchez'))
+
+	def test_that_wrong_song_or_artist_does_not_break_stuff(self):
+		self.assertEqual(get_lyrics('Get Schwifty', 'lol'), 'Couldn\'t get lyrics for Get Schwifty by lol.')
+		self.assertFalse(get_lyrics('Get Schwifty', 'Rick Sanchez') == 'Couldn\'t get lyrics for Get Schwifty by lol.')
 
 
 if __name__ == '__main__':

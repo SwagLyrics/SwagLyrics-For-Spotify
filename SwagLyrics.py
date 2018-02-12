@@ -35,10 +35,9 @@ def get_lyrics(song, artist):
 
 def lyrics(song, artist):
 	if song and artist:
-		return get_lyrics(song, artist)
+		return 1
 	else:
-		return 'Nothing playing at the moment.'
-
+		return 0
 
 def spinning_cursor():
 	while True:
@@ -49,12 +48,15 @@ def spinning_cursor():
 spinner = spinning_cursor()
 
 if __name__ == "__main__":
-	print('Getting lyrics for {song} by {artist} '.format(song=song, artist=artist), end='')
-	for _ in range(30):
-		sys.stdout.write(next(spinner))
+	if lyrics(song, artist):
+		print('Getting lyrics for {song} by {artist} '.format(song=song, artist=artist), end='')
+		for _ in range(30):
+			sys.stdout.write(next(spinner))
+			sys.stdout.flush()
+			time.sleep(0.1)
+			sys.stdout.write('\b')
+		sys.stdout.write('\b   \n')
 		sys.stdout.flush()
-		time.sleep(0.1)
-		sys.stdout.write('\b')
-	sys.stdout.write('\b   \n')
-	sys.stdout.flush()
-	print(lyrics(song, artist))
+		print(get_lyrics(song, artist))
+	else:
+		print('Nothing playing at the moment.')
