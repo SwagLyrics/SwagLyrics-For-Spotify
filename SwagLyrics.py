@@ -10,8 +10,9 @@ def stripper(song, artist):
 	song = re.sub(r'\([^)]*\)', '', song).strip()
 	song = re.sub('\- .*', '', song).strip()
 	song_data = artist + '-' + song
-	url_data = song_data.replace(' ', '-')
-	for ch in [',', "'", '!']:
+	url_data = song_data.replace('&', 'and')
+	url_data = url_data.replace(' ', '-')
+	for ch in [',', '\'', '!', '.']:
 		if ch in url_data:
 			url_data = url_data.replace(ch, '')
 	return url_data
