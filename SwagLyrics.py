@@ -4,6 +4,9 @@ import spotify
 import re
 import sys
 import time
+import os
+
+clear = lambda: os.system('cls')
 
 
 def stripper(song, artist):
@@ -39,7 +42,7 @@ def lyrics(song, artist):
 			sys.stdout.flush()
 			time.sleep(0.1)
 			sys.stdout.write('\b')
-		sys.stdout.write('\b   \n')
+		sys.stdout.write('\b.   \n')
 		sys.stdout.flush()
 		return get_lyrics(song, artist)
 	else:
@@ -62,6 +65,7 @@ if __name__ == "__main__":
 		if song == spotify.song()and artist == spotify.artist():
 			time.sleep(5)
 		else:
+			clear()
 			song = spotify.song()
 			artist = spotify.artist()
 			print(lyrics(song, artist))
