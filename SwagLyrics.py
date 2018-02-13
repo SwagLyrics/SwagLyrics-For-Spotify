@@ -15,7 +15,7 @@ def stripper(song, artist):
 	song_data = artist + '-' + song
 	url_data = song_data.replace('&', 'and')
 	url_data = url_data.replace(' ', '-')
-	for ch in [',', '\'', '!', '.', '’']:
+	for ch in [',', '\'', '!', '.', '’', '"']:
 		if ch in url_data:
 			url_data = url_data.replace(ch, '')
 	return url_data
