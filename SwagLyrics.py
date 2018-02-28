@@ -6,12 +6,22 @@ import sys
 import time
 import os
 
-clear = lambda: os.system('cls')
+clear = lambda: os.system('cls') # for the loading spinner
 
 
 def stripper(song, artist):
+	"""
+	Generate the url path given the song and artist to format the Genius URL with.
+	Strips the song and artist of special characters and unresolved text such as 'feat.'
+	Then concatenates both with hyphens replacing the blank spaces.
+	Eg.
+	>>>stripper('Paradise City', 'Guns n’ Roses')
+	Guns-n-Roses-Paradise-City
+	Which then formats the url to https://genius.com/Guns-n-Roses-Paradise-City-lyrics
+
+	"""
 	song = re.sub(r'\([^)]*\)', '', song).strip()
-	song = re.sub('\- .*', '', song).strip()
+	song = re.sub('- .*', '', song).strip()
 	song_data = artist + '-' + song
 	url_data = song_data.replace('&', 'and')
 	url_data = url_data.replace(' ', '-')
