@@ -91,7 +91,7 @@ if __name__ == "__main__":
 	while True:
 		# refresh every 5s to check whether song changed
 		# if changed, display the new lyrics
-		if song == spotify.song()and artist == spotify.artist():
+		if song == spotify.song() and artist == spotify.artist():
 			time.sleep(5)
 		else:
 			clear()

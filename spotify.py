@@ -1,34 +1,41 @@
 import win32gui
 
 
-def getwindow(Title="SpotifyMainWindow"):
-	window_id = win32gui.FindWindow(Title, None)
-	return window_id
+def get_info_windows():
+	windows = []
 
+	# Older Spotify versions - simply FindWindow for "SpotifyMainWindow"
+	windows.append(win32gui.GetWindowText(win32gui.FindWindow("SpotifyMainWindow", None)))
 
-def song_info():
-	try:
-		song_info = win32gui.GetWindowText(getwindow())
-	except:
-		pass
-	return song_info
+	# Newer Spotify versions - create an EnumHandler for EnumWindows and flood the list with Chrome_WidgetWin_0s
+	def find_spotify_uwp(hwnd, windows):
+		text = win32gui.GetWindowText(hwnd)
+		if win32gui.GetClassName(hwnd) == "Chrome_WidgetWin_0" and len(text) > 0:
+			windows.append(text)
+
+	win32gui.EnumWindows(find_spotify_uwp, windows)
+
+	while windows.count != 0:
+		try:
+			text = windows.pop()
+		except:
+			return "Error", "Nothing playing"
+		try:
+			artist, track = text.split(" - ", 1)
+			return artist, track
+		except:
+			pass
 
 
 def artist():
 	try:
-		temp = song_info()
-		artist, song = temp.split("-", 1)
-		artist = artist.strip()
-		return artist
+		return get_info_windows()[0]
 	except:
 		return None
 
 
 def song():
 	try:
-		temp = song_info()
-		artist, song = temp.split("-", 1)
-		song = song.strip()
-		return song
+		return get_info_windows()[1]
 	except:
 		return None
