@@ -19,7 +19,7 @@ def get_info_windows():
 		try:
 			text = windows.pop()
 		except:
-			return "Error", "Nothing playing"
+			return None
 		try:
 			artist, track = text.split(" - ", 1)
 			return artist, track
