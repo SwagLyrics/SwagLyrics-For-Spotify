@@ -67,6 +67,8 @@ def lyrics(song, artist):
 	:return: lyrics if song playing
 	"""
 	if song and artist:  # check if song playing
+		if song in open('unsupported.txt').read():
+			return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
 		print('Getting lyrics for {song} by {artist} '.format(song=song, artist=artist), end='')
 		for _ in range(30):  # loading spinner
 			sys.stdout.write(next(spinner))
