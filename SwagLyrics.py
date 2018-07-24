@@ -70,6 +70,7 @@ def lyrics(song, artist):
 		if song in open('unsupported.txt').read():
 			return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
 		print('Getting lyrics for {song} by {artist} '.format(song=song, artist=artist), end='')
+		lyrics = get_lyrics(song, artist)
 		for _ in range(30):  # loading spinner
 			sys.stdout.write(next(spinner))
 			sys.stdout.flush()
@@ -77,7 +78,7 @@ def lyrics(song, artist):
 			sys.stdout.write('\b')
 		sys.stdout.write('\b.   \n')
 		sys.stdout.flush()
-		return get_lyrics(song, artist)
+		return lyrics
 	else:
 		return 'Nothing playing at the moment.'
 
