@@ -50,7 +50,7 @@ def get_lyrics(song, artist):
 	lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
 	if lyrics_path is None:
 		with open('unsupported.txt', 'a') as f:
-			f.write('{song} by {artist}\n'.format(song=song, artist=artist))
+			f.write('{song} by {artist} \n '.format(song=song, artist=artist))
 			f.close()
 		lyrics = 'Couldn\'t get lyrics for {song} by {artist}. \nLogged it.'.format(song=song, artist=artist)
 		# Log song and artist for which lyrics couldn't be obtained
