@@ -1,5 +1,5 @@
 from SwagLyrics import lyrics
-from flask import Flask
+from flask import Flask, render_template
 
 import spotify
 
@@ -11,7 +11,8 @@ def tab():
 	song = spotify.song()
 	artist = spotify.artist()
 	current_lyrics = lyrics(song, artist)
-	return current_lyrics
+	current_lyrics = current_lyrics.split('\n')
+	return render_template('lyrics.html', lyrics=current_lyrics, song=song)
 
 
 if __name__ == "__main__":
