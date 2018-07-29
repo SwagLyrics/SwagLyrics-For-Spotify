@@ -8,5 +8,18 @@
 {% for line in lyrics %}
     <p>{{line}}</p>
 {% endfor %}
+<script>
+    function songChanged() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/songChanged", false);
+        xhr.send();
+        var result = xhr.responseText;
+        if (result === 'yes') {
+            location.reload(true)
+        }
+        setTimeout(songChanged, 5000)
+    }
+    songChanged()
+</script>
 </body>
 </html>
