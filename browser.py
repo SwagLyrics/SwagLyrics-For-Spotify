@@ -16,7 +16,7 @@ def tab():
 	artist = spotify.artist()
 	current_lyrics = lyrics(song, artist)
 	current_lyrics = current_lyrics.split('\n')
-	return render_template('lyrics.html', lyrics=current_lyrics, song=song)
+	return render_template('lyrics.html', lyrics=current_lyrics, song=song, artist=artist)
 
 
 @app.route('/songChanged', methods=['GET'])

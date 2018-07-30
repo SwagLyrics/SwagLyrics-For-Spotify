@@ -55,7 +55,7 @@ def get_lyrics(song, artist):
 		lyrics = 'Couldn\'t get lyrics for {song} by {artist}. \nLogged it.'.format(song=song, artist=artist)
 		# Log song and artist for which lyrics couldn't be obtained
 	else:
-		lyrics = lyrics_path.get_text().encode('ascii', 'ignore').decode('utf-8')
+		lyrics = lyrics_path.get_text().encode('ascii', 'ignore').decode('utf-8').strip()
 	return lyrics
 
 

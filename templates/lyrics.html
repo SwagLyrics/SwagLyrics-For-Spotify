@@ -2,27 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel = "stylesheet" type = "text/css" href = "{{url_for('static', filename='style.css')}}">
     <title>Lyrics for {{song}}</title>
 </head>
 <body>
+<h2>{{song}} by {{artist}}</h2>
 {% for line in lyrics %}
-    <p>{{line}}</p>
+    {{line}}<br>
 {% endfor %}
-<script>
-    function songChanged() {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "/songChanged", true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                if (xhr.responseText === 'yes') {
-                    location.reload(true)
-                }
-                setTimeout(songChanged, 5000)
-            }
-        };
-        xhr.send();
-    }
-    songChanged()
+<script type="text/javascript" src="{{url_for('static', filename='songChanged.js')}}">
 </script>
 </body>
 </html>
