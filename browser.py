@@ -22,7 +22,7 @@ def tab():
 @app.route('/songChanged', methods=['GET'])
 def song_changed():
 	global song
-	if song == spotify.song():
+	if song == spotify.song() or spotify.song() is None:
 		return 'no'
 	return 'yes'
 
