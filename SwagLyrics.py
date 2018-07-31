@@ -101,7 +101,8 @@ if __name__ == "__main__":
 		if song == spotify.song() and artist == spotify.artist():
 			time.sleep(5)
 		else:
-			clear()
 			song = spotify.song()
 			artist = spotify.artist()
-			print(lyrics(song, artist))
+			if song and artist is not None:
+				clear()
+				print(lyrics(song, artist))
