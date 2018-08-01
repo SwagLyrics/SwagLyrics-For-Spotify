@@ -1,7 +1,7 @@
-from SwagLyrics import lyrics
+from swaglyrics.cli import lyrics
 from flask import Flask, render_template
 
-import spotify
+from swaglyrics import spotify
 
 app = Flask(__name__)
 
@@ -25,7 +25,3 @@ def song_changed():
 	if song == spotify.song() or spotify.song() is None:
 		return 'no'
 	return 'yes'
-
-
-if __name__ == "__main__":
-	app.run()

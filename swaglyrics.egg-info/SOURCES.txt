@@ -1,0 +1,12 @@
+README.md
+setup.py
+swaglyrics/__init__.py
+swaglyrics/cli.py
+swaglyrics/spotify.py
+swaglyrics/swaglyrics.py
+swaglyrics/tab.py
+swaglyrics/tests.py
+swaglyrics.egg-info/PKG-INFO
+swaglyrics.egg-info/SOURCES.txt
+swaglyrics.egg-info/dependency_links.txt
+swaglyrics.egg-info/top_level.txt

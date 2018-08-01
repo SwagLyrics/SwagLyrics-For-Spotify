@@ -11,4 +11,4 @@ function songChanged() {
         };
         xhr.send();
     }
-    songChanged()
+    songChanged();

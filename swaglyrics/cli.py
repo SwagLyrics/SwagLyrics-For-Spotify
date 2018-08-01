@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-import spotify
 import re
 import sys
 import time
@@ -90,19 +89,3 @@ def spinning_cursor():
 
 
 spinner = spinning_cursor()
-
-if __name__ == "__main__":
-	song = spotify.song()  # get currently playing song
-	artist = spotify.artist()  # get currently playing artist
-	print(lyrics(song, artist))
-	while True:
-		# refresh every 5s to check whether song changed
-		# if changed, display the new lyrics
-		if song == spotify.song() and artist == spotify.artist():
-			time.sleep(5)
-		else:
-			song = spotify.song()
-			artist = spotify.artist()
-			if song and artist is not None:
-				clear()
-				print(lyrics(song, artist))

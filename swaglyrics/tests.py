@@ -1,5 +1,5 @@
 import unittest
-from SwagLyrics import stripper, lyrics, get_lyrics
+from swaglyrics.cli import stripper, lyrics, get_lyrics
 
 
 class Tests(unittest.TestCase):
