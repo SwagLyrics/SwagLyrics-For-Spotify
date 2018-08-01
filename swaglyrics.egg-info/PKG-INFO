@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: swaglyrics
 Version: 0.0.1
-Summary: Display lyrics for currently playing song from Spotify as cli or a browser tab.
+Summary: Display lyrics for currently playing song from Spotify in a CLI or in browser tab.
 Home-page: https://github.com/aadibajpai/SwagLyrics-For-Spotify
 Author: Aadi Bajpai
 Author-email: aadibajpai@gmail.com
