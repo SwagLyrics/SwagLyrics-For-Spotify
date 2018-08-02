@@ -1,11 +1,11 @@
 Metadata-Version: 2.1
 Name: swaglyrics
-Version: 0.0.9
+Version: 0.1.0
 Summary: Fetch the currently playing song from Spotify and display lyrics on cmd or in a browser tab.
 Home-page: https://github.com/aadibajpai/SwagLyrics-For-Spotify
 Author: Aadi Bajpai
 Author-email: aadibajpai@gmail.com
-License: UNKNOWN
+License: MIT
 Description: # SwagLyrics-For-Spotify 
         ![PyPI](https://img.shields.io/pypi/v/swaglyrics.svg)
         
@@ -14,9 +14,11 @@ Description: # SwagLyrics-For-Spotify
         Made this mainly for personal use so that I don't sing along with wrong lyrics and end up embarrassing myself later.
         
         
-        Probably wasn't thinking when I put _Swag_ in the name (Imagine if this project ends on my CV) but I'm mainly trying to build this project as far as I can, mainly for practice and to learn stuff.
+        Probably wasn't thinking when I put _Swag_ in the name (Imagine if this project ends on my CV) but 
+        I'm mainly trying to build this project as far as I can, mainly for practice and to learn stuff.
         
-        Main priorities are supporting more songs and making it faster and better. Hopefully an API too so you can get lyrics from wherever.
+        Main priorities are supporting more songs and making it faster and better. 
+        Hopefully an API too so you can get lyrics from wherever.
         
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
