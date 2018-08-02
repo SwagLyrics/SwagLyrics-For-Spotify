@@ -1,13 +1,13 @@
 Metadata-Version: 2.1
 Name: swaglyrics
-Version: 0.0.1
-Summary: Display lyrics for currently playing song from Spotify in a CLI or in browser tab.
+Version: 0.0.3
+Summary: Fetch the currently playing song from Spotify and display lyrics on cmd or in a browser tab.
 Home-page: https://github.com/aadibajpai/SwagLyrics-For-Spotify
 Author: Aadi Bajpai
 Author-email: aadibajpai@gmail.com
 License: UNKNOWN
 Description: # SwagLyrics-For-Spotify
-        :fire: Fetches the currently playing song from Spotify and displays the lyrics from Genius on cmd.
+        Fetches the currently playing song from Spotify and displays the lyrics from Genius on cmd.
         
         Made this mainly for personal use so that I don't sing along with wrong lyrics and end up embarrassing myself later.
         

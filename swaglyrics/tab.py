@@ -25,3 +25,7 @@ def song_changed():
 	if song == spotify.song() or spotify.song() is None:
 		return 'no'
 	return 'yes'
+
+
+if __name__ == '__main__':
+	app.run()

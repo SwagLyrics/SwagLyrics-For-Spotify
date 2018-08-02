@@ -89,3 +89,6 @@ def spinning_cursor():
 
 
 spinner = spinning_cursor()
+
+if __name__ == '__main__':
+	pass
