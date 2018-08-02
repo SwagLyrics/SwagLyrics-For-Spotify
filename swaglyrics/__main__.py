@@ -15,7 +15,7 @@ def main():
 	args = parser.parse_args()
 
 	if args.tab:
-		app.run()
+		app.run(debug=True)
 
 	elif args.cli:
 		song = spotify.song()  # get currently playing song
@@ -40,3 +40,7 @@ def main():
 
 	else:
 		parser.print_help()
+
+
+if __name__ == '__main__':
+	main()
