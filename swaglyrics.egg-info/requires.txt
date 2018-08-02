@@ -1,0 +1,4 @@
+flask
+pywin32
+requests
+beautifulsoup4

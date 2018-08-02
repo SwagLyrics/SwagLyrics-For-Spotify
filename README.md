@@ -1,4 +1,6 @@
-# SwagLyrics-For-Spotify
+# SwagLyrics-For-Spotify 
+![PyPI](https://img.shields.io/pypi/v/swaglyrics.svg)
+
 Fetches the currently playing song from Spotify and displays the lyrics from Genius on cmd.
 
 Made this mainly for personal use so that I don't sing along with wrong lyrics and end up embarrassing myself later.
