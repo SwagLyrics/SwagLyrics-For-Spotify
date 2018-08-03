@@ -80,6 +80,7 @@ def lyrics(song, artist):
 			sys.stdout.write('\b')
 		sys.stdout.write('\b.   \n')
 		sys.stdout.flush()
+		print('\nlol')
 		return lyrics
 	else:
 		return 'Nothing playing at the moment.'

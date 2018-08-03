@@ -1,6 +1,6 @@
 import argparse
 from swaglyrics.cli import lyrics, clear
-from swaglyrics.tab import app
+from swaglyrics.app import app
 from swaglyrics import spotify
 import time
 
