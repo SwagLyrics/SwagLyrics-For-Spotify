@@ -1,9 +1,9 @@
 from swaglyrics.cli import lyrics
 from flask import Flask, render_template
-
+import os
 from swaglyrics import spotify
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder=os.path.join(os.path.dirname(os.path.abspath('tab.py')), 'templates'))
 
 song = None
 artist = None

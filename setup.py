@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="swaglyrics",
-    version="0.1.1",
+    version="0.1.6",
     author="Aadi Bajpai",
     author_email="aadibajpai@gmail.com",
     description="Fetch the currently playing song from Spotify and display lyrics on cmd or in a browser tab.",
@@ -15,6 +15,7 @@ setuptools.setup(
     entry_points={'console_scripts': ['swaglyrics=swaglyrics.__main__:main']},
     packages=setuptools.find_packages(),
     license='MIT',
+    include_package_data=True,
     install_requires=['flask', 'pywin32', 'requests', 'beautifulsoup4'],
     classifiers=(
         "Programming Language :: Python :: 3",
