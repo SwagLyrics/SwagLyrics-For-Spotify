@@ -17,7 +17,7 @@ distribution and usage easier.
 ```
 pip install swaglyrics
 ```
-Make sure to use a version >= 0.1.6 since the previous ones don't have the 'tab' option supported.
+Make sure to use a version >= 0.1.6 since the previous ones don't have the `tab` option supported.
 
 ## Usage
 `swaglyrics [-h] [-t] [-c]`
@@ -35,8 +35,8 @@ Arguments:
 ```
 .
 |-- swaglyrics
-    |-- static  # styling and the AJAX script needed to dynamically refresh browser tab with new lyrics
-    |-- templates  # template for the browser tab
+    |-- static  # contains styling and the AJAX script needed to dynamically refresh browser tab with new lyrics
+    |-- templates  # contains template for the browser tab
     |-- __init__.py
     |-- __main__.py  # holds primary function that parses args and executes accordingly
     |-- cli.py  # defines functions to fetch lyrics from Genius
