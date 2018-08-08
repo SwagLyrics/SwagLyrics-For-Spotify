@@ -3,6 +3,7 @@
 
 Fetches the currently playing song from Spotify on Windows and displays the lyrics on cmd or in a browser tab.
 Refreshes automatically when song changes. The lyrics are fetched from Genius.
+Turns out Deezer already has this feature in-built but with `swaglyrics`, you can have it in Spotify as well.
 
 Probably wasn't thinking when I put _Swag_ in the name (Imagine if this project ends on my CV and will probably be seen 
 by admission officers and the likes) but I'm mainly trying to build this project as far as I can, 
