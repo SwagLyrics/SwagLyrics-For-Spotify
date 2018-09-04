@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: swaglyrics
-Version: 0.1.7
+Version: 0.1.8
 Summary: Fetch the currently playing song from Spotify and display lyrics on cmd or in a browser tab.
 Home-page: https://github.com/aadibajpai/SwagLyrics-For-Spotify
 Author: Aadi Bajpai
