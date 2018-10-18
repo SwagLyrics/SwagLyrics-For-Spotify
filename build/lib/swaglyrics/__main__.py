@@ -8,7 +8,7 @@ import os
 
 def main():
 	parser = argparse.ArgumentParser(
-		description="Get lyrics for currently playing song on Spotify. Either --tab or --cli is required.")
+		description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
 
 	parser.add_argument('-t', '--tab', action='store_true', help='Display lyrics in a browser tab.')
 	parser.add_argument('-c', '--cli', action='store_true', help='Display lyrics in the command-line.')
