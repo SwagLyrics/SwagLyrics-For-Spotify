@@ -77,7 +77,7 @@ def lyrics(song, artist):
 				return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
 		except FileNotFoundError:
 			pass
-		print('\nGetting lyrics for {song} by {artist} '.format(song=song, artist=artist), end='')
+		print('\nGetting lyrics for {song} by {artist}\n'.format(song=song, artist=artist), end='')
 		lyrics = get_lyrics(song, artist)
 		for _ in range(30):  # loading spinner
 			sys.stdout.write(next(spinner))
