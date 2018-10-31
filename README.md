@@ -1,5 +1,6 @@
 # SwagLyrics-For-Spotify
 ![PyPI](https://img.shields.io/pypi/v/swaglyrics.svg)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/swaglyrics.svg)
 
 Fetches the currently playing song from Spotify on Windows and displays the lyrics in the command-line or in a browser tab.
 Refreshes automatically when song changes. The lyrics are fetched from Genius.
