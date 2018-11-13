@@ -14,6 +14,19 @@ can see helping me and other users in the same situation.
 Packaged so I can first hand handle production-ready code to an extent and to make
 distribution and usage easier.
 
+---
+[![Google Code-In 2018](https://raw.githubusercontent.com/CCExtractor/ccextractor-org-media/master/ext/google-code-In-2018.gif)](https://codein.withgoogle.com/)
+<p align="center">
+  SwagLyrics is participating in Google Code-in 2018 with CCExtractor Development!
+</p>
+
+Google Code-in is a global, online open source development & outreach contest for pre-university students aged between 13-17. Participants complete “tasks” ranging from coding, documentation, quality assurance, design, outreach and research to earn t-shirts, digital certificates, and hooded sweatshirts for their work. Grand Prize Winners receive a four day trip to Google in Mountain View, CA, USA the following summer!
+
+We have a long and proud history of taking part in the Google Summer of Code with university students, and are excited to participate in GCI again for 3rd year with pre-university students!
+
+Sounds interesting? Read more about it on our website [here](https://ccextractor.org/public:codein:google_code-in_2018) and on the official website [here](https://codein.withgoogle.com/).
+
+---
 ## Changelog
 - #### v0.1.9
 A GitHub issue is created automatically on the repo when an unsupported song is encountered (implemented server-side using pythonanywhere).
