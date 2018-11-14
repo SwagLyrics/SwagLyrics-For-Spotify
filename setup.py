@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="swaglyrics",
-    version="0.1.8",
+    version="0.2.0",
     author="Aadi Bajpai",
     author_email="aadibajpai@gmail.com",
     description="Fetch the currently playing song from Spotify and display lyrics on cmd or in a browser tab.",

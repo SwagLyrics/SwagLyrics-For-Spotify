@@ -48,16 +48,17 @@ def get_lyrics(song, artist):
 	# TODO: Add error handling
 	lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
 	if lyrics_path is None:
-		try:
-			requests.post('http://aadibajpai.pythonanywhere.com/unsupported', data={'song': song, 'artist': artist})
-		except requests.exceptions.RequestException:
-			pass
 		with open('unsupported.txt', 'a') as f:
 			f.write('{song} by {artist} \n '.format(song=song, artist=artist))
 			f.close()
-		lyrics = 'Couldn\'t get lyrics for {song} by {artist}. ' \
-			'\nLogged it and sent it to the totally not lazy developer ;)'.format(song=song, artist=artist)
-		# Log song and artist for which lyrics couldn't be obtained
+		lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
+		try:
+			# Log song and artist for which lyrics couldn't be obtained
+			r = requests.post('http://aadibajpai.pythonanywhere.com/unsupported', data={'song': song, 'artist': artist})
+			if r.status_code == 200:
+				lyrics += r.text
+		except requests.exceptions.RequestException:
+			pass
 	else:
 		lyrics = lyrics_path.get_text().encode('ascii', 'ignore').decode('utf-8').strip()
 	return lyrics
@@ -76,7 +77,7 @@ def lyrics(song, artist):
 				return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
 		except FileNotFoundError:
 			pass
-		print('Getting lyrics for {song} by {artist} '.format(song=song, artist=artist), end='')
+		print('\nGetting lyrics for {song} by {artist}\n'.format(song=song, artist=artist), end='')
 		lyrics = get_lyrics(song, artist)
 		for _ in range(30):  # loading spinner
 			sys.stdout.write(next(spinner))
