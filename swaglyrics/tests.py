@@ -49,8 +49,6 @@ class Tests(unittest.TestCase):
 		self.assertEqual(get_lyrics("Battle Symphony", "One Direction", False), "Couldn't get lyrics for Battle Symphony by One Direction.\n")
 		self.assertEqual(get_lyrics("Faded", "Marshmellow", False), "Couldn't get lyrics for Faded by Marshmellow.\n")
 		self.assertEqual(get_lyrics("Battle Symphony", "Drake", False), "Couldn't get lyrics for Battle Symphony by Drake.\n")
-		self.assertEqual(get_lyrics("Crimes", "Grindlewald")[:167],
-        "Couldn't get lyrics for Crimes by Grindlewald.\nCreated issue on the GitHub repo for Crimes by Grindlewald. \nhttps://github.com/aadibajpai/SwagLyrics-For-Spotify/issues")
 
 	def test_lyrics_gives_unsupported_message(self):
 		"""
