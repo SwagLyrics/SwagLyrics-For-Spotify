@@ -21,7 +21,7 @@ class Tests(unittest.TestCase):
 			stripper(
 				'CAN\'T STOP THE FEELING!'
 				' (Original Song from DreamWorks Animation\'s \"TROLLS\")', 'Justin Timberlake'),
-				'Justin-Timberlake-CANT-STOP-THE-FEELING')
+            'Justin-Timberlake-CANT-STOP-THE-FEELING')
 		self.assertEqual(stripper('Ain\'t My Fault - R3hab Remix', 'Zara Larsson'), 'Zara-Larsson-Aint-My-Fault')
 		self.assertEqual(stripper('1800-273-8255', 'Logic'), 'Logic-1800-273-8255')
 		self.assertEqual(stripper('Scream & Shout', 'will.i.am'), 'william-Scream-and-Shout')
