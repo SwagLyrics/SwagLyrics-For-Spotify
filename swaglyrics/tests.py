@@ -34,7 +34,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(lyrics('lol', None), 'Nothing playing at the moment.')
 		self.assertEqual(lyrics(None, None), 'Nothing playing at the moment.')
 
-	def test_get_lyrics(self):
+	def test_get_lyrics_function_works(self):
 		"""
 		Test that get_lyrics function works
 		"""
@@ -42,7 +42,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(get_lyrics("Radioactive", "Imagine Dragons")[:7], "[Intro]")
 		self.assertEqual(get_lyrics("Battle Symphony", "Linkin Park")[:9], "[Verse 1]")
 
-	def test_get_lyrics_wrong_data(self):
+	def test_get_lyrics_function_does_not_break_with_wrong_data(self):
 		"""
 		Test that get_lyrics function does not break with wrong data
 		"""
@@ -50,7 +50,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(get_lyrics("Faded", "Marshmellow", False), "Couldn't get lyrics for Faded by Marshmellow.\n")
 		self.assertEqual(get_lyrics("Battle Symphony", "Drake", False), "Couldn't get lyrics for Battle Symphony by Drake.\n")
 
-	def test_lyrics_unsupported(self):
+	def test_lyrics_gives_unsupported_message(self):
 		"""
 		Test that lyrics function gives 'unsupported' message to unsupported files
 		"""
