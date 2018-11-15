@@ -58,7 +58,7 @@ class Tests(unittest.TestCase):
 		f.close()
 		f = open("unsupported.txt", "w")
 		for line in lines:
-			if line not in ["Battle Symphony by One Direction \n", " Faded by Marshmello \n", " Battle Symphony by Drake \n"]:
+			if line not in ["Battle Symphony by One Direction \n", " Battle Symphony by One Direction \n", " Faded by Marshmello \n", " Battle Symphony by Drake \n"]:
 				f.write(line)
 		f.close()
 
