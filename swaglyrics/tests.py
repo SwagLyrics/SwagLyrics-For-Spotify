@@ -52,26 +52,32 @@ class Tests(unittest.TestCase):
 		self.assertEqual(get_lyrics("Faded", "Muhmello", False), "Couldn't get lyrics for Faded by Muhmello.\n")
 		self.assertEqual(get_lyrics("Battle Symphony", "Drake", False), "Couldn't get lyrics for Battle Symphony by Drake.\n")
 
+		# Deleting above songs and artists from unsupported.txt
+		with open("unsupported.txt", "r") as f:
+			lines = f.readlines()
+		with open("unsupported.txt", "w") as f:
+			for line in lines:
+				if line not in [" Battle Symphony by One Direction \n", " Faded by Muhmello \n", " Battle Symphony by Drake \n"]:
+					f.write(line)
+
 	def test_that_lyrics_works_for_unsupported_songs(self):
 		"""
 		Test that lyrics function gives 'unsupported' message to unsupported files
 		"""
-		get_lyrics("Hello", "World")
+		get_lyrics("Hello", "World", False)
 		self.assertEqual(lyrics("Hello", "World"), "Lyrics unavailable for Hello by World.\n")
-		get_lyrics("Foo", "Bar")
+		get_lyrics("Foo", "Bar", False)
 		self.assertEqual(lyrics("Foo", "Bar"), "Lyrics unavailable for Foo by Bar.\n")
-		get_lyrics("Fantastic", "Beasts")
+		get_lyrics("Fantastic", "Beasts", False)
 		self.assertEqual(lyrics("Fantastic", "Beasts"), "Lyrics unavailable for Fantastic by Beasts.\n")
 
-		# Deleting above lyrics from unsupported.txt
-		f = open("unsupported.txt", "r")
-		lines = f.readlines()
-		f.close()
-		f = open("unsupported.txt", "w")
-		for line in lines:
-			if line not in ["Hello by World\n", "Foo by Bar\n", "Fantastic by Beasts\n"]:
-				f.write(line)
-		f.close()
+		# Deleting above songs and artists from unsupported.txt
+		with open("unsupported.txt", "r") as f:
+			lines = f.readlines()
+		with open("unsupported.txt", "w") as f:
+			for line in lines:
+				if line not in [" Hello by World \n", " Foo by Bar \n", " Fantastic by Beasts \n"]:
+					f.write(line)
 
 
 if __name__ == '__main__':
