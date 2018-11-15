@@ -71,7 +71,7 @@ Arguments:
 ```
 
 ## Improvements Planned
-1. MacOS support
+1. Linux and MacOS support
 2. ~~Better logging of unsupported songs, the isolated unsupported.txt is sub-optimal for multiple users since the
 file will only update locally with songs which worked fine when it was just me but since I hope others use it too, I'll
 try to add a better method with server support.~~
@@ -80,3 +80,6 @@ try to add a better method with server support.~~
 5. Supporting more songs, currently the program sometimes fails at remixes since while the lyrics are same as original,
  the artist is the remixer.
 6. Documenting all the files.
+
+## Screencast on Linux
+[![Watch the video](https://media.giphy.com/media/kv7t8ZcCwWnoVKuGwZ/giphy.gif)](http://www.youtube.com/watch?v=-rxYcXAsO1U)
