@@ -1,4 +1,5 @@
 # SwagLyrics-For-Spotify
+[![Build Status](https://travis-ci.org/aadibajpai/SwagLyrics-For-Spotify.svg?branch=master)](https://travis-ci.org/aadibajpai/SwagLyrics-For-Spotify)
 [![PyPI](https://img.shields.io/pypi/v/swaglyrics.svg)](https://pypi.org/project/swaglyrics/)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/aadibajpai/swaglyrics-for-spotify.svg)](https://github.com/aadibajpai/SwagLyrics-For-Spotify)
 [![Downloads](https://pepy.tech/badge/swaglyrics)](https://pepy.tech/project/swaglyrics)
