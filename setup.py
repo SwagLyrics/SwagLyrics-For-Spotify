@@ -1,7 +1,12 @@
-import setuptools
+import setuptools,platform
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
+
+if platform.system() == "Windows":
+    depen = ['flask', 'pywin32', 'requests', 'beautifulsoup4']
+else:
+    depen = ['flask', 'requests', 'beautifulsoup4']
 
 setuptools.setup(
     name="swaglyrics",
@@ -16,7 +21,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     license='MIT',
     include_package_data=True,
-    install_requires=['flask', 'pywin32', 'requests', 'beautifulsoup4'],
+    install_requires = depen,
     classifiers=(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
