@@ -69,7 +69,7 @@ class Tests(unittest.TestCase):
 		f.close()
 		f = open("unsupported.txt", "w")
 		for line in lines:
-			if line not in ["Hello by World\n", "Foo by Bar\n", "Fantastic by Beasts\n"]:
+			if line not in ["Hello by World", "Foo by Bar", "Fantastic by Beasts"]:
 				f.write(line)
 		f.close()
 
