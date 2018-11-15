@@ -8,8 +8,11 @@ python:
 install:
   - pip install .
   - pip install codecov
+  - pip install coverage
 
 after_success:
   - codecov
 # command to run tests
-script: python -m unittest swaglyrics/tests.py
+script: 
+  - python -m unittest swaglyrics/tests.py
+  - coverage run tests.py
