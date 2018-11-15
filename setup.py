@@ -1,4 +1,4 @@
-import setuptools,platform
+import setuptools, platform
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -21,7 +21,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     license='MIT',
     include_package_data=True,
-    install_requires = depen,
+    install_requires=depen,
     classifiers=(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
