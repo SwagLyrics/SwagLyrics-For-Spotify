@@ -1,7 +1,8 @@
-import win32gui
-
+import platform
 
 def get_info_windows():
+	import win32gui
+
 	windows = []
 
 	# Older Spotify versions - simply FindWindow for "SpotifyMainWindow"
@@ -26,16 +27,39 @@ def get_info_windows():
 		except:
 			pass
 
+def get_info_linux():
+	import dbus
+
+	session_bus = dbus.SessionBus()
+	spotify_bus = session_bus.get_object("org.mpris.MediaPlayer2.spotify",
+	                                     "/org/mpris/MediaPlayer2")
+	spotify_properties = dbus.Interface(spotify_bus,
+	                                    "org.freedesktop.DBus.Properties")
+	metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
+	track = str(metadata['xesam:title'])
+	artist = str(metadata['xesam:artist'][0])
+	return artist, track
 
 def artist():
-	try:
-		return get_info_windows()[0]
-	except:
-		return None
-
+	if platform.system() == "Windows":
+		try:
+			return get_info_windows()[0]
+		except:
+			return None
+	else:
+		try:
+			return get_info_linux()[0]
+		except:
+			return None
 
 def song():
-	try:
-		return get_info_windows()[1]
-	except:
-		return None
+	if platform.system() == "Windows":
+		try:
+			return get_info_windows()[1]
+		except:
+			return None
+	else:
+		try:
+			return get_info_linux()[1]
+		except:
+			return None
