@@ -38,7 +38,7 @@ def get_info_linux():
 	metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
 	track = str(metadata['xesam:title'])
 	artist = str(metadata['xesam:artist'][0])
-	return artist,track
+	return artist, track
 
 def artist():
 	if platform.system() == "Windows":
