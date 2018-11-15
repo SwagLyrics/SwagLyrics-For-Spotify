@@ -80,3 +80,6 @@ try to add a better method with server support.~~
 5. Supporting more songs, currently the program sometimes fails at remixes since while the lyrics are same as original,
  the artist is the remixer.
 6. Documenting all the files.
+
+## Screencast on Linux
+[![Watch the video](https://media.giphy.com/media/kv7t8ZcCwWnoVKuGwZ/giphy.gif)](http://www.youtube.com/watch?v=-rxYcXAsO1U)
