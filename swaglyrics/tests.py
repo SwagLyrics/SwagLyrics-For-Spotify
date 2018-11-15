@@ -69,7 +69,7 @@ class Tests(unittest.TestCase):
 		for line in lines:
 			if line not in ["Hello by World\n","Foo by Bar\n","Fantastic by Beasts\n"]:
 				f.write(line)
-        f.close()
+		f.close()
 
 if __name__ == '__main__':
 	unittest.main()
