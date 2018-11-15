@@ -33,12 +33,13 @@ def stripper(song, artist):
 	return url_data
 
 
-def get_lyrics(song, artist):
+def get_lyrics(song, artist, make_issue=True):
 	"""
 	Get lyrics from Genius given the song and artist.
 	Formats the URL with the stripped url path to fetch the lyrics.
 	:param song: currently playing song
 	:param artist: song artist
+	:param make_issue: whether to make an issue on GitHub if song unsupported
 	:return: song lyrics
 	"""
 	url_data = stripper(song, artist)  # generate url path using stripper()
@@ -54,9 +55,10 @@ def get_lyrics(song, artist):
 		lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
 		try:
 			# Log song and artist for which lyrics couldn't be obtained
-			r = requests.post('http://aadibajpai.pythonanywhere.com/unsupported', data={'song': song, 'artist': artist})
-			if r.status_code == 200:
-				lyrics += r.text
+			if make_issue:
+				r = requests.post('http://aadibajpai.pythonanywhere.com/unsupported', data={'song': song, 'artist': artist})
+				if r.status_code == 200:
+					lyrics += r.text
 		except requests.exceptions.RequestException:
 			pass
 	else:
@@ -73,8 +75,9 @@ def lyrics(song, artist):
 	"""
 	if song and artist:  # check if song playing
 		try:
-			if song in open('unsupported.txt').read():
-				return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
+			with open('unsupported.txt') as unsupported:
+				if song in unsupported.read():
+					return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
 		except FileNotFoundError:
 			pass
 		print('\nGetting lyrics for {song} by {artist}\n'.format(song=song, artist=artist), end='')
