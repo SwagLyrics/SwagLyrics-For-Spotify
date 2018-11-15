@@ -83,5 +83,5 @@ try to add a better method with server support.~~
 
 ## Screencast - SwagLyrics works on Linux
 
-![Watch the video](https://raw.githubusercontent.com/aadibajpai/SwagLyrics-For-Spotify/master/demo/swaglyrics-min.gif)](http://www.youtube.com/watch?v=-rxYcXAsO1U)
+[![Watch the video](https://raw.githubusercontent.com/aadibajpai/SwagLyrics-For-Spotify/master/demo/swaglyrics-min.gif)](http://www.youtube.com/watch?v=-rxYcXAsO1U)
 
