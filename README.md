@@ -82,5 +82,4 @@ try to add a better method with server support.~~
 6. Documenting all the files.
 
 ## Screencast on Linux
-[link=http://www.youtube.com/watch?v=-rxYcXAsO1U]
-image::https://media.giphy.com/media/kv7t8ZcCwWnoVKuGwZ/giphy.gif[align="center"]
+[![Watch the video](https://media.giphy.com/media/kv7t8ZcCwWnoVKuGwZ/giphy.gif)](http://www.youtube.com/watch?v=-rxYcXAsO1U)
