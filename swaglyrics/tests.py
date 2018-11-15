@@ -4,6 +4,7 @@ Contains unit tests
 import unittest
 from swaglyrics.cli import stripper, lyrics, get_lyrics
 
+
 class Tests(unittest.TestCase):
 	"""
 	Unit tests
@@ -46,8 +47,9 @@ class Tests(unittest.TestCase):
 		"""
 		Test that get_lyrics function does not break with wrong data
 		"""
-		self.assertEqual(get_lyrics("Battle Symphony", "One Direction", False), "Couldn't get lyrics for Battle Symphony by One Direction.\n")
-		self.assertEqual(get_lyrics("Faded", "Marshmellow", False), "Couldn't get lyrics for Faded by Marshmellow.\n")
+		self.assertEqual(get_lyrics(
+			"Battle Symphony", "One Direction", False), "Couldn't get lyrics for Battle Symphony by One Direction.\n")
+		self.assertEqual(get_lyrics("Faded", "Marshmello", False), "Couldn't get lyrics for Faded by Marshmello.\n")
 		self.assertEqual(get_lyrics("Battle Symphony", "Drake", False), "Couldn't get lyrics for Battle Symphony by Drake.\n")
 
 	def test_lyrics_gives_unsupported_message(self):
@@ -62,14 +64,15 @@ class Tests(unittest.TestCase):
 		self.assertEqual(lyrics("Fantastic", "Beasts"), "Lyrics unavailable for Fantastic by Beasts.\n")
 
 		# Deleting above lyrics from unsupported.txt
-		f = open("unsupported.txt","r")
+		f = open("unsupported.txt", "r")
 		lines = f.readlines()
 		f.close()
-		f = open("yourfile.txt","w")
+		f = open("unsupported.txt", "w")
 		for line in lines:
-			if line not in ["Hello by World\n","Foo by Bar\n","Fantastic by Beasts\n"]:
+			if line not in ["Hello by World\n", "Foo by Bar\n", "Fantastic by Beasts\n"]:
 				f.write(line)
 		f.close()
+
 
 if __name__ == '__main__':
 	unittest.main()
