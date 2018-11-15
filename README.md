@@ -83,4 +83,4 @@ try to add a better method with server support.~~
 
 ## Screencast on Linux
 [link=http://www.youtube.com/watch?v=-rxYcXAsO1U "Swaglyrics for Spotify - Linux"]
-image::https://media.giphy.com/media/kv7t8ZcCwWnoVKuGwZ/giphy.gif
+image::https://media.giphy.com/media/kv7t8ZcCwWnoVKuGwZ/giphy.gif[align="center"]
