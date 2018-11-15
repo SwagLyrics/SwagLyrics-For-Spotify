@@ -15,4 +15,4 @@ after_success:
 # command to run tests
 script: 
   - python -m unittest swaglyrics/tests.py
-  - coverage run tests.py
+  - coverage run swaglyrics/tests.py
