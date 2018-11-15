@@ -33,7 +33,7 @@ def stripper(song, artist):
 	return url_data
 
 
-def get_lyrics(song, artist):
+def get_lyrics(song, artist, make_issue=True):
 	"""
 	Get lyrics from Genius given the song and artist.
 	Formats the URL with the stripped url path to fetch the lyrics.
@@ -54,9 +54,10 @@ def get_lyrics(song, artist):
 		lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
 		try:
 			# Log song and artist for which lyrics couldn't be obtained
-			r = requests.post('http://aadibajpai.pythonanywhere.com/unsupported', data={'song': song, 'artist': artist})
-			if r.status_code == 200:
-				lyrics += r.text
+			if make_issue:
+				r = requests.post('http://aadibajpai.pythonanywhere.com/unsupported', data={'song': song, 'artist': artist})
+				if r.status_code == 200:
+					lyrics += r.text
 		except requests.exceptions.RequestException:
 			pass
 	else:
@@ -101,3 +102,4 @@ spinner = spinning_cursor()
 
 if __name__ == '__main__':
 	pass
+
