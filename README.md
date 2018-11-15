@@ -80,3 +80,6 @@ try to add a better method with server support.~~
 5. Supporting more songs, currently the program sometimes fails at remixes since while the lyrics are same as original,
  the artist is the remixer.
 6. Documenting all the files.
+
+## Screencast on Linux
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/-rxYcXAsO1U/0.jpg)](http://www.youtube.com/watch?v=-rxYcXAsO1U "Swaglyrics for Spotify - Linux")
