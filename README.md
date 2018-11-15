@@ -80,3 +80,9 @@ try to add a better method with server support.~~
 5. Supporting more songs, currently the program sometimes fails at remixes since while the lyrics are same as original,
  the artist is the remixer.
 6. Documenting all the files.
+
+## Screencast - SwagLyrics works on Linux
+
+[link=https://www.youtube.com/watch?v=-rxYcXAsO1U]
+image::https://raw.githubusercontent.com/aadibajpai/SwagLyrics-For-Spotify/master/demo/swaglyrics-min.gif[align="center"]
+
