@@ -83,4 +83,6 @@ try to add a better method with server support.~~
 6. Documenting all the files.
 
 ## Screencast - SwagLyrics works on Linux
-[![Watch the video](https://media.giphy.com/media/kv7t8ZcCwWnoVKuGwZ/giphy.gif)](http://www.youtube.com/watch?v=-rxYcXAsO1U)
+
+[![Watch the video](https://raw.githubusercontent.com/aadibajpai/SwagLyrics-For-Spotify/master/demo/swaglyrics-min.gif)](http://www.youtube.com/watch?v=-rxYcXAsO1U)
+
