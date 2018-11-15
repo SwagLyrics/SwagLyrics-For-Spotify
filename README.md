@@ -82,4 +82,5 @@ try to add a better method with server support.~~
 6. Documenting all the files.
 
 ## Screencast on Linux
-[![IMAGE ALT TEXT](https://media.giphy.com/media/kv7t8ZcCwWnoVKuGwZ/giphy.gif)](http://www.youtube.com/watch?v=-rxYcXAsO1U "Swaglyrics for Spotify - Linux")
+[link=http://www.youtube.com/watch?v=-rxYcXAsO1U "Swaglyrics for Spotify - Linux"]
+image::https://media.giphy.com/media/kv7t8ZcCwWnoVKuGwZ/giphy.gif
