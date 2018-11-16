@@ -1,6 +1,7 @@
-import setuptools, platform
+import setuptools
+import platform
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", encoding='utf8') as fh:
     long_description = fh.read()
 
 if platform.system() == "Windows":
@@ -10,7 +11,7 @@ else:
 
 setuptools.setup(
     name="swaglyrics",
-    version="0.2.0",
+    version="0.2.1",
     author="Aadi Bajpai",
     author_email="aadibajpai@gmail.com",
     description="Fetch the currently playing song from Spotify and display lyrics on cmd or in a browser tab.",
@@ -22,9 +23,13 @@ setuptools.setup(
     license='MIT',
     include_package_data=True,
     install_requires=depen,
+    keywords='spotify lyrics genius',
     classifiers=(
         "Programming Language :: Python :: 3",
+        "Framework :: Flask",
         "License :: OSI Approved :: MIT License",
         "Operating System :: Microsoft :: Windows :: Windows 10",
+        "Operating System :: POSIX :: Linux",
+        "Intended Audience :: End Users/Desktop",
     ),
 )

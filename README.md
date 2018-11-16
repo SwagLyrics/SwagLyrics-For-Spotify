@@ -17,7 +17,7 @@
   </a>
 </p>
 
-Fetches the currently playing song from Spotify on Windows and displays the lyrics in the command-line or in a browser tab.
+Fetches the currently playing song from Spotify on Windows and Linux and displays the lyrics in the command-line or in a browser tab.
 Refreshes automatically when song changes. The lyrics are fetched from Genius.
 Turns out Deezer already has this feature in-built but with `swaglyrics`, you can have it in Spotify as well.
 
@@ -44,6 +44,10 @@ Sounds interesting? Read more about it on our website [here](https://ccextractor
 
 ---
 ## Changelog
+- #### v0.2.1
+    - Added Linux support
+    - Added more tests
+    - Set up code coverage and continuous integration
 - #### v0.1.9
 A GitHub issue is created automatically on the repo when an unsupported song is encountered (implemented server-side using pythonanywhere).
 
@@ -76,8 +80,8 @@ Arguments:
     |-- cli.py  # defines functions to fetch lyrics from Genius
     |-- spotify.py  # defines functions to get currently playing song and artist from the Spotify app
     |-- tab.py  # Flask app to display lyrics in a browser tab
-    |-- tests.py    # need overhauling
-    |-- unsupported.txt  # to log unsupported songs, will be updated soon
+    |-- tests.py
+    |-- unsupported.txt  # to log unsupported songs
 |-- LICENSE.md
 |-- MANIFEST.in
 |-- README.md
