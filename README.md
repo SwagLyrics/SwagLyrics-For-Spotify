@@ -1,9 +1,21 @@
-# SwagLyrics-For-Spotify
-[![Build Status](https://travis-ci.org/aadibajpai/SwagLyrics-For-Spotify.svg?branch=master)](https://travis-ci.org/aadibajpai/SwagLyrics-For-Spotify)
-[![codecov](https://codecov.io/gh/aadibajpai/SwagLyrics-For-Spotify/branch/master/graph/badge.svg)](https://codecov.io/gh/aadibajpai/SwagLyrics-For-Spotify)
-[![PyPI](https://img.shields.io/pypi/v/swaglyrics.svg)](https://pypi.org/project/swaglyrics/)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed/aadibajpai/swaglyrics-for-spotify.svg)](https://github.com/aadibajpai/SwagLyrics-For-Spotify)
-[![Downloads](https://pepy.tech/badge/swaglyrics)](https://pepy.tech/project/swaglyrics)
+<h1 align="center">SwagLyrics-For-Spotify</h1>
+<p align="center">
+  <a href="https://travis-ci.org/aadibajpai/SwagLyrics-For-Spotify">
+    <img src="https://travis-ci.org/aadibajpai/SwagLyrics-For-Spotify.svg?branch=master" alt="Build Status" />
+  </a>
+  <a href="https://codecov.io/gh/aadibajpai/SwagLyrics-For-Spotify">
+    <img src="https://codecov.io/gh/aadibajpai/SwagLyrics-For-Spotify/branch/master/graph/badge.svg" alt="codecov" />
+  </a>                                                                                                         
+  <a href="https://pypi.org/project/swaglyrics/">
+    <img src="https://img.shields.io/pypi/v/swaglyrics.svg" alt="PyPI" />
+  </a>
+  <a href="https://github.com/aadibajpai/SwagLyrics-For-Spotify">
+    <img src="https://img.shields.io/github/issues-closed/aadibajpai/swaglyrics-for-spotify.svg" alt="GitHub closed issues" />
+  </a>
+  <a href="https://pepy.tech/project/swaglyrics">
+    <img src="https://pepy.tech/badge/swaglyrics" alt="Downloads" />
+  </a>
+</p>
 
 Fetches the currently playing song from Spotify on Windows and displays the lyrics in the command-line or in a browser tab.
 Refreshes automatically when song changes. The lyrics are fetched from Genius.
@@ -83,7 +95,5 @@ try to add a better method with server support.~~
  the artist is the remixer.
 6. Documenting all the files.
 
-## Screencast - SwagLyrics works on Linux
-
-[![Watch the video](https://raw.githubusercontent.com/aadibajpai/SwagLyrics-For-Spotify/master/demo/swaglyrics.gif)](http://www.youtube.com/watch?v=-rxYcXAsO1U)
-
+## Screencast - SwagLyrics on Linux
+[![Watch the video](https://i.imgur.com/v3iWyia.gif)](http://www.youtube.com/watch?v=-rxYcXAsO1U)
