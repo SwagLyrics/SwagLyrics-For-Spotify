@@ -67,28 +67,21 @@ def artist():
 			return get_info_windows()[0]
 		except:
 			return None
-	elif platform.system() == "Linux":
-		try:
-			return get_info_linux()[0]
-		except:
-			return None
 	elif platform.system() == "Darwin":
 		try:
 			return get_info_mac()[0]
 		except:
 			return None
 	else:
-		return None
+		try:
+			return get_info_linux()[0]
+		except:
+			return None
 
 def song():
 	if platform.system() == "Windows":
 		try:
 			return get_info_windows()[1]
-		except:
-			return None
-	elif platform.system() == "Linux":
-		try:
-			return get_info_linux()[1]
 		except:
 			return None
 	elif platform.system() == "Darwin":
@@ -97,4 +90,7 @@ def song():
 		except:
 			return None
 	else:
-		return None		
+		try:
+			return get_info_linux()[1]
+		except:
+			return None
