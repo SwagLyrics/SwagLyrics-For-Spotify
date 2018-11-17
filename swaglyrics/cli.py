@@ -5,7 +5,9 @@ import sys
 import time
 import os
 
-clear = lambda: os.system('cls')  # clear command window
+
+def clear():
+	os.system('cls' if os.name == 'nt' else 'clear')  # clear command window
 
 
 def stripper(song, artist):
