@@ -77,6 +77,8 @@ def artist():
 			return get_info_mac()[0]
 		except:
 			return None
+	else:
+		return None
 
 def song():
 	if platform.system() == "Windows":
@@ -94,3 +96,5 @@ def song():
 			return get_info_mac()[1]
 		except:
 			return None
+	else:
+		return None		
