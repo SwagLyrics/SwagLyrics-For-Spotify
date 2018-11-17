@@ -8,12 +8,10 @@ python:
 install:
   - pip install .
   - pip install codecov
-  - pip install coverage
+  - pip install nose-cov
+# command to run tests
+script: 
+  - nosetests --nocapture --with-cov --cov-config .coveragerc
 
 after_success:
   - codecov
-# command to run tests
-script: 
-  - python -m unittest swaglyrics/tests.py
-  - coverage run swaglyrics/tests.py
-  - bash <(curl -s https://codecov.io/bash)

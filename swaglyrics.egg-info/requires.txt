@@ -1,4 +1,6 @@
 flask
-pywin32
 requests
 beautifulsoup4
+
+[:platform_system == "Windows"]
+pywin32
