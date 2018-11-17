@@ -1,16 +1,11 @@
-import setuptools, platform
+import setuptools
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", encoding='utf8') as fh:
     long_description = fh.read()
-
-if platform.system() == "Windows":
-    depen = ['flask', 'pywin32', 'requests', 'beautifulsoup4']
-else:
-    depen = ['flask', 'requests', 'beautifulsoup4']
 
 setuptools.setup(
     name="swaglyrics",
-    version="0.2.0",
+    version="0.2.2",
     author="Aadi Bajpai",
     author_email="aadibajpai@gmail.com",
     description="Fetch the currently playing song from Spotify and display lyrics on cmd or in a browser tab.",
@@ -21,10 +16,14 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     license='MIT',
     include_package_data=True,
-    install_requires=depen,
+    install_requires=['flask', 'requests', 'beautifulsoup4', 'pywin32; platform_system=="Windows"'],
+    keywords='spotify lyrics genius',
     classifiers=(
         "Programming Language :: Python :: 3",
+        "Framework :: Flask",
         "License :: OSI Approved :: MIT License",
         "Operating System :: Microsoft :: Windows :: Windows 10",
+        "Operating System :: POSIX :: Linux",
+        "Intended Audience :: End Users/Desktop",
     ),
 )
