@@ -59,7 +59,7 @@ def get_info_mac():
 	s = NSAppleScript.alloc().initWithSource_(apple_script_code)
 	x = s.executeAndReturnError_(None)
 	a = str(x[0]).split('"')
-	return a[1],a[3]
+	return a[1], a[3]
 
 def artist():
 	if platform.system() == "Windows":
