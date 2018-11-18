@@ -6,6 +6,7 @@ python:
   - nightly
 # command to install dependencies
 install:
+  - sudo apt-get install python3-dbus
   - pip install .
   - pip install codecov
   - pip install nose-cov
