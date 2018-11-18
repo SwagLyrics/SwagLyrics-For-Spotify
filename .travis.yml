@@ -9,7 +9,7 @@ python:
 # command to install dependencies
   
 before_install:
-- sudo apt-get install -qq python3-gi python3-dbus python-dbus-dev
+- sudo apt-get install -qq python3-gi python3-dbus python-dbus-dev libdbus-1-dev
 
 install:
   - pip install python-dbusmock
