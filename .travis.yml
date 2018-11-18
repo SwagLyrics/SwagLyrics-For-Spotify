@@ -13,6 +13,12 @@ install:
   - pip install codecov
   - pip install nose-cov
 # command to run tests
+addons:
+  apt:
+    packages:
+    - dbus
+- dbus-x11
+
 script: 
   - nosetests --nocapture --with-cov --cov-config .coveragerc
 
