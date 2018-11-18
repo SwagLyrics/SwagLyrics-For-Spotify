@@ -7,8 +7,7 @@ python:
   - nightly
 # command to install dependencies
 install:
-  - sudo apt-get install python3-dbus
-  - sudo apt-get install python-dbus
+  - sudo apt-get install -qq python-dbus python3-dbus python-gi python3-gi
   - pip install python-dbusmock
   - pip install .
   - pip install codecov
@@ -17,6 +16,7 @@ install:
 addons:
   apt:
     packages:
+    
     - dbus
     - dbus-x11
 
