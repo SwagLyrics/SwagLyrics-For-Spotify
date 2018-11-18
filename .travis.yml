@@ -17,7 +17,7 @@ addons:
   apt:
     packages:
     - dbus
-- dbus-x11
+    - dbus-x11
 
 script: 
   - nosetests --nocapture --with-cov --cov-config .coveragerc
