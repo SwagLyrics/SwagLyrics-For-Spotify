@@ -7,6 +7,9 @@ python:
   - nightly
   
 # command to install dependencies
+virtualenv:
+  system_site_packages: true
+  
 before_install:
 - sudo apt-get install -qq python-dbus python3-dbus
 
