@@ -6,8 +6,13 @@ python:
   - "3.6"
   - nightly
 # command to install dependencies
+virtualenv:
+  system_site_packages: true
+
+before_install:
+- sudo apt-get install -qq python-dbus python3-dbus python-gi python3-gi
+
 install:
-  - sudo apt-get install -qq python-dbus python3-dbus python-gi python3-gi
   - pip install python-dbusmock
   - pip install .
   - pip install codecov
