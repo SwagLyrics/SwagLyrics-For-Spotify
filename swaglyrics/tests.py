@@ -2,7 +2,10 @@
 Contains unit tests
 """
 import unittest
+from unittest.mock import MagicMock
+from mock import mock, patch
 from swaglyrics.cli import stripper, lyrics, get_lyrics
+from swaglyrics.spotify import get_info_linux, artist, song
 
 
 class Tests(unittest.TestCase):
@@ -79,6 +82,28 @@ class Tests(unittest.TestCase):
 				if line not in [" Hello by World \n", " Foo by Bar \n", " Fantastic by Beasts \n"]:
 					f.write(line)
 
+	@mock.patch('dbus.SessionBus')
+	def test_linux_info(self, mock_dbus):
+		"""
+		test that get_info_linux function doesn't give errors and returns a tuple
+		"""
+		self.assertEqual(type(get_info_linux()), type(()))
+
+	@patch('swaglyrics.spotify.get_info_linux')
+	def test_artist(self, mock):
+		"""
+		test that test artist function calls get_info_linux function
+		"""
+		x = artist()
+		self.assertTrue(mock.called)
+
+	@patch('swaglyrics.spotify.get_info_linux')
+	def test_song(self, mock):
+		"""
+		test that test song function calls get_info_linux function
+		"""
+		x = song()
+		self.assertTrue(mock.called)
 
 if __name__ == '__main__':
 	unittest.main()
