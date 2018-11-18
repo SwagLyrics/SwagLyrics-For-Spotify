@@ -8,7 +8,7 @@ python:
 install:
   - sudo apt-get install python3-dbus
   - sudo apt-get install python-dbus
-  - pip install dbus-python
+  - pip install python-dbusmock
   - pip install .
   - pip install codecov
   - pip install nose-cov
