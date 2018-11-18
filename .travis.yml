@@ -1,28 +1,26 @@
 sudo: true
 language: python
 python:
-  - "3.4"
+  - "3.4_with_system_site_packages"
   - "3.5"
   - "3.6"
   - nightly
   
 # command to install dependencies
-virtualenv:
-  system_site_packages: true
   
 before_install:
-- sudo apt-get install -qq python-dbus python3-dbus
+- sudo apt-get install -qq python-dbus python3-dbus python3-gi 
 
 install:
   - pip install python-dbusmock
   - pip install .
   - pip install codecov
   - pip install nose-cov
+  - pip install dbus-python
 # command to run tests
 addons:
   apt:
     packages:
-    
     - dbus
     - dbus-x11
 
