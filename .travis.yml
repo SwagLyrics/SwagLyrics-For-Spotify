@@ -10,7 +10,7 @@ virtualenv:
   system_site_packages: true
 
 before_install:
-- sudo apt-get install -qq python-dbus python3-dbus python-gi python3-gi
+- sudo apt-get install -qq python-dbus python3-dbus
 
 install:
   - pip install python-dbusmock
