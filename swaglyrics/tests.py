@@ -83,14 +83,14 @@ class Tests(unittest.TestCase):
 					f.write(line)
 
 	@mock.patch('dbus.SessionBus')
-	def test_linux_info(self, mock_dbus):
+	def test_get_info_linux_works(self, mock_dbus):
 		"""
 		test that get_info_linux function doesn't give errors and returns a tuple
 		"""
 		self.assertEqual(type(get_info_linux()), type(()))
 
 	@patch('swaglyrics.spotify.get_info_linux')
-	def test_artist(self, mock):
+	def test_that_artist_function_calls_get_info(self, mock):
 		"""
 		test that test artist function calls get_info_linux function
 		"""
@@ -98,7 +98,7 @@ class Tests(unittest.TestCase):
 		self.assertTrue(mock.called)
 
 	@patch('swaglyrics.spotify.get_info_linux')
-	def test_song(self, mock):
+	def test_that_song_function_calls_get_info(self, mock):
 		"""
 		test that test song function calls get_info_linux function
 		"""
