@@ -1,6 +1,3 @@
-os:
-  - windows
-  - linux
 language: python
 python:
   - "3.4"
