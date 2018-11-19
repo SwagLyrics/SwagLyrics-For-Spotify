@@ -17,7 +17,6 @@ install:
   - pip install .
   - pip install codecov
   - pip install nose-cov
-  - pip install dbus-python
 # command to run tests
 addons:
   apt:
