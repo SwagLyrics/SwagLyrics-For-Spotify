@@ -68,12 +68,11 @@ def get_lyrics(song, artist, make_issue=True):
 	return lyrics
 
 
-def lyrics(song, artist, make_issue=True):
+def lyrics(song, artist):
 	"""
 	Displays the fetched lyrics if song playing.
 	:param song: currently playing song
 	:param artist: song artist
-	:param make_issue: whether to make an issue on GitHub if song unsupported
 	:return: lyrics if song playing
 	"""
 	if song and artist:  # check if song playing
@@ -84,7 +83,7 @@ def lyrics(song, artist, make_issue=True):
 		except FileNotFoundError:
 			pass
 		print('\nGetting lyrics for {song} by {artist}\n'.format(song=song, artist=artist), end='')
-		lyrics = get_lyrics(song, artist, make_issue)
+		lyrics = get_lyrics(song, artist)
 		for _ in range(30):  # loading spinner
 			sys.stdout.write(next(spinner))
 			sys.stdout.flush()
