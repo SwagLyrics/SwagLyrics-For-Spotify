@@ -13,13 +13,13 @@ environment:
 
 install:
   # We need wheel installed to build wheels
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+
   - "%PYTHON%\\python.exe -m pip install wheel"
   - "%PYTHON%\\python.exe -m pip install setuptools -U"
   - "%PYTHON%\\python.exe -m pip install ."
   - "%PYTHON%\\python.exe -m pip install nose-cov"
   - "%PYTHON%\\python.exe -m pip install codecov"
-
-  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 
 build: off
 
