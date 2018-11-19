@@ -7,12 +7,10 @@ python:
 # command to install dependencies
 install:
   - pip install .
-  - pip install blinker
-  - pip install flask_testing
   - pip install codecov
   - pip install nose-cov
 # command to run tests
-script:
+script: 
   - nosetests --nocapture --with-cov --cov-config .coveragerc
 
 after_success:
