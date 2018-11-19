@@ -1,24 +1,18 @@
 """
-Contains unit tests
+Contains unit tests for cli.py
 """
-from flask import Flask, url_for
 import unittest
 from swaglyrics.cli import stripper, lyrics, get_lyrics
-from flask_testing import TestCase
-from mock import mock, patch
-from swaglyrics.tab import app, tab
+from mock import patch
 import os
 
-class Tests(TestCase):
+class Tests(unittest.TestCase):
 	"""
 	Unit tests
 	"""
 
 	def setup(self):
 		pass
-
-	def create_app(self):
-		return app
 
 	def test_that_stripping_works(self):
 		"""
@@ -91,7 +85,7 @@ class Tests(TestCase):
 		"""
 		test that lyrics function calss get_lyrics function
 		"""
-		lyrics("Alone", "Marshmellow")
+		lyrics("Alone", "Marshmello")
 		self.assertTrue(mock.called)
 
 	def test_that_lyrics_do_not_break_with_file_not_found(self):
@@ -101,19 +95,6 @@ class Tests(TestCase):
 		os.rename("unsupported.txt", "unsupported2.txt")
 		self.assertEqual(lyrics("Crimes", "Grindelwald", False), "Couldn\'t get lyrics for Crimes by Grindelwald.\n")
 		os.rename("unsupported2.txt", "unsupported.txt")
-
-
-	@mock.patch('swaglyrics.spotify.song', return_value="Blank Space")
-	@mock.patch('swaglyrics.spotify.artist', return_value="Taylor Swift")
-	def test_lyrics_are_shown_in_tab(self, mock_song, mock_artist):
-		"""
-		that that tab.py is working
-		"""
-		with self.app.test_client() as c:
-			response = c.get(url_for('tab'))
-			print(response.data)
-			self.assert_template_used("lyrics.html")
-
 
 if __name__ == '__main__':
 	unittest.main()
