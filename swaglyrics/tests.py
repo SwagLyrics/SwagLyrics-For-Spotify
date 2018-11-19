@@ -3,6 +3,10 @@ Contains unit tests
 """
 import unittest
 from swaglyrics.cli import stripper, lyrics, get_lyrics
+import swaglyrics.tab
+from swaglyrics.tab import app
+from mock import mock, patch
+import os
 
 
 class Tests(unittest.TestCase):
@@ -78,6 +82,32 @@ class Tests(unittest.TestCase):
 			for line in lines:
 				if line not in [" Hello by World \n", " Foo by Bar \n", " Fantastic by Beasts \n"]:
 					f.write(line)
+
+	@patch('swaglyrics.cli.get_lyrics')
+	def test_that_lyrics_calls_get_lyrics(self, mock):
+		"""
+		test that lyrics function calss get_lyrics function
+		"""
+		lyrics("Alone", "Marshmellow")
+		self.assertTrue(mock.called)
+
+	def test_that_lyrics_do_not_break_with_file_not_found(self):
+		"""
+		test that lyrics function does not break if unsupported.txt is not found
+		"""
+		os.rename("unsupported.txt", "unsupported2.txt")
+		self.assertEqual(lyrics("Crimes", "Grindelwald", False), "Couldn\'t get lyrics for Crimes by Grindelwald.\n")
+		os.rename("unsupported2.txt", "unsupported.txt")
+
+	@mock.patch('swaglyrics.spotify.song', return_value="Blank Space")
+	@mock.patch('swaglyrics.spotify.artist', return_value="Taylor Swift")
+	def test_lyrics_are_shown_in_tab(self, mock_song, mock_artist):
+		"""
+		that that tab.py is working
+		"""
+		with self.app.test_client() as c:
+			c.get('/')
+			self.assert_template_used("lyrics.html")
 
 
 if __name__ == '__main__':
