@@ -34,19 +34,3 @@ make
 sudo make install
 
 cd ..
-
-mkdir -p python-tmpenv
-
-python_virtualenv=$VIRTUAL_ENV
-python_tmpenv=`pwd`/python-tmpenv
-
-cd dbus-python-1.2.0
-
-PYTHON=`sudo which ${system_python}` ./configure --prefix=$python_tmpenv
-make
-make install
-
-cd ..
-
-echo Copying files from the temporary python env to the virtualenv
-cp -r $python_tmpenv/* $python_virtualenv
