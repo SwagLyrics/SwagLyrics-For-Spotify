@@ -10,6 +10,5 @@ exclude_lines =
     if __name__ == .__main__.:
 ignore_errors = True
 omit =
-    tests/test_cli.py
-    tests/test_tab.py
+    tests/*
     setup.py
