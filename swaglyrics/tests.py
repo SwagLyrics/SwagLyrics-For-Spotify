@@ -1,11 +1,12 @@
 """
 Contains unit tests
 """
+from flask import Flask, url_for
 import unittest
 from swaglyrics.cli import stripper, lyrics, get_lyrics
 from flask_testing import TestCase
-from flask import Flask
 from mock import mock, patch
+from swaglyrics.tab import app, tab
 import os
 
 class Tests(TestCase):
@@ -13,9 +14,10 @@ class Tests(TestCase):
 	Unit tests
 	"""
 
+	def setup(self):
+		pass
+
 	def create_app(self):
-		app = Flask(__name__, template_folder=os.path.join(os.path.dirname(os.path.abspath('tab.py')), 'templates'))
-		app.config['TESTING'] = True
 		return app
 
 	def test_that_stripping_works(self):
@@ -108,7 +110,8 @@ class Tests(TestCase):
 		that that tab.py is working
 		"""
 		with self.app.test_client() as c:
-			c.post('/')
+			response = c.get(url_for('tab'))
+			print(response.data)
 			self.assert_template_used("lyrics.html")
 
 
