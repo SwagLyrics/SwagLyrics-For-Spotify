@@ -19,6 +19,8 @@ install:
   - "%PYTHON%\\python.exe -m pip install nose-cov"
   - "%PYTHON%\\python.exe -m pip install codecov"
 
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+
 build: off
 
 test_script:
