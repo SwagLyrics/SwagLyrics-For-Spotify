@@ -23,7 +23,6 @@ addons:
     packages:
     - dbus
     - dbus-x11
-    - deadsnakes
 
 script:
   - nosetests --nocapture --with-cov --cov-config .coveragerc
