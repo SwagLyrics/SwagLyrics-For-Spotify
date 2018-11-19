@@ -40,36 +40,10 @@ def get_info_linux():
 	artist = str(metadata['xesam:artist'][0])
 	return artist, track
 
-def get_info_mac():
-	from Foundation import NSAppleScript
-
-	apple_script_code = """
-	getCurrentlyPlayingTrack()
-
-	on getCurrentlyPlayingTrack()
-	    tell application "Spotify"
-	        set currentArtist to artist of current track as string
-	        set currentTrack to name of current track as string
-
-	        return {currentArtist, currentTrack}
-	    end tell
-	end getCurrentlyPlayingTrack
-	"""
-
-	s = NSAppleScript.alloc().initWithSource_(apple_script_code)
-	x = s.executeAndReturnError_(None)
-	a = str(x[0]).split('"')
-	return a[1], a[3]
-
 def artist():
 	if platform.system() == "Windows":
 		try:
 			return get_info_windows()[0]
-		except:
-			return None
-	elif platform.system() == "Darwin":
-		try:
-			return get_info_mac()[0]
 		except:
 			return None
 	else:
@@ -82,11 +56,6 @@ def song():
 	if platform.system() == "Windows":
 		try:
 			return get_info_windows()[1]
-		except:
-			return None
-	elif platform.system() == "Darwin":
-		try:
-			return get_info_mac()[1]
 		except:
 			return None
 	else:
