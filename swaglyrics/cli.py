@@ -73,6 +73,7 @@ def lyrics(song, artist, make_issue=True):
 	Displays the fetched lyrics if song playing.
 	:param song: currently playing song
 	:param artist: song artist
+	:param make_issue: whether to make an issue on GitHub if song unsupported
 	:return: lyrics if song playing
 	"""
 	if song and artist:  # check if song playing
