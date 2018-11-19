@@ -25,7 +25,6 @@ class Tests(TestCase):
 		"""
 		with self.app.test_client() as c:
 			response = c.get('/')
-			print(response.data)
 			self.assert_template_used("lyrics.html")
 
 if __name__ == '__main__':
