@@ -19,10 +19,10 @@ environment:
 
 install:
   # We need wheel installed to build wheels
-  - "%PYTHON%\\python.exe -m pip3 install wheel"
-  - "%PYTHON%\\python.exe -m pip3 install ."
-  - "%PYTHON%\\python.exe -m pip3 install nose-cov"
-  - "%PYTHON%\\python.exe -m pip3 install codecov"
+  - "%PYTHON%\\python3.exe -m pip install wheel"
+  - "%PYTHON%\\python3.exe -m pip install ."
+  - "%PYTHON%\\python3.exe -m pip install nose-cov"
+  - "%PYTHON%\\python3.exe -m pip install codecov"
 
 build: off
 
