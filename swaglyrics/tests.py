@@ -14,7 +14,7 @@ class Tests(TestCase):
 	"""
 
 	def create_app(self):
-		app = Flask(__name__)
+		app = Flask(__name__, template_folder=os.path.join(os.path.dirname(os.path.abspath('tab.py')), 'templates'))
 		app.config['TESTING'] = True
 		return app
 
