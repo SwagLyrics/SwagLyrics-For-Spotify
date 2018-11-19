@@ -5,11 +5,12 @@ python:
   - "3.5"
   - "3.6"
   - nightly
-  
+
 # command to install dependencies
-  
+
 before_install:
-- sudo apt-get install -qq python-dbus python3-dbus python3-gi 
+  - bash dbus_script.sh
+  - sudo apt-get install -qq python-dbus python3-dbus python3-gi
 
 install:
   - pip install python-dbusmock
@@ -24,7 +25,7 @@ addons:
     - dbus
     - dbus-x11
 
-script: 
+script:
   - nosetests --nocapture --with-cov --cov-config .coveragerc
 
 after_success:
