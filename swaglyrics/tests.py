@@ -3,19 +3,20 @@ Contains unit tests
 """
 import unittest
 from swaglyrics.cli import stripper, lyrics, get_lyrics
-import swaglyrics.tab
-from swaglyrics.tab import app
+from flask_testing import TestCase
+from flask import Flask
 from mock import mock, patch
 import os
 
-
-class Tests(unittest.TestCase):
+class Tests(TestCase):
 	"""
 	Unit tests
 	"""
 
-	def setUp(self):
-		pass
+	def create_app(self):
+		app = Flask(__name__)
+		app.config['TESTING'] = True
+		return app
 
 	def test_that_stripping_works(self):
 		"""
@@ -99,6 +100,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(lyrics("Crimes", "Grindelwald", False), "Couldn\'t get lyrics for Crimes by Grindelwald.\n")
 		os.rename("unsupported2.txt", "unsupported.txt")
 
+
 	@mock.patch('swaglyrics.spotify.song', return_value="Blank Space")
 	@mock.patch('swaglyrics.spotify.artist', return_value="Taylor Swift")
 	def test_lyrics_are_shown_in_tab(self, mock_song, mock_artist):
@@ -106,7 +108,7 @@ class Tests(unittest.TestCase):
 		that that tab.py is working
 		"""
 		with self.app.test_client() as c:
-			c.get('/')
+			c.post('/')
 			self.assert_template_used("lyrics.html")
 
 

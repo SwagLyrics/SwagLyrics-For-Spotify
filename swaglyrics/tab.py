@@ -16,6 +16,7 @@ def tab():
     global song, artist
     song = spotify.song()
     artist = spotify.artist()
+    print(song, artist)
     current_lyrics = lyrics(song, artist)
     current_lyrics = current_lyrics.split('\n')  # break lyrics line by line
     return render_template('lyrics.html', lyrics=current_lyrics, song=song, artist=artist)
