@@ -10,7 +10,7 @@ python:
 
 before_install:
   - bash dbus_script.sh
-  - sudo apt-get install -qq python-dbus python3-dbus python3-gi
+  - sudo apt-get install -qq python-dbus python3-dbus python3-gi libdbus-glib-1-dev
 
 install:
   - pip install python-dbusmock
@@ -23,6 +23,7 @@ addons:
     packages:
     - dbus
     - dbus-x11
+    - deadsnakes
 
 script:
   - nosetests --nocapture --with-cov --cov-config .coveragerc

@@ -21,11 +21,19 @@ sudo apt-get install ${system_python}-dev
 
 sh .install.dbus.sh
 
-echo Downloading python-dbus...
-wget http://dbus.freedesktop.org/releases/dbus-python/dbus-python-1.2.0.tar.gz -O dbus-python.tar.gz -q
-echo Unpacking python-dbus...
-tar -zxvf dbus-python.tar.gz > /dev/null
-rm dbus-python.tar.gz
+echo Downloading dbus...
+wget http://dbus.freedesktop.org/releases/dbus/dbus-1.6.30.tar.gz -O dbus.tar.gz -q
+echo Unpacking dbus...
+tar -zxvf dbus.tar.gz > /dev/null
+rm dbus.tar.gz
+
+cd dbus-1.6.30
+
+./configure
+make
+sudo make install
+
+cd ..
 
 mkdir -p python-tmpenv
 
