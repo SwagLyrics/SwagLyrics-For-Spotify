@@ -1,11 +1,11 @@
 """
 Contains unit tests for tab.py
 """
-from flask_testing import TestCase
+import flask_testing
 from mock import mock
 import os
 
-class Tests(TestCase):
+class Tests(flask_testing.TestCase):
 	"""
 	Unit tests
 	"""
@@ -28,4 +28,4 @@ class Tests(TestCase):
 			self.assert_template_used("lyrics.html")
 
 if __name__ == '__main__':
-	unittest.main()
+	flask_testing.main()
