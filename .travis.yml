@@ -5,14 +5,12 @@ python:
   - "3.6"
   - nightly
 # command to install dependencies
-
 install:
   - pip install .
   - pip install blinker
   - pip install flask_testing
   - pip install codecov
   - pip install nose-cov
-
 # command to run tests
 script:
   - nosetests --nocapture --with-cov --cov-config .coveragerc
