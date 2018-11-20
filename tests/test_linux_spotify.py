@@ -13,13 +13,6 @@ class Tests(unittest.TestCase):
 	def setup(self):
 		pass
 
-	@mock.patch('dbus.SessionBus')
-	def test_get_info_linux_works(self, mock_dbus):
-		"""
-		test that get_info_linux function doesn't give errors and returns a tuple
-		"""
-		self.assertEqual(type(get_info_linux()), type(()))
-
 	@patch('swaglyrics.spotify.get_info_linux')
 	def test_that_artist_function_calls_get_info(self, mock):
 		"""
