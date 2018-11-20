@@ -18,6 +18,7 @@ install:
   - "%PYTHON%\\python.exe -m pip install wheel"
   - "%PYTHON%\\python.exe -m pip install setuptools -U"
   - "%PYTHON%\\python.exe -m pip install ."
+  - "%PYTHON%\\python.exe -m pip install mock"
   - "%PYTHON%\\python.exe -m pip install blinker"
   - "%PYTHON%\\python.exe -m pip install flask_testing"
   - "%PYTHON%\\python.exe -m pip install nose-cov"
