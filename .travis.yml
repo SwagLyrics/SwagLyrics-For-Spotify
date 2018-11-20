@@ -51,6 +51,5 @@ after_success:
 - codecov
 
 env:
-  global:
-    - 'PYTHON_LIBS="-L$(python-config --prefix)/lib $(python-config --libs)"'
-    - PY_ENABLE_SHARD=0
+  - 'PYTHON_LIBS="-L$(python-config --prefix)/lib $(python-config --libs)"'
+  - PY_ENABLE_SHARD=0
