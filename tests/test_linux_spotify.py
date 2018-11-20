@@ -38,7 +38,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(x, None)
 
 	@patch('swaglyrics.spotify.get_info_linux', side_effect=ValueError)
-	def test_that_song_functio_returns_None_when_error(self, mock):
+	def test_that_song_function_returns_None_when_error(self, mock):
 		"""
 		test that test song function returns None when the get_info_linux function will return an error
 		"""
