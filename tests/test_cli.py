@@ -83,7 +83,7 @@ class Tests(unittest.TestCase):
 	@patch('swaglyrics.cli.get_lyrics')
 	def test_that_lyrics_calls_get_lyrics(self, mock):
 		"""
-		test that lyrics function calss get_lyrics function
+		test that lyrics function calls get_lyrics function
 		"""
 		lyrics("Alone", "Marshmello")
 		self.assertTrue(mock.called)
