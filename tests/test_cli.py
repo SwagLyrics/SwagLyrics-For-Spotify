@@ -94,7 +94,6 @@ class Tests(unittest.TestCase):
 		"""
 		os.rename("unsupported.txt", "unsupported2.txt")
 		self.assertEqual(lyrics("Crimes", "Grindelwald", False), "Couldn\'t get lyrics for Crimes by Grindelwald.\n")
-		os.rename("unsupported2.txt", "unsupported.txt")
 
 if __name__ == '__main__':
 	unittest.main()
