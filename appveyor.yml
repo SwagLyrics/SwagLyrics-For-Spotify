@@ -35,6 +35,7 @@ test_script:
   # the interpreter you're using - Appveyor does not do anything special
   # to put the Python version you want to use on PATH.
   #- "%PYTHON%\\python.exe -m nosetests --nocapture --with-cov --cov-config .coveragerc"
+  - set TESTING=True
   - "%PYTHON%/Scripts/nosetests --nocapture --with-cov --cov-config .coveragerc"
 
 after_test:
