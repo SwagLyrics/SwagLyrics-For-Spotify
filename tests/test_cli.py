@@ -1,16 +1,17 @@
 """
-Contains unit tests
+Contains unit tests for cli.py
 """
 import unittest
 from swaglyrics.cli import stripper, lyrics, get_lyrics
-
+from mock import patch
+import os
 
 class Tests(unittest.TestCase):
 	"""
 	Unit tests
 	"""
 
-	def setUp(self):
+	def setup(self):
 		pass
 
 	def test_that_stripping_works(self):
@@ -79,6 +80,20 @@ class Tests(unittest.TestCase):
 				if line not in [" Hello by World \n", " Foo by Bar \n", " Fantastic by Beasts \n"]:
 					f.write(line)
 
+	@patch('swaglyrics.cli.get_lyrics')
+	def test_that_lyrics_calls_get_lyrics(self, mock):
+		"""
+		test that lyrics function calss get_lyrics function
+		"""
+		lyrics("Alone", "Marshmello")
+		self.assertTrue(mock.called)
+
+	def test_that_lyrics_do_not_break_with_file_not_found(self):
+		"""
+		test that lyrics function does not break if unsupported.txt is not found
+		"""
+		os.rename("unsupported.txt", "unsupported2.txt")
+		self.assertEqual(lyrics("Crimes", "Grindelwald", False), "Couldn\'t get lyrics for Crimes by Grindelwald.\n")
 
 if __name__ == '__main__':
 	unittest.main()
