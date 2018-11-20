@@ -32,3 +32,7 @@ script:
 
 after_success:
 - codecov
+
+env:
+  global:
+    - 'PYTHON_LIBS="-L$(python-config --prefix)/lib $(python-config --libs)"'
