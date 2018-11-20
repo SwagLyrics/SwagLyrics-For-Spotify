@@ -2,8 +2,8 @@
 Contains unit tests for spotify.py for linux
 """
 import unittest
-from swaglyrics.spotify import get_info_linux
-from mock import mock,patch
+from swaglyrics.spotify import get_info_linux, song, artist
+from mock import mock, patch
 
 class Tests(unittest.TestCase):
 	"""
