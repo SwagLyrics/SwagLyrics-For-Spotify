@@ -3,6 +3,9 @@
   <a href="https://travis-ci.org/aadibajpai/SwagLyrics-For-Spotify">
     <img src="https://travis-ci.org/aadibajpai/SwagLyrics-For-Spotify.svg?branch=master" alt="Build Status" />
   </a>
+  <a href="https://ci.appveyor.com/project/TheClashster/swaglyrics-for-spotify">
+    <img src="https://ci.appveyor.com/api/projects/status/a9bpa86dcx7vke0p?svg=true" alt="Build Status" />
+  </a>
   <a href="https://codecov.io/gh/aadibajpai/SwagLyrics-For-Spotify">
     <img src="https://codecov.io/gh/aadibajpai/SwagLyrics-For-Spotify/branch/master/graph/badge.svg" alt="codecov" />
   </a>                                                                                                         
