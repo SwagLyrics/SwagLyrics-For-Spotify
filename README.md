@@ -108,3 +108,10 @@ try to add a better method with server support.~~
     <img src="https://i.imgur.com/v3iWyia.gif" alt="Watch the video">
   </a>
 </p>
+
+## Screencast - SwagLyrics on MacOS
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=XcobDTljMdM">
+    <img src="https://i.imgur.com/xrXc1cj.gif" alt="Watch the video">
+  </a>
+</p>
