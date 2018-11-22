@@ -1,9 +1,12 @@
 import argparse
-from swaglyrics.cli import lyrics, clear
 import time
+import os
+import random
+import webbrowser
+import threading
+from swaglyrics.cli import lyrics, clear
 from swaglyrics import spotify
 from swaglyrics.tab import app
-import os
 
 
 def main():
@@ -19,7 +22,10 @@ def main():
 		print('Firing up a browser tab!')
 		app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 		app.static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
-		app.run()
+		port = 5000 + random.randint(0, 999)
+		url = "http://127.0.0.1:{0}".format(port)
+		threading.Timer(1.25, lambda: webbrowser.open(url)).start()
+		app.run(port=port)
 
 	elif args.cli:
 		song = spotify.song()  # get currently playing song
