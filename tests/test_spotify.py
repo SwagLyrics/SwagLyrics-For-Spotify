@@ -100,7 +100,7 @@ class DarwinTests(unittest.TestCase):
 	@patch('swaglyrics.spotify.get_info_mac')
 	def test_that_artist_function_calls_get_info(self, mock, mock_os):
 		"""
-		test that test artist function calls get_info_darwin function
+		test that test artist function calls get_info_mac function
 		"""
 		x = artist()
 		self.assertTrue(mock.called)
@@ -108,7 +108,7 @@ class DarwinTests(unittest.TestCase):
 	@patch('swaglyrics.spotify.get_info_mac')
 	def test_that_song_function_calls_get_info(self, mock, mock_os):
 		"""
-		test that test song function calls get_info_darwin function
+		test that test song function calls get_info_mac function
 		"""
 		x = song()
 		self.assertTrue(mock.called)
@@ -116,7 +116,7 @@ class DarwinTests(unittest.TestCase):
 	@patch('swaglyrics.spotify.get_info_mac', side_effect=ValueError)
 	def test_that_artist_function_returns_None_when_error(self, mock, mock_os):
 		"""
-		test that test artist function returns None when the get_info_darwin function will return an error
+		test that test artist function returns None when the get_info_mac function will return an error
 		"""
 		x = artist()
 		self.assertEqual(x, None)
@@ -124,7 +124,7 @@ class DarwinTests(unittest.TestCase):
 	@patch('swaglyrics.spotify.get_info_mac', side_effect=ValueError)
 	def test_that_song_function_returns_None_when_error(self, mock, mock_os):
 		"""
-		test that test song function returns None when the get_info_darwin function will return an error
+		test that test song function returns None when the get_info_mac function will return an error
 		"""
 		x = song()
 		self.assertEqual(x, None)
