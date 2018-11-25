@@ -20,7 +20,7 @@
   </a>
 </p>
 
-Fetches the currently playing song from Spotify on Windows and Linux and displays the lyrics in the command-line or in a browser tab.
+Fetches the currently playing song from Spotify on Windows, Linux and macOS and displays the lyrics in the command-line or in a browser tab.
 Refreshes automatically when song changes. The lyrics are fetched from Genius.
 Turns out Deezer already has this feature in-built but with `swaglyrics`, you can have it in Spotify as well.
 
@@ -92,7 +92,7 @@ Arguments:
 ```
 
 ## Improvements Planned
-1. ~~Linux *done*~~ and MacOS support
+1. ~~Linux and macOS support **done**~~
 2. ~~Better logging of unsupported songs, the isolated unsupported.txt is sub-optimal for multiple users since the
 file will only update locally with songs which worked fine when it was just me but since I hope others use it too, I'll
 try to add a better method with server support.~~
@@ -106,5 +106,12 @@ try to add a better method with server support.~~
 <p align="center">
   <a href="http://www.youtube.com/watch?v=-rxYcXAsO1U">
     <img src="https://i.imgur.com/v3iWyia.gif" alt="Watch the video">
+  </a>
+</p>
+
+## Screencast - SwagLyrics on macOS
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=XcobDTljMdM">
+    <img src="https://i.imgur.com/7BVWB99.gif" alt="Watch the video">
   </a>
 </p>
