@@ -140,7 +140,8 @@ class WindowsSpotifyTests(unittest.TestCase):
 		"""
 		test that get_info_windows works
 		"""
-		self.assertEqual(get_info_windows(),("Alan Walker","Darkside"))
+		x = get_info_windows()
+		self.assertEqual(x, ("Alan Walker","Darkside"))
 
 if __name__ == '__main__':
 	unittest.main()
