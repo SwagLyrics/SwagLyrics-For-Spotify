@@ -112,6 +112,6 @@ try to add a better method with server support.~~
 ## Screencast - SwagLyrics on macOS
 <p align="center">
   <a href="https://www.youtube.com/watch?v=XcobDTljMdM">
-    <img src="https://i.imgur.com/fMVK22y.gif" alt="Watch the video">
+    <img src="https://i.imgur.com/82DsYPd.gif" alt="Watch the video">
   </a>
 </p>
