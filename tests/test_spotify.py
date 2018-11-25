@@ -2,10 +2,26 @@
 Contains unit tests for spotify.py for linux
 """
 import unittest
-from swaglyrics.spotify import get_info_linux, song, artist
+from swaglyrics.spotify import get_info_linux, get_info_windows, get_info_mac, song, artist
 from mock import mock, patch, Mock
 import platform
 
+<<<<<<< HEAD
+=======
+class WindowsSpotifyTests(unittest.TestCase):
+
+	if platform.system() == "Windows":
+		import win32gui
+	@mock.patch('win32gui.GetWindowText', return_value='Alan Walker - Darkside')
+	@mock.patch('win32gui.EnumWindows', return_value=None)
+	def test_get_info_windows(self, mock_win32gui_1, mock_win32gui_2):
+		"""
+		test that get_info_windows works
+		"""
+		x = get_info_windows()
+		self.assertEqual(x, ("Alan Walker","Darkside"))
+
+>>>>>>> 0c0634871bb49d9c80985821133795f7902418e5
 @patch('platform.system', return_value='Linux')
 class LinuxTests(unittest.TestCase):
 	"""
@@ -128,6 +144,7 @@ class DarwinTests(unittest.TestCase):
 		"""
 		x = song()
 		self.assertEqual(x, None)
+<<<<<<< HEAD
 
 class WindowsSpotifyTests(unittest.TestCase):
 
@@ -141,6 +158,8 @@ class WindowsSpotifyTests(unittest.TestCase):
 		test that get_info_windows works
 		"""
 		self.assertEqual(get_info_windows(), ("Alan Walker","Darkside"))
+=======
+>>>>>>> 0c0634871bb49d9c80985821133795f7902418e5
 
 if __name__ == '__main__':
 	unittest.main()
