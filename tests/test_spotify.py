@@ -63,7 +63,7 @@ class WindowsTests(unittest.TestCase):
 		test that get_info_windows works
 		"""
 		x = get_info_windows()
-		self.assertEqual(x, ("Alan Walker","Darkside"))
+		self.assertEqual(x, ("Alan Walker", "Darkside"))
 
 	@patch('swaglyrics.spotify.get_info_windows')
 	def test_that_artist_function_calls_get_info(self, mock):
