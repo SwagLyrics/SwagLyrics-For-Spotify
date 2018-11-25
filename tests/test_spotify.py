@@ -137,7 +137,6 @@ class DarwinTests(unittest.TestCase):
 		"""
 		x = song()
 		self.assertEqual(x, None)
-<<<<<<< HEAD
 
 class WindowsSpotifyTests(unittest.TestCase):
 
@@ -151,8 +150,6 @@ class WindowsSpotifyTests(unittest.TestCase):
 		test that get_info_windows works
 		"""
 		self.assertEqual(get_info_windows(), ("Alan Walker","Darkside"))
-=======
->>>>>>> 0c0634871bb49d9c80985821133795f7902418e5
 
 if __name__ == '__main__':
 	unittest.main()
