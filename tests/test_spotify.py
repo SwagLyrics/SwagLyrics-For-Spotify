@@ -9,7 +9,7 @@ import platform
 @patch('platform.system', return_value='Linux')
 class LinuxTests(unittest.TestCase):
 	"""
-	Unit tests
+	Unit tests for Linux
 	"""
 
 	def setup(self, mock_os):
@@ -50,7 +50,7 @@ class LinuxTests(unittest.TestCase):
 @mock.patch('platform.system', return_value='Windows')
 class WindowsTests(unittest.TestCase):
 	"""
-	Unit tests
+	Unit tests for Windows
 	"""
 
 	def setup(self, mock_os):
@@ -91,7 +91,7 @@ class WindowsTests(unittest.TestCase):
 @mock.patch('platform.system', return_value='Darwin')
 class DarwinTests(unittest.TestCase):
 	"""
-	Unit tests
+	Unit tests for OSX
 	"""
 
 	def setup(self, mock_os):
@@ -129,6 +129,17 @@ class DarwinTests(unittest.TestCase):
 		x = song()
 		self.assertEqual(x, None)
 
+class WindowsSpotifyTests(unittest.TestCase):
+
+	import win32gui
+	from swaglyrics.spotify import get_info_windows
+	@mock.patch('win32gui.GetWindowText', return_value='Alan Walker - Darkside')
+	@mock.patch('win32gui.EnumWindows', return_value=None)
+	def test_get_info_windows(self, mock_win32gui_1, mock_win32gui_2):
+		"""
+		test that get_info_windows works
+		"""
+		assert(get_info_windows(),("Alan Walker","Darkside"))
 
 if __name__ == '__main__':
 	unittest.main()
