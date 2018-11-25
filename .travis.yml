@@ -1,4 +1,7 @@
 language: python
+os:
+  - linux
+  - osx
 python:
   - "3.4"
   - "3.5"
