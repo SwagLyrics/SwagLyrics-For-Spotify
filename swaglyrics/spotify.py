@@ -1,5 +1,6 @@
 import platform
 
+
 def get_info_windows():
 	import win32gui
 
@@ -27,12 +28,13 @@ def get_info_windows():
 		except:
 			pass
 
+
 def get_info_linux():
 	import dbus
 
 	session_bus = dbus.SessionBus()
 	spotify_bus = session_bus.get_object("org.mpris.MediaPlayer2.spotify",
-	                                     "/org/mpris/MediaPlayer2")
+										"/org/mpris/MediaPlayer2")
 	spotify_properties = dbus.Interface(spotify_bus,
 	                                    "org.freedesktop.DBus.Properties")
 	metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
@@ -40,22 +42,24 @@ def get_info_linux():
 	artist = str(metadata['xesam:artist'][0])
 	return artist, track
 
+
 def get_info_mac():
 	from Foundation import NSAppleScript
 	apple_script_code = """
 	getCurrentlyPlayingTrack()
 	on getCurrentlyPlayingTrack()
-	    tell application "Spotify"
-	        set currentArtist to artist of current track as string
-	        set currentTrack to name of current track as string
-	        return {currentArtist, currentTrack}
-	    end tell
+		tell application "Spotify"
+			set currentArtist to artist of current track as string
+			set currentTrack to name of current track as string
+			return {currentArtist, currentTrack}
+		end tell
 	end getCurrentlyPlayingTrack
 	"""
 	s = NSAppleScript.alloc().initWithSource_(apple_script_code)
 	x = s.executeAndReturnError_(None)
 	a = str(x[0]).split('"')
 	return a[1], a[3]
+
 
 def artist():
 	if platform.system() == "Windows":
@@ -73,6 +77,7 @@ def artist():
 			return get_info_linux()[0]
 		except:
 			return None
+
 
 def song():
 	if platform.system() == "Windows":

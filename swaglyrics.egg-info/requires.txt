@@ -1,6 +1,0 @@
-flask
-requests
-beautifulsoup4
-
-[:platform_system == "Windows"]
-pywin32
