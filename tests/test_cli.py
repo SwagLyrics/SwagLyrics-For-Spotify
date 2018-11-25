@@ -27,6 +27,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(stripper('Ain\'t My Fault - R3hab Remix', 'Zara Larsson'), 'Zara-Larsson-Aint-My-Fault')
 		self.assertEqual(stripper('1800-273-8255', 'Logic'), 'Logic-1800-273-8255')
 		self.assertEqual(stripper('Scream & Shout', 'will.i.am'), 'william-Scream-and-Shout')
+		self.assertEqual(stripper('Heebiejeebies - Bonus', 'Aminé'), 'Amine-Heebiejeebies')
 
 	def test_that_no_song_or_artist_does_not_break_stuff(self):
 		"""
@@ -94,6 +95,7 @@ class Tests(unittest.TestCase):
 		"""
 		os.rename("unsupported.txt", "unsupported2.txt")
 		self.assertEqual(lyrics("Crimes", "Grindelwald", False), "Couldn\'t get lyrics for Crimes by Grindelwald.\n")
+
 
 if __name__ == '__main__':
 	unittest.main()

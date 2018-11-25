@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from unidecode import unidecode
 import requests
 import re
 import sys
@@ -32,6 +33,7 @@ def stripper(song, artist):
 	for ch in [',', '\'', '!', '.', '’', '"', '+', '?']:
 		if ch in url_data:
 			url_data = url_data.replace(ch, '')
+	url_data = unidecode(url_data)  # remove accents and other diacritics
 	return url_data
 
 
