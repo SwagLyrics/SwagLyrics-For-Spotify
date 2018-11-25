@@ -29,7 +29,7 @@ def stripper(song, artist):
 	# Remove special characters and spaces
 	url_data = song_data.replace('&', 'and')
 	url_data = url_data.replace(' ', '-')  # hyphenate the words together
-	for ch in [',', '\'', '!', '.', '’', '"', '+']:
+	for ch in [',', '\'', '!', '.', '’', '"', '+', '?']:
 		if ch in url_data:
 			url_data = url_data.replace(ch, '')
 	return url_data
@@ -52,7 +52,7 @@ def get_lyrics(song, artist, make_issue=True):
 	lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
 	if lyrics_path is None:
 		with open('unsupported.txt', 'a') as f:
-			f.write('{song} by {artist} \n '.format(song=song, artist=artist))
+			f.write('{song} by {artist} \n'.format(song=song, artist=artist))
 			f.close()
 		lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
 		try:
