@@ -100,7 +100,7 @@ class WindowsTests(unittest.TestCase):
 @mock.patch('platform.system', return_value='Darwin')
 class DarwinTests(unittest.TestCase):
 	"""
-	Unit tests for MacOS
+	Unit tests for macOS
 	"""
 
 	def setup(self, mock_os):
