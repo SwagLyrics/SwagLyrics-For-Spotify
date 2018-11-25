@@ -14,7 +14,7 @@ install:
   - pip install nose-exclude
 # command to run tests
 script:
-  - nosetests --exclude-test=test_spotify.WindowsSpotifyTests --nocapture --with-cov --cov-config .coveragerc
+  - nosetests --exclude-test=test_spotify.WindowsTests --nocapture --with-cov --cov-config .coveragerc
 
 after_success:
 - codecov
