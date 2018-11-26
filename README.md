@@ -59,7 +59,7 @@ Sounds interesting? Read more about it on our website [here](https://ccextractor
     - Added more tests
     - Set up code coverage and continuous integration
 - #### v0.1.9
-A GitHub issue is created automatically on the repo when an unsupported song is encountered (implemented server-side using pythonanywhere).
+    - A GitHub issue is created automatically on the repo when an unsupported song is encountered (implemented server-side using pythonanywhere).
 
 ## Installation
 ```
