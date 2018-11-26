@@ -47,6 +47,13 @@ Sounds interesting? Read more about it on our website [here](https://ccextractor
 
 ---
 ## Changelog
+- #### v0.2.3
+    - Added macOS support
+    - Added more tests
+    - Added unidecode to support songs with diacritics
+    - Fixed commandline not clearing b/w songs on Linux
+    - Improved issue-making
+    
 - #### v0.2.1
     - Added Linux support
     - Added more tests
