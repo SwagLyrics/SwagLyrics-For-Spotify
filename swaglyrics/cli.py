@@ -30,7 +30,7 @@ def stripper(song, artist):
 	# Remove special characters and spaces
 	url_data = song_data.replace('&', 'and')
 	url_data = url_data.replace(' ', '-')  # hyphenate the words together
-	for ch in [',', '\'', '!', '.', '’', '"', '+', '?']:
+	for ch in [',', '\'', '!', '.', '’', '"', '+', '?', 'Σ', '#']:
 		if ch in url_data:
 			url_data = url_data.replace(ch, '')
 	url_data = unidecode(url_data)  # remove accents and other diacritics
