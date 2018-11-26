@@ -30,41 +30,41 @@ def get_info_windows():
 
 
 def get_info_linux():
-	try:
-		import dbus
+	import dbus
 
-		session_bus = dbus.SessionBus()
+	session_bus = dbus.SessionBus()
+	try:
 		spotify_bus = session_bus.get_object("org.mpris.MediaPlayer2.spotify",
 											"/org/mpris/MediaPlayer2")
-		spotify_properties = dbus.Interface(spotify_bus,
-						    "org.freedesktop.DBus.Properties")
-		metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
-		track = str(metadata['xesam:title'])
-		artist = str(metadata['xesam:artist'][0])
-		return artist, track
 	except:
 		return None
+	spotify_properties = dbus.Interface(spotify_bus,
+					    "org.freedesktop.DBus.Properties")
+	metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
+	track = str(metadata['xesam:title'])
+	artist = str(metadata['xesam:artist'][0])
+	return artist, track
 
 
 def get_info_mac():
+	from Foundation import NSAppleScript
+	apple_script_code = """
+	getCurrentlyPlayingTrack()
+	on getCurrentlyPlayingTrack()
+		tell application "Spotify"
+			set currentArtist to artist of current track as string
+			set currentTrack to name of current track as string
+			return {currentArtist, currentTrack}
+		end tell
+	end getCurrentlyPlayingTrack
+	"""
 	try:
-		from Foundation import NSAppleScript
-		apple_script_code = """
-		getCurrentlyPlayingTrack()
-		on getCurrentlyPlayingTrack()
-			tell application "Spotify"
-				set currentArtist to artist of current track as string
-				set currentTrack to name of current track as string
-				return {currentArtist, currentTrack}
-			end tell
-		end getCurrentlyPlayingTrack
-		"""
 		s = NSAppleScript.alloc().initWithSource_(apple_script_code)
 		x = s.executeAndReturnError_(None)
-		a = str(x[0]).split('"')
-		return a[1], a[3]
 	except:
 		return None
+	a = str(x[0]).split('"')
+	return a[1], a[3]
 
 
 def artist():
