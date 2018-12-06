@@ -66,8 +66,8 @@ def get_lyrics(song, artist, make_issue=True):
 		except requests.exceptions.RequestException:
 			pass
 	else:
-		lyrics = UnicodeDammit(lyrics_path.get_text().strip())
-	return lyrics.unicode_markup
+		lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
+	return lyrics
 
 
 def lyrics(song, artist, make_issue=True):
