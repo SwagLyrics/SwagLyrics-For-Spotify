@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, UnicodeDammit
 from unidecode import unidecode
 import requests
 import re
@@ -66,8 +66,8 @@ def get_lyrics(song, artist, make_issue=True):
 		except requests.exceptions.RequestException:
 			pass
 	else:
-		lyrics = lyrics_path.get_text().encode('ascii', 'ignore').decode('utf-8').strip()
-	return lyrics
+		lyrics = UnicodeDammit(lyrics_path.get_text().strip())
+	return lyrics.unicode_markup
 
 
 def lyrics(song, artist, make_issue=True):
