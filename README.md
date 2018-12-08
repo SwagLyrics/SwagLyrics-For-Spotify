@@ -62,6 +62,7 @@ Sounds interesting? Read more about it on our website [here](https://ccextractor
     - A GitHub issue is created automatically on the repo when an unsupported song is encountered (implemented server-side using pythonanywhere).
 
 ## Installation
+Requires Python3. Use pip or pip3 depending on your installation.
 ```
 pip install swaglyrics
 ```
