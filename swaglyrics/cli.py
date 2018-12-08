@@ -29,10 +29,11 @@ def stripper(song, artist):
 	song_data = artist + '-' + song
 	# Remove special characters and spaces
 	url_data = song_data.replace('&', 'and')
-	url_data = url_data.replace(' ', '-')  # hyphenate the words together
 	for ch in [',', '\'', '!', '.', '’', '"', '+', '?', 'Σ', '#']:
 		if ch in url_data:
 			url_data = url_data.replace(ch, '')
+	url_data = ' '.join(url_data.split())  # remove multiple spaces to one space
+	url_data = url_data.replace(' ', '-')  # hyphenate the words together
 	url_data = unidecode(url_data)  # remove accents and other diacritics
 	return url_data
 
@@ -92,7 +93,7 @@ def lyrics(song, artist, make_issue=True):
 			sys.stdout.flush()
 			time.sleep(0.1)
 			sys.stdout.write('\b')
-		sys.stdout.write('\b\b.   \n\n')
+		sys.stdout.write('\b.   \n\n')
 		sys.stdout.flush()
 		return lyrics
 	else:
