@@ -110,6 +110,11 @@ try to add a better method with server support.~~
  the artist is the remixer.
 6. Documenting all the files.
 
+## SwagLyrics on Windows with Firefox Side-View
+<p align="center">
+  <img src="https://i.imgur.com/TcSpbP9.png" alt="SwagLyrics with Side-View">
+</p>
+
 ## Screencast - SwagLyrics on Linux
 <p align="center">
   <a href="http://www.youtube.com/watch?v=-rxYcXAsO1U">
