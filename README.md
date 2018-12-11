@@ -91,8 +91,8 @@ Arguments:
     |-- cli.py  # defines functions to fetch lyrics from Genius
     |-- spotify.py  # defines functions to get currently playing song and artist from the Spotify app
     |-- tab.py  # Flask app to display lyrics in a browser tab
-    |-- tests.py
     |-- unsupported.txt  # to log unsupported songs
+|--tests
 |-- LICENSE.md
 |-- MANIFEST.in
 |-- README.md
