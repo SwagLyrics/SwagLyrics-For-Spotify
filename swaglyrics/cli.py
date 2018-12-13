@@ -51,7 +51,7 @@ def get_lyrics(song, artist, make_issue=True):
 	url = 'https://genius.com/{}-lyrics'.format(url_data)  # format the url with the url path
 	page = requests.get(url)
 	if page.status_code != 200:
-		url_data = requests.post('http://aadibajpai.pythonanywhere.com/stripper',data={'song': song, 'artist': artist}).text
+		url_data = requests.get('http://aadibajpai.pythonanywhere.com/stripper',data={'song': song, 'artist': artist}).text
 		url = 'https://genius.com/{}-lyrics'.format(url_data)
 		page = requests.get(url)
 	html = BeautifulSoup(page.text, "html.parser")
