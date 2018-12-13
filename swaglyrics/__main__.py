@@ -12,6 +12,8 @@ def main():
 	with open('unsupported.txt', 'w') as f:
 		response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
 		f.write(response.text)
+		f.close()
+	print("Updated unsupported.txt from master")
 
 	parser = argparse.ArgumentParser(
 		description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
