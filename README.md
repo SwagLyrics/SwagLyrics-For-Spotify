@@ -47,14 +47,22 @@ Sounds interesting? Read more about it on our website [here](https://ccextractor
 
 ---
 ## Changelog
+- #### v0.2.3
+    - Added macOS support
+    - Added more tests
+    - Added unidecode to support songs with diacritics
+    - Fixed commandline not clearing b/w songs on Linux
+    - Improved issue-making
+    
 - #### v0.2.1
     - Added Linux support
     - Added more tests
     - Set up code coverage and continuous integration
 - #### v0.1.9
-A GitHub issue is created automatically on the repo when an unsupported song is encountered (implemented server-side using pythonanywhere).
+    - A GitHub issue is created automatically on the repo when an unsupported song is encountered (implemented server-side using pythonanywhere).
 
 ## Installation
+Requires Python3. Use pip or pip3 depending on your installation.
 ```
 pip install swaglyrics
 ```
@@ -83,8 +91,8 @@ Arguments:
     |-- cli.py  # defines functions to fetch lyrics from Genius
     |-- spotify.py  # defines functions to get currently playing song and artist from the Spotify app
     |-- tab.py  # Flask app to display lyrics in a browser tab
-    |-- tests.py
     |-- unsupported.txt  # to log unsupported songs
+|--tests
 |-- LICENSE.md
 |-- MANIFEST.in
 |-- README.md
@@ -101,6 +109,11 @@ try to add a better method with server support.~~
 5. Supporting more songs, currently the program sometimes fails at remixes since while the lyrics are same as original,
  the artist is the remixer.
 6. Documenting all the files.
+
+## SwagLyrics on Windows with Firefox Side-View
+<p align="center">
+  <img src="https://i.imgur.com/TcSpbP9.png" alt="SwagLyrics with Side-View">
+</p>
 
 ## Screencast - SwagLyrics on Linux
 <p align="center">

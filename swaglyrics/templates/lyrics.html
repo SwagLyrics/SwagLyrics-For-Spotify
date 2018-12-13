@@ -3,10 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <link rel = "stylesheet" type = "text/css" href = "{{url_for('static', filename='style.css')}}">
-    <title>Lyrics for {{song}}</title>
+    {% if song and artist %}
+        <title>Lyrics for {{song}}</title>
+    {% else %}
+        <title>Nothing Playing</title>
+    {% endif %}
 </head>
 <body>
-<h2>{{song}} by {{artist}}</h2>
+{% if song and artist %}
+    <h2>{{song}} by {{artist}}</h2>
+{% else %}
+    <h2>Nothing Playing.</h2>
+{% endif %}
 <div id="lyrics">
 {% for line in lyrics %}
 {{line}}<br>
