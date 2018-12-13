@@ -6,9 +6,12 @@ import threading
 from swaglyrics.cli import lyrics, clear
 from swaglyrics import spotify
 from swaglyrics.tab import app
-
+import requests
 
 def main():
+	with open('unsupported.txt', 'w') as f:
+		f.write(requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported').text)
+
 	parser = argparse.ArgumentParser(
 		description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
 
