@@ -10,7 +10,8 @@ import requests
 
 def main():
 	with open('unsupported.txt', 'w') as f:
-		f.write(requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported').text)
+		response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
+		f.write(response.text)
 
 	parser = argparse.ArgumentParser(
 		description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
