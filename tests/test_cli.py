@@ -96,6 +96,11 @@ class Tests(unittest.TestCase):
 		os.rename("unsupported.txt", "unsupported2.txt")
 		self.assertEqual(lyrics("Crimes", "Grindelwald", False), "Couldn\'t get lyrics for Crimes by Grindelwald.\n")
 
+	def test_database_for_unsupported_song(self):
+		"""
+		test that the database set on pythonanywhere is working and giving strippers for unsupported songs
+		"""
+		self.assertEqual(get_lyrics("Bitch Lasagna", "Party in Backyard")[:7], "[Intro]")
 
 if __name__ == '__main__':
 	unittest.main()
