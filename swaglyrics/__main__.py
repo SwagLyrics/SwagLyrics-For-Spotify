@@ -3,10 +3,10 @@ import time
 import os
 import webbrowser
 import threading
+import requests
 from swaglyrics.cli import lyrics, clear
 from swaglyrics import spotify
 from swaglyrics.tab import app
-import requests
 
 def main():
 	print('Updating unsupported.txt from server.')
