@@ -3,12 +3,18 @@ import time
 import os
 import webbrowser
 import threading
+import requests
 from swaglyrics.cli import lyrics, clear
 from swaglyrics import spotify
 from swaglyrics.tab import app
 
-
 def main():
+	print('Updating unsupported.txt from server.')
+	with open('unsupported.txt', 'w') as f:
+		response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
+		f.write(response.text)
+	print("Updated unsupported.txt successfully.")
+
 	parser = argparse.ArgumentParser(
 		description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
 
