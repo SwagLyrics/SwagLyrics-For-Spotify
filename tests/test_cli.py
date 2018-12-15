@@ -13,6 +13,9 @@ class R:
 	"""
 	status_code = 7355608
 	text = 'google this number'
+	def __init__(self, status_code=7355608, text='google this number'):
+		self.status_code = status_code
+		self.text = text
 
 class Tests(unittest.TestCase):
 	"""
@@ -110,7 +113,7 @@ class Tests(unittest.TestCase):
 		"""
 		self.assertEqual(get_lyrics("Bitch Lasagna", "Party in Backyard")[:7], "[Intro]")
 
-	@mock.patch('requests.post', return_value=R)
+	@mock.patch('requests.post', return_value=R())
 	def test_that_get_lyrics_does_not_break_with_request_giving_wrong_status_code(self, mock_requests):
 		"""
 		Test the get_lyrics does not break with requests giving wrong status code
@@ -124,10 +127,8 @@ class Tests(unittest.TestCase):
 		"""
 		self.assertEqual(get_lyrics("Ki", "Ki", True), "Couldn\'t get lyrics for Ki by Ki.\n")
 
-	@patch('requests.post')
+	@mock.patch('requests.post', return_value=R(200, "Season 3 is supernatural"))
 	def test_that_get_lyrics_calls_requests(self, mock):
-		get_lyrics("ABC", "DEF")
-		self.assertTrue(mock.called)
-
+		self.assertEqual(get_lyrics("River", "Dale", True), "Couldn't get lyrics for River by Dale.\nSeason 3 is supernatural")
 if __name__ == '__main__':
 	unittest.main()
