@@ -2,7 +2,7 @@
 Contains unit tests for cli.py
 """
 import unittest
-from swaglyrics.cli import stripper, lyrics, get_lyrics
+from swaglyrics.cli import stripper, lyrics, get_lyrics, clear
 from mock import mock, patch
 import os
 import requests
