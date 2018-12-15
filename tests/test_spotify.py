@@ -73,7 +73,7 @@ class WindowsTests(unittest.TestCase):
 		test that get_info_windows return None when it doesn't find
 		"""
 		x = get_info_windows()
-		self.assertEqual(x, ("Alan Walker", "Darkside"))
+		self.assertEqual(x, None)
 
 	@patch('swaglyrics.spotify.get_info_windows')
 	def test_that_artist_function_calls_get_info(self, mock):
