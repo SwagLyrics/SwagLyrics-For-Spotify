@@ -7,6 +7,13 @@ from mock import mock, patch
 import os
 import requests
 
+class R:
+	"""
+	This is a fake class created to mock requests' status code
+	"""
+	status_code = 7355608
+	text = 'google this number'
+
 class Tests(unittest.TestCase):
 	"""
 	Unit tests
@@ -95,7 +102,7 @@ class Tests(unittest.TestCase):
 		test that lyrics function does not break if unsupported.txt is not found
 		"""
 		os.rename("unsupported.txt", "unsupported2.txt")
-		self.assertEqual(lyrics("Crime", "Grindelwald", False), "Couldn\'t get lyrics for Crimes by Grindelwald.\n")
+		self.assertEqual(lyrics("Crimes", "Grindelwald", False), "Couldn\'t get lyrics for Crimes by Grindelwald.\n")
 
 	def test_database_for_unsupported_song(self):
 		"""
@@ -103,17 +110,17 @@ class Tests(unittest.TestCase):
 		"""
 		self.assertEqual(get_lyrics("Bitch Lasagna", "Party in Backyard")[:7], "[Intro]")
 
-	@mock.patch('requests.post', return_value={'status_code':7355608, 'text':'google this number'})
+	@mock.patch('requests.post', return_value=R)
 	def test_that_get_lyrics_does_not_break_with_request_giving_wrong_status_code(self, mock_requests):
 		"""
 		Test the get_lyrics does not break with requests giving wrong status code
 		"""
 		self.assertEqual(get_lyrics("Ki", "Ki", True), "Couldn\'t get lyrics for Ki by Ki.\n")
 
-	@mock.patch('requests.post', return_value={})
-	def test_that_get_lyrics_do_not_break_with_request_having_no_status_code(self, mock_requests):
+	@mock.patch('requests.post', side_effect=requests.exceptions.RequestException)
+	def test_that_get_lyrics_do_not_break_with_error_in_request(self, mock_requests):
 		"""
-		Test the get_lyrics does not break with requests having no status code
+		Test the get_lyrics does not break with error in requests
 		"""
 		self.assertEqual(get_lyrics("Ki", "Ki", True), "Couldn\'t get lyrics for Ki by Ki.\n")
 
