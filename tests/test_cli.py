@@ -128,7 +128,16 @@ class Tests(unittest.TestCase):
 		self.assertEqual(get_lyrics("Ki", "Ki", True), "Couldn\'t get lyrics for Ki by Ki.\n")
 
 	@mock.patch('requests.post', return_value=R(200, "Season 3 is supernatural"))
-	def test_that_get_lyrics_calls_requests(self, mock):
+	def test_that_get_lyrics_calls_requests(self, mock_requests):
+		"""
+		Test that get lyrics calls requests
+		"""
 		self.assertEqual(get_lyrics("River", "Dale", True), "Couldn't get lyrics for River by Dale.\nSeason 3 is supernatural")
+
+	@patch('os.system')
+	def test_clear(self, mock):
+		clear()
+		self.assertTrue(mock.called)
+
 if __name__ == '__main__':
 	unittest.main()
