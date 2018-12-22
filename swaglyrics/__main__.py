@@ -52,6 +52,8 @@ def main():
 						print('\n(Press Ctrl+C to quit)')
 			except KeyboardInterrupt:
 				exit()
+			if os.environ.get("TESTING","False") != "False":
+				break
 
 	else:
 		parser.print_help()
