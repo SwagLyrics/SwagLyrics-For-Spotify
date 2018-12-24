@@ -44,6 +44,7 @@ class Tests(unittest.TestCase):
         self.assertTrue(mock_app.called)
 
     @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True))
+    @mock.patch('time.sleep', side_effect=break)
     def test_parser_runs_cli(self, mock_argparse):
         """
         Tests whether parser runs cli
