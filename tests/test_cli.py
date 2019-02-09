@@ -2,9 +2,20 @@
 Contains unit tests for cli.py
 """
 import unittest
-from swaglyrics.cli import stripper, lyrics, get_lyrics
-from mock import patch
+from swaglyrics.cli import stripper, lyrics, get_lyrics, clear
+from mock import mock, patch
 import os
+import requests
+
+class R:
+	"""
+	This is a fake class created to mock requests' status code
+	"""
+	status_code = 7355608
+	text = 'google this number'
+	def __init__(self, status_code=7355608, text='google this number'):
+		self.status_code = status_code
+		self.text = text
 
 class Tests(unittest.TestCase):
 	"""
@@ -101,6 +112,32 @@ class Tests(unittest.TestCase):
 		test that the database set on pythonanywhere is working and giving strippers for unsupported songs
 		"""
 		self.assertEqual(get_lyrics("Bitch Lasagna", "Party in Backyard")[:7], "[Intro]")
+
+	@mock.patch('requests.post', return_value=R())
+	def test_that_get_lyrics_does_not_break_with_request_giving_wrong_status_code(self, mock_requests):
+		"""
+		Test the get_lyrics does not break with requests giving wrong status code
+		"""
+		self.assertEqual(get_lyrics("Ki", "Ki", True), "Couldn\'t get lyrics for Ki by Ki.\n")
+
+	@mock.patch('requests.post', side_effect=requests.exceptions.RequestException)
+	def test_that_get_lyrics_do_not_break_with_error_in_request(self, mock_requests):
+		"""
+		Test the get_lyrics does not break with error in requests
+		"""
+		self.assertEqual(get_lyrics("Ki", "Ki", True), "Couldn\'t get lyrics for Ki by Ki.\n")
+
+	@mock.patch('requests.post', return_value=R(200, "Season 3 is supernatural"))
+	def test_that_get_lyrics_calls_requests(self, mock_requests):
+		"""
+		Test that get lyrics calls requests
+		"""
+		self.assertEqual(get_lyrics("River", "Dale", True), "Couldn't get lyrics for River by Dale.\nSeason 3 is supernatural")
+
+	@patch('os.system')
+	def test_clear(self, mock):
+		clear()
+		self.assertTrue(mock.called)
 
 if __name__ == '__main__':
 	unittest.main()

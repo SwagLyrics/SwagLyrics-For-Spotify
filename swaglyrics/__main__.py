@@ -4,6 +4,7 @@ import os
 import webbrowser
 import threading
 import requests
+import time
 from swaglyrics.cli import lyrics, clear
 from swaglyrics import spotify
 from swaglyrics.tab import app
@@ -53,6 +54,8 @@ def main():
 						print('\n(Press Ctrl+C to quit)')
 			except KeyboardInterrupt:
 				exit()
+			if os.environ.get("TESTING","False") != "False":
+				break	
 
 	else:
 		parser.print_help()

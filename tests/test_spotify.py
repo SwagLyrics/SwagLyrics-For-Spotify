@@ -56,6 +56,7 @@ class WindowsTests(unittest.TestCase):
 
 	if platform.system() == "Windows":
 		import win32gui
+		
 	@mock.patch('win32gui.GetWindowText', return_value='Alan Walker - Darkside')
 	@mock.patch('win32gui.EnumWindows', return_value=None)
 	def test_get_info_windows(self, mock_win32gui_1, mock_win32gui_2):
@@ -64,6 +65,15 @@ class WindowsTests(unittest.TestCase):
 		"""
 		x = get_info_windows()
 		self.assertEqual(x, ("Alan Walker", "Darkside"))
+
+	@mock.patch('win32gui.GetWindowText', return_value='Alan Walker')
+	@mock.patch('win32gui.EnumWindows', return_value=None)
+	def test_get_info_windows_error_handling(self, mock_win32gui_1, mock_win32gui_2):
+		"""
+		test that get_info_windows return None when it doesn't find
+		"""
+		x = get_info_windows()
+		self.assertEqual(x, None)
 
 	@patch('swaglyrics.spotify.get_info_windows')
 	def test_that_artist_function_calls_get_info(self, mock):
