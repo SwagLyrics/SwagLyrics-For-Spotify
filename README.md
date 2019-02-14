@@ -47,6 +47,13 @@ Sounds interesting? Read more about it on our website [here](https://ccextractor
 
 ---
 ## Changelog
+- #### v0.2.4
+    - Added server-side database
+    - All songs with lyrics on Genius supported now!
+    - Global sync of unsupported songs
+    - Added more tests (85% coverage)
+    - Improved issue-making using Spotify API
+    
 - #### v0.2.3
     - Added macOS support
     - Added more tests
