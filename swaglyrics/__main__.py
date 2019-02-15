@@ -11,6 +11,14 @@ from swaglyrics.tab import app
 
 
 def main():
+    # 	print(r"""
+    #  ____                     _               _
+    # / ___|_      ____ _  __ _| |   _   _ _ __(_) ___ ___
+    # \___ \ \ /\ / / _` |/ _` | |  | | | | '__| |/ __/ __|
+    #  ___) \ V  V / (_| | (_| | |__| |_| | |  | | (__\__ \
+    # |____/ \_/\_/ \__,_|\__, |_____\__, |_|  |_|\___|___/
+    #                     |___/      |___/
+    # 	""")
 	print('Updating unsupported.txt from server.')
 	with open('unsupported.txt', 'w', encoding='utf-8') as f:
 		response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
@@ -54,7 +62,7 @@ def main():
 						print('\n(Press Ctrl+C to quit)')
 			except KeyboardInterrupt:
 				exit()
-			if os.environ.get("TESTING","False") != "False":
+			if os.environ.get("TESTING", "False") != "False":
 				break	
 
 	else:
