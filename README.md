@@ -86,6 +86,7 @@ Arguments:
   -t, --tab   Display lyrics in a browser tab.
   -c, --cli   Display lyrics in the command-line.
 ```
+You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 
 ## Package Structure
 ```
