@@ -30,7 +30,7 @@ def stripper(song, artist):
 	# Remove special characters and spaces
 	url_data = song_data.replace('&', 'and')
 	# re.sub(r"[^a-zA-Z0-9]+", '', url_data) does work of below line
-	for ch in [',', '\'', '!', '.', '’', '"', '+', '?', 'Σ', '#', '/', '$', 'Ø', 'ø', '%']:
+	for ch in [',', '\'', '!', '.', '’', '"', '+', '?', 'Σ', '#', '/', '$', 'Ø', 'ø', '%', ':']:
 		if ch in url_data:
 			url_data = url_data.replace(ch, '')
 	url_data = ' '.join(url_data.split())  # remove multiple spaces to one space
