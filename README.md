@@ -13,7 +13,7 @@
     <img src="https://img.shields.io/pypi/v/swaglyrics.svg" alt="PyPI" />
   </a>
   <a href="https://github.com/SwagLyrics/SwagLyrics-For-Spotify">
-    <img src="https://img.shields.io/github/issues-closed/aadibajpai/swaglyrics-for-spotify.svg" alt="GitHub closed issues" />
+    <img src="https://img.shields.io/github/issues-closed/SwagLyrics/swaglyrics-for-spotify.svg" alt="GitHub closed issues" />
   </a>
   <a href="https://pepy.tech/project/swaglyrics">
     <img src="https://pepy.tech/badge/swaglyrics" alt="Downloads" />
