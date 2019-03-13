@@ -3,7 +3,7 @@
   <a href="https://travis-ci.org/SwagLyrics/SwagLyrics-For-Spotify">
     <img src="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify.svg?branch=master" alt="Build Status" />
   </a>
-  <a href="https://ci.appveyor.com/project/TheClashster/swaglyrics-for-spotify">
+  <a href="https://ci.appveyor.com/project/TheClashster/swaglyrics-for-spotify-yo7jh">
     <img src="https://ci.appveyor.com/api/projects/status/eon538lm2of04sll?svg=true" alt="Build Status" />
   </a>
   <a href="https://codecov.io/gh/SwagLyrics/SwagLyrics-For-Spotify">
