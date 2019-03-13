@@ -109,11 +109,8 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 
 SwagLyrics Chrome Extension (local testing)
 ============================
-
-
-### Installation
-1. Open chrome://extensions and click `Load unpacked extension...`
-2. Browse to the downloaded folder named "swaglyrics chrome" and click `Select`
+ 
+ get it from [here](https://github.com/TarunKurella/SwagLyrics-Chrome). 
 
 ## note
 chrome integration dosent work on command line as of now. So run via python3 __main__.py -t
