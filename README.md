@@ -107,6 +107,17 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 |-- setup.py
 ```
 
+SwagLyrics Chrome Extension
+============================
+
+
+###Installation
+1. Download/clone this repo to your machine
+2. Open chrome://extensions and click `Load unpacked extension...`
+3. Browse to the downloaded folder named "swaglyrics chrome" and click `Select`
+
+
+
 ## Improvements Planned
 1. ~~Linux and macOS support **done**~~
 2. ~~Better logging of unsupported songs, the isolated unsupported.txt is sub-optimal for multiple users since the
