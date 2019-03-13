@@ -1,14 +1,14 @@
 <h1 align="center">SwagLyrics-For-Spotify</h1>
 <p align="center">
-  <a href="https://travis-ci.org/aadibajpai/SwagLyrics-For-Spotify">
-    <img src="https://travis-ci.org/aadibajpai/SwagLyrics-For-Spotify.svg?branch=master" alt="Build Status" />
+  <a href="https://travis-ci.org/SwagLyrics/SwagLyrics-For-Spotify">
+    <img src="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify.svg?branch=master" alt="Build Status" />
   </a>
   <a href="https://ci.appveyor.com/project/TheClashster/swaglyrics-for-spotify">
-    <img src="https://ci.appveyor.com/api/projects/status/a9bpa86dcx7vke0p?svg=true" alt="Build Status" />
+    <img src="https://ci.appveyor.com/api/projects/status/eon538lm2of04sll?svg=true" alt="Build Status" />
   </a>
-  <a href="https://codecov.io/gh/aadibajpai/SwagLyrics-For-Spotify">
-    <img src="https://codecov.io/gh/aadibajpai/SwagLyrics-For-Spotify/branch/master/graph/badge.svg" alt="codecov" />
-  </a>                                                                                                         
+  <a href="https://codecov.io/gh/SwagLyrics/SwagLyrics-For-Spotify">
+  <img src="https://codecov.io/gh/SwagLyrics/SwagLyrics-For-Spotify/branch/master/graph/badge.svg" />
+  </a>                                                                                                        
   <a href="https://pypi.org/project/swaglyrics/">
     <img src="https://img.shields.io/pypi/v/swaglyrics.svg" alt="PyPI" />
   </a>
