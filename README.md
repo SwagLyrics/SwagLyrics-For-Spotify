@@ -1,6 +1,6 @@
 <h1 align="center">SwagLyrics-For-Spotify</h1>
 <p align="center">
-  <a href="https://travis-ci.org/SwagLyrics/SwagLyrics-For-Spotify">
+  <a href="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify">
     <img src="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify.svg?branch=master" alt="Build Status" />
   </a>
   <a href="https://ci.appveyor.com/project/TheClashster/swaglyrics-for-spotify-yo7jh">
