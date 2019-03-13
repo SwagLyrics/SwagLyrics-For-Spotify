@@ -1,2 +1,2 @@
 
-codebased  heavily based on warpy's work
+codebase influenced by warpy's work
