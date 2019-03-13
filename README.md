@@ -111,10 +111,9 @@ SwagLyrics Chrome Extension
 ============================
 
 
-###Installation
-1. Download/clone this repo to your machine
-2. Open chrome://extensions and click `Load unpacked extension...`
-3. Browse to the downloaded folder named "swaglyrics chrome" and click `Select`
+### Installation
+1. Open chrome://extensions and click `Load unpacked extension...`
+2. Browse to the downloaded folder named "swaglyrics chrome" and click `Select`
 
 
 
