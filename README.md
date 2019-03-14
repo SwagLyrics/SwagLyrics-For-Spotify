@@ -24,9 +24,8 @@ Fetches the currently playing song from Spotify on Windows, Linux and macOS and 
 Refreshes automatically when song changes. The lyrics are fetched from Genius.
 Turns out Deezer already has this feature in-built but with `swaglyrics`, you can have it in Spotify as well.
 
-Probably wasn't thinking when I put _Swag_ in the name (will probably be seen
-by admission officers sigh) but I'm mainly trying to build this project as far as I can,
-for practice and to learn and work with more technologies (learnt AJAX).
+I'm mainly trying to build this project as far as I can,
+for practice and to learn and work with more technologies and platforms.
 
 Initially developed this for personal use. Pretty much functionality oriented -- I usually develop something that I
 can see helping me and other users in the same situation.
@@ -34,7 +33,7 @@ Packaged so I can first hand handle production-ready code to an extent and to ma
 distribution and usage easier.
 
 ---
-[![Google Code-In 2018](https://raw.githubusercontent.com/CCExtractor/ccextractor-org-media/master/ext/google-code-In-2018.gif)](https://codein.withgoogle.com/)
+[![Google Code-in 2018](https://raw.githubusercontent.com/CCExtractor/ccextractor-org-media/master/ext/google-code-In-2018.gif)](https://codein.withgoogle.com/)
 <p align="center">
   SwagLyrics is participating in Google Code-in 2018 with CCExtractor Development!
 </p>
