@@ -6,6 +6,7 @@ from swaglyrics import spotify
 
 
 app = Flask(__name__, template_folder=os.path.join(os.path.dirname(os.path.abspath('SwagLyrics-For-Spotify')), 'swaglyrics/templates'))
+# use relative path of the template folder
 
 CORS(app, support_credentials=True)
 
