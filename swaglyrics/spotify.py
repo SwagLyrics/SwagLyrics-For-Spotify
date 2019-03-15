@@ -45,20 +45,24 @@ def get_info_linux():
 
 def get_info_mac():
 	from Foundation import NSAppleScript
-	apple_script_code = """
-	getCurrentlyPlayingTrack()
-	on getCurrentlyPlayingTrack()
-		tell application "Spotify"
-			set currentArtist to artist of current track as string
-			set currentTrack to name of current track as string
-			return {currentArtist, currentTrack}
-		end tell
-	end getCurrentlyPlayingTrack
+
+	apple_script_code = """ tell application "Spotify"
+		current track's artist
+	end tell
 	"""
 	s = NSAppleScript.alloc().initWithSource_(apple_script_code)
 	x = s.executeAndReturnError_(None)
-	a = str(x[0]).split('"')
-	return a[1], a[3]
+	y= str(x[0])
+	artist = y[33:len(y)-3]
+	apple_script_code = """ tell application "Spotify"
+	current track's name
+	end tell
+	"""
+	s = NSAppleScript.alloc().initWithSource_(apple_script_code)
+	x = s.executeAndReturnError_(None)
+	y= str(x[0])
+	track = y[33:len(y)-3]
+	return artist, track
 
 
 def artist():
