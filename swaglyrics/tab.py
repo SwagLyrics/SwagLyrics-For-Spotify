@@ -30,14 +30,10 @@ def tab():
         song=response["title"]
         artist=response["artist"]
         
-        
-        
-    
     if isChrome==False:
         song = spotify.song()
-        artist = spotify.artist()    
-    
-    
+        artist = spotify.artist()   
+        
     current_lyrics = lyrics(song, artist)
     current_lyrics = current_lyrics.split('\n')  # break lyrics line by line
     return render_template('lyrics.html', lyrics=current_lyrics, song=song, artist=artist)
@@ -47,10 +43,10 @@ def tab():
 def song_changed():
     # to refresh lyrics when song changed
     global song,isChrome,chromeSong
-    if isChrome==False:
+    if not isChrome:
         if song == spotify.song() or spotify.song() is None:
            return 'no' 
-    if isChrome==True and isSameSong==True:
+    if isSameSong==True:
         return 'no'       
     return 'yes'
 
