@@ -21,7 +21,7 @@ isSameSong=True
 @cross_origin(supports_credentials=True)
 def tab():
     # format lyrics for the browser tab template
-    global song, artist,isChrome,isSameSong
+    global song,artist,isChrome,isSameSong
     isSameSong=True
     if request.method=="POST" or request.method=="OPTIONS" :
         isChrome=True
