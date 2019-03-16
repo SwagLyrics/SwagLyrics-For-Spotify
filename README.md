@@ -1,19 +1,19 @@
 <h1 align="center">SwagLyrics-For-Spotify</h1>
 <p align="center">
-  <a href="https://travis-ci.org/aadibajpai/SwagLyrics-For-Spotify">
-    <img src="https://travis-ci.org/aadibajpai/SwagLyrics-For-Spotify.svg?branch=master" alt="Build Status" />
+  <a href="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify">
+    <img src="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify.svg?branch=master" alt="Build Status" />
   </a>
-  <a href="https://ci.appveyor.com/project/TheClashster/swaglyrics-for-spotify">
-    <img src="https://ci.appveyor.com/api/projects/status/a9bpa86dcx7vke0p?svg=true" alt="Build Status" />
+  <a href="https://ci.appveyor.com/project/TheClashster/swaglyrics-for-spotify-yo7jh">
+    <img src="https://ci.appveyor.com/api/projects/status/eon538lm2of04sll?svg=true" alt="Build Status" />
   </a>
-  <a href="https://codecov.io/gh/aadibajpai/SwagLyrics-For-Spotify">
-    <img src="https://codecov.io/gh/aadibajpai/SwagLyrics-For-Spotify/branch/master/graph/badge.svg" alt="codecov" />
-  </a>                                                                                                         
+  <a href="https://codecov.io/gh/SwagLyrics/SwagLyrics-For-Spotify">
+  <img src="https://codecov.io/gh/SwagLyrics/SwagLyrics-For-Spotify/branch/master/graph/badge.svg" />
+  </a>                                                                                                        
   <a href="https://pypi.org/project/swaglyrics/">
     <img src="https://img.shields.io/pypi/v/swaglyrics.svg" alt="PyPI" />
   </a>
-  <a href="https://github.com/aadibajpai/SwagLyrics-For-Spotify">
-    <img src="https://img.shields.io/github/issues-closed/aadibajpai/swaglyrics-for-spotify.svg" alt="GitHub closed issues" />
+  <a href="https://github.com/SwagLyrics/SwagLyrics-For-Spotify">
+    <img src="https://img.shields.io/github/issues-closed/SwagLyrics/swaglyrics-for-spotify.svg" alt="GitHub closed issues" />
   </a>
   <a href="https://pepy.tech/project/swaglyrics">
     <img src="https://pepy.tech/badge/swaglyrics" alt="Downloads" />
@@ -24,9 +24,8 @@ Fetches the currently playing song from Spotify on Windows, Linux and macOS and 
 Refreshes automatically when song changes. The lyrics are fetched from Genius.
 Turns out Deezer already has this feature in-built but with `swaglyrics`, you can have it in Spotify as well.
 
-Probably wasn't thinking when I put _Swag_ in the name (will probably be seen
-by admission officers sigh) but I'm mainly trying to build this project as far as I can,
-for practice and to learn and work with more technologies (learnt AJAX).
+I'm mainly trying to build this project as far as I can,
+for practice and to learn and work with more technologies and platforms.
 
 Initially developed this for personal use. Pretty much functionality oriented -- I usually develop something that I
 can see helping me and other users in the same situation.
@@ -34,7 +33,7 @@ Packaged so I can first hand handle production-ready code to an extent and to ma
 distribution and usage easier.
 
 ---
-[![Google Code-In 2018](https://raw.githubusercontent.com/CCExtractor/ccextractor-org-media/master/ext/google-code-In-2018.gif)](https://codein.withgoogle.com/)
+[![Google Code-in 2018](https://raw.githubusercontent.com/CCExtractor/ccextractor-org-media/master/ext/google-code-In-2018.gif)](https://codein.withgoogle.com/)
 <p align="center">
   SwagLyrics is participating in Google Code-in 2018 with CCExtractor Development!
 </p>
