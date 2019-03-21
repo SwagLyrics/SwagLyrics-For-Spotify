@@ -1,4 +1,8 @@
 import platform
+import tab
+import chrome
+
+
 
 
 def get_info_windows():
@@ -42,7 +46,6 @@ def get_info_linux():
 	artist = str(metadata['xesam:artist'][0])
 	return artist, track
 
-
 def get_info_mac():
 	from Foundation import NSAppleScript
 
@@ -66,36 +69,47 @@ def get_info_mac():
 
 
 def artist():
-	if platform.system() == "Windows":
-		try:
-			return get_info_windows()[0]
-		except:
-			return None
-	elif platform.system() == "Darwin":
-		try:
-			return get_info_mac()[0]
-		except:
-			return None	
+	
+	if chrome.isChrome==False:
+
+			if platform.system() == "Windows":
+				try:
+					return get_info_windows()[0]
+				except:
+					return None
+			elif platform.system() == "Darwin":
+				try:
+					return get_info_mac()[0]
+				except:
+					return None	
+			else:
+				try:
+					return get_info_linux()[0]
+				except:
+					return None
 	else:
-		try:
-			return get_info_linux()[0]
-		except:
-			return None
+		return chrome.getChromeSong()[1]
+
+
 
 
 def song():
-	if platform.system() == "Windows":
-		try:
-			return get_info_windows()[1]
-		except:
-			return None
-	elif platform.system() == "Darwin":
-		try:
-			return get_info_mac()[1]
-		except:
-			return None	
+	if chrome.isChrome==False:
+
+			if platform.system() == "Windows":
+				try:
+					return get_info_windows()[1]
+				except:
+					return None
+			elif platform.system() == "Darwin":
+				try:
+					return get_info_mac()[1]
+				except:
+					return None	
+			else:
+				try:
+					return get_info_linux()[1]
+				except:
+					return None
 	else:
-		try:
-			return get_info_linux()[1]
-		except:
-			return None
+		return chrome.getChromeSong()[0]
