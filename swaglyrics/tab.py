@@ -1,8 +1,8 @@
-from swaglyrics.cli import lyrics
+from cli import lyrics
 from flask import Flask, render_template,jsonify,request
 from flask_cors import CORS, cross_origin
 import os
-from swaglyrics import spotify
+import spotify
 
 
 app = Flask(__name__, template_folder=os.path.join(os.path.dirname(os.path.abspath('SwagLyrics-For-Spotify')), 'swaglyrics/templates'))

@@ -4,9 +4,9 @@ import webbrowser
 import threading
 import requests
 import time
-from swaglyrics.cli import lyrics, clear
-from swaglyrics import spotify
-from swaglyrics.tab import app
+from cli import lyrics, clear
+import spotify
+from tab import app
 
 
 def main():
