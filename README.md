@@ -113,7 +113,7 @@ SwagLyrics Chrome Extension (local testing)
  get it from [here](https://github.com/SwagLyrics/SwagLyrics-Chrome-Extension). 
 
 ## note
-chrome integration dosent work on command line as of now. So run via python3 __main__.py -t
+Please Run the Python Script first then open spotify on browser incase of running via extension.
 
 
 
