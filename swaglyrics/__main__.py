@@ -32,10 +32,10 @@ def main():
     )
 
     parser.add_argument(
-        "-t", "--tab", nargs="*", help="Display lyrics in a browser tab."
+        "-t", "--tab", nargs="*", default="local",help="Display lyrics in a browser tab."
     )
     parser.add_argument(
-        "-c", "--cli", nargs="*", help="Display lyrics in the command-line."
+        "-c", "--cli", nargs="*", default="local",help="Display lyrics in the command-line."
     )
 
     args = parser.parse_args()
