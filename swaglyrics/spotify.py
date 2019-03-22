@@ -1,6 +1,6 @@
 import platform
-import tab
-import chrome
+from swaglyrics import tab
+from swaglyrics import chrome
 
 
 
