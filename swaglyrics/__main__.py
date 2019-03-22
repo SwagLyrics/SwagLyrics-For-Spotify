@@ -32,11 +32,15 @@ def main():
     )
 
     parser.add_argument(
-        "-t", "--tab", nargs="*", default="local",help="Display lyrics in a browser tab."
+        "-t", "--tab",action='store_true', help="Display lyrics in a browser tab."
     )
     parser.add_argument(
-        "-c", "--cli", nargs="*", default="local",help="Display lyrics in the command-line."
+        "-c", "--cli",action='store_true',help="Display lyrics in the command-line."
     )
+    parser.add_argument(
+        "-cr", "--chrome",action='store_true',help="Display lyrics in the command-line."
+    )	
+    
 
     args = parser.parse_args()
     app.template_folder = os.path.join(
@@ -52,7 +56,7 @@ def main():
     def modeChecker(argg):
         chrome.initvariables()
 
-        if "chrome" in argg:
+        if argg:
             chrome.isChrome = True
             print("Listesning to chrome")
         else:
@@ -60,8 +64,8 @@ def main():
             print("Listesning to local")
 
     if args.tab:
-        print(args.tab)
-        modeChecker(set(args.tab))
+        print(args.chrome)
+        modeChecker(args.chrome)
 
         print("Firing up a browser tab!")
 
@@ -70,7 +74,7 @@ def main():
 
     elif args.cli:
 
-        modeChecker(set(args.cli))
+        modeChecker(args.chrome)
         chrome.isTerminal = True
 
         if chrome.isChrome == True:
