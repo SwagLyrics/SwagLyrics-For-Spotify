@@ -32,15 +32,15 @@ def main():
     )
 
     parser.add_argument(
-        "-t", "--tab",action='store_true', help="Display lyrics in a browser tab."
+        "-t", "--tab", action='store_true', help="Display lyrics in a browser tab."
     )
     parser.add_argument(
-        "-c", "--cli",action='store_true',help="Display lyrics in the command-line."
+        "-c", "--cli", action='store_true', help="Display lyrics in the command-line."
     )
     parser.add_argument(
-        "-cr", "--chrome",action='store_true',help="Display lyrics in the command-line."
-    )	
-    
+        "-cr", "--chrome", action='store_true', help="Display lyrics in the command-line."
+    )
+
 
     args = parser.parse_args()
     app.template_folder = os.path.join(
@@ -64,7 +64,7 @@ def main():
             print("Listesning to local")
 
     if args.tab:
-        
+
         modeChecker(args.chrome)
 
         print("Firing up a browser tab!")
