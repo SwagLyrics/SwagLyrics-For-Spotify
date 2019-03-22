@@ -64,7 +64,7 @@ def main():
             print("Listesning to local")
 
     if args.tab:
-        print(args.chrome)
+        
         modeChecker(args.chrome)
 
         print("Firing up a browser tab!")
