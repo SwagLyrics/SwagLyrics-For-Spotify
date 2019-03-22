@@ -1,9 +1,9 @@
-from cli import lyrics
+from swaglyrics.cli import lyrics
 from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS, cross_origin
 import os
-import spotify
-import chrome
+from swaglyrics import spotify
+from swaglyrics import chrome
 
 song = None
 artist = None
