@@ -82,11 +82,10 @@ Either the tab or cli argument is required to output lyrics.
 
 Arguments:
 ```
-  -h, --help  show this help message and exit
-  -t, --tab   Display lyrics in a browser tab.
-  -c, --cli   Display lyrics in the command-line.
-  -t chrome   Display lyrics  from browser in a browser tab.
-  -c chrome   Display lyrics  from browser in the command-line.
+  -h, --help    show this help message and exit
+  -t, --tab     Display lyrics in a browser tab.
+  -c, --cli     Display lyrics in the command-line.
+  -cr, --chrome fetch Lyrics from browser (to be passed along those above when required) 
 ```
 You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 
