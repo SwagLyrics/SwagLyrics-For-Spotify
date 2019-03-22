@@ -85,6 +85,8 @@ Arguments:
   -h, --help  show this help message and exit
   -t, --tab   Display lyrics in a browser tab.
   -c, --cli   Display lyrics in the command-line.
+  -t chrome   Display lyrics  from browser in a browser tab.
+  -c chrome   Display lyrics  from browser in the command-line.
 ```
 You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 
