@@ -32,10 +32,10 @@ def main():
     )
 
     parser.add_argument(
-        "-t", "--tab", action="store_true", help="Display lyrics in a browser tab."
+        "-t", "--tab", nargs="*", help="Display lyrics in a browser tab."
     )
     parser.add_argument(
-        "-c", "--cli", action="store_true", help="Display lyrics in the command-line."
+        "-c", "--cli", nargs="*", help="Display lyrics in the command-line."
     )
 
     args = parser.parse_args()
@@ -49,13 +49,10 @@ def main():
     url = "http://127.0.0.1:{port}".format(port=port)
 
     # A Function  to initialise Chrome extension Global variables
-    def modeChecker():
+    def modeChecker(argg):
         chrome.initvariables()
-        print("Where are you playing your tunes?")
-        print("1) Locally   2)On chrome")
-        print("Choose an option:")
-        choice = int(input())
-        if choice == 2:
+
+        if "chrome" in argg:
             chrome.isChrome = True
             print("Listesning to chrome")
         else:
@@ -63,14 +60,17 @@ def main():
             print("Listesning to local")
 
     if args.tab:
-        modeChecker()
+        print(args.tab)
+        modeChecker(set(args.tab))
+
         print("Firing up a browser tab!")
 
         threading.Timer(1.25, lambda: webbrowser.open(url)).start()
         app.run(port=port)
 
     elif args.cli:
-        modeChecker()
+
+        modeChecker(set(args.cli))
         chrome.isTerminal = True
 
         if chrome.isChrome == True:
