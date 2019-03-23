@@ -36,8 +36,9 @@ def main():
 	args = parser.parse_args()
 	app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 	app.static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
-	url = "http://127.0.0.1:{port}".format(port=port)
 	port = 5042  # random
+	url = "http://127.0.0.1:{port}".format(port=port)
+	
 	
 	#Function to check whether if chrome was passed via arguments or not
 	def modeChecker(argg):
