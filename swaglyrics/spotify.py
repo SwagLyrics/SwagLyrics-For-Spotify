@@ -1,5 +1,4 @@
 import platform
-from swaglyrics import tab
 from swaglyrics import chrome
 
 
