@@ -4,6 +4,8 @@ import webbrowser
 import threading
 import requests
 import time
+import platform
+from appdirs import AppDirs
 from swaglyrics.cli import lyrics, clear
 from swaglyrics import spotify
 from swaglyrics.tab import app
@@ -19,7 +21,19 @@ def main():
 	#                     |___/      |___/
 	# 	""")
 	print('Updating unsupported.txt from server.')
-	with open('unsupported.txt', 'w', encoding='utf-8') as f:
+
+	appDataDir = AppDirs('swaglyrics', os.getlogin()).user_config_dir
+
+	if platform.system() == "Windows":
+		if not os.path.exists("C:\\Users\\"+os.getlogin()+"\\AppData\\Local\\swaglyrics\\"):
+			os.makedirs("C:\\Users\\"+os.getlogin()+"\\AppData\\Local\\swaglyrics\\")                
+		
+		appDataDir = "C:\\Users\\"+os.getlogin()+"\\AppData\\Local\\swaglyrics\\"
+		print (appDataDir)
+	else:
+		appDataDir = appDataDir+"/"
+
+	with open(appDataDir+"unsupported.txt",'w', encoding='utf-8') as f:
 		response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
 		f.write(response.text)
 	print("Updated unsupported.txt successfully.")
@@ -63,7 +77,7 @@ def main():
 				exit()
 			if os.environ.get("TESTING", "False") != "False":
 				break
-
+	
 	else:
 		parser.print_help()
 
