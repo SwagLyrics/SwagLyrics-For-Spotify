@@ -25,7 +25,7 @@ def tab():
     current_lyrics = current_lyrics.split('\n')  # break lyrics line by line
     return render_template('lyrics.html', lyrics=current_lyrics, song=song, artist=artist)
 
-@app.route("/getsong", methods=["GET", "POST"])
+@app.route("/getSong", methods=["GET", "POST"])
 @cross_origin(supports_credentials=True)
 def chromeSong():
     global isSameSong
