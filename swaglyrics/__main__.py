@@ -31,34 +31,29 @@ def main():
 
 	parser.add_argument('-t', '--tab', action='store_true', help='Display lyrics in a browser tab.')
 	parser.add_argument('-c', '--cli', action='store_true', help='Display lyrics in the command-line.')
-	parser.add_argument('-cr', '--chrome', action='store_true', help='Display lyrics from browser.')
+	parser.add_argument('--chrome', action='store_true', help='Display lyrics from browser.')
 
 	args = parser.parse_args()
 	app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 	app.static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
 	port = 5042  # random
 	url = "http://127.0.0.1:{port}".format(port=port)
-	
-	
-	#Function to check whether if chrome was passed via arguments or not
-	def modeChecker(argg):
-		chrome.initvariables()
-		if argg:
-			chrome.isChrome = True
-			print("Listesning to chrome")
-		else:
-			chrome.isChrome = False
-			print("Listesning to local")
-
+	chrome.initvariables()
+	#checking whether if chrome was passed via arguments or not
+	if args.chrome:
+		chrome.isChrome = True
+		print("Listesning to chrome")
+	else:
+		chrome.isChrome = False
+		print("Listesning to local")
+		
 
 	if args.tab:
 		print('Firing up a browser tab!')
-		modeChecker(args.chrome)
 		threading.Timer(1.25, lambda: webbrowser.open(url)).start()
 		app.run(port=port)
 
 	elif args.cli:
-		modeChecker(args.chrome)
 		chrome.isTerminal = True
 		if chrome.isChrome == True:
 			# Starts a new thread with server running, to post requests from extension.
