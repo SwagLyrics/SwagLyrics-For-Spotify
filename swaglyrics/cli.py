@@ -88,7 +88,7 @@ def lyrics(song, artist, make_issue=True):
 	if song and artist:  # check if song playing
 		try:
 			with open('unsupported.txt') as unsupported:
-				if f'{song} by {artist}' in unsupported.read():
+				if '{song} by {artist}'.format(song=song, artist=artist) in unsupported.read():
 					return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
 		except FileNotFoundError:
 			pass
