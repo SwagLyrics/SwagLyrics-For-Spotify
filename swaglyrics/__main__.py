@@ -34,8 +34,11 @@ def main():
 	parser.add_argument('--artist', type=str)
 
 	args = parser.parse_args()
+	print(args)
 
 	if args.tab:
+		app.config['song'] = args.song
+		app.config['artist'] = args.artist
 		print('Firing up a browser tab!')
 		app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 		app.static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
@@ -47,11 +50,11 @@ def main():
 	elif args.cli:
 
 		if args.song is None and args.artist is None:
-			song = spotify.song()	# get currently playing song
-			artist = spotify.artist()	# get currently playing artist
+			song = spotify.song()	#  get currently playing song
+			artist = spotify.artist()	#  get currently playing artist
 		else:
-			song = args.song	# get song from command line argument
-			artist = args.artist	# get artist from command line argument
+			song = args.song	#  get song from command line argument
+			artist = args.artist	#  get artist from command line argument
 		print(lyrics(song, artist))
 		print('\n(Press Ctrl+C to quit)')
 		while True:

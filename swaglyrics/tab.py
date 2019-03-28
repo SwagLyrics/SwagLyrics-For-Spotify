@@ -14,8 +14,12 @@ artist = None
 def tab():
     # format lyrics for the browser tab template
     global song, artist
-    song = spotify.song()
-    artist = spotify.artist()
+    if app.config.get('song') is not None and app.config.get('artist') is not None:
+        song = app.config.get('song')
+        artist = app.config.get('artist')
+    else:
+        song = spotify.song()
+        artist = spotify.artist()
     current_lyrics = lyrics(song, artist)
     current_lyrics = current_lyrics.split('\n')  # break lyrics line by line
     return render_template('lyrics.html', lyrics=current_lyrics, song=song, artist=artist)
@@ -26,6 +30,8 @@ def song_changed():
     # to refresh lyrics when song changed
     global song
     if song == spotify.song() or spotify.song() is None:
+        app.config['song'] = None
+        app.config['artist'] = None
         return 'no'
     return 'yes'
 
