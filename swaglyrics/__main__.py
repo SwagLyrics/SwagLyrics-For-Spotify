@@ -30,8 +30,8 @@ def main():
 	parser.add_argument('-t', '--tab', action='store_true', help='Display lyrics in a browser tab.')
 	parser.add_argument('-c', '--cli', action='store_true', help='Display lyrics in the command-line.')
 
-	parser.add_argument('--song', type=str)
-	parser.add_argument('--artist', type=str)
+	parser.add_argument('--song')
+	parser.add_argument('--artist')
 
 	args = parser.parse_args()
 	print(args)
