@@ -29,12 +29,10 @@ def main():
 
 	parser.add_argument('-t', '--tab', action='store_true', help='Display lyrics in a browser tab.')
 	parser.add_argument('-c', '--cli', action='store_true', help='Display lyrics in the command-line.')
-
-	parser.add_argument('--song')
-	parser.add_argument('--artist')
+	parser.add_argument('--song', help='Enter song name')
+	parser.add_argument('--artist', help='Enter artist name')
 
 	args = parser.parse_args()
-	print(args)
 
 	if args.tab:
 		app.config['song'] = args.song
@@ -50,11 +48,13 @@ def main():
 	elif args.cli:
 
 		if args.song is None and args.artist is None:
-			song = spotify.song()	#  get currently playing song
-			artist = spotify.artist()	#  get currently playing artist
+			song = spotify.song()	# get currently playing song
+			artist = spotify.artist()	# get currently playing artist
 		else:
-			song = args.song	#  get song from command line argument
-			artist = args.artist	#  get artist from command line argument
+				song = args.song	# get song from command line argument
+				artist = args.artist	# get artist from command line argument
+				print(lyrics(song, artist))
+				exit()
 		print(lyrics(song, artist))
 		print('\n(Press Ctrl+C to quit)')
 		while True:

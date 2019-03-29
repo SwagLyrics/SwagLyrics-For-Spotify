@@ -14,7 +14,7 @@ artist = None
 def tab():
     # format lyrics for the browser tab template
     global song, artist
-    if app.config.get('song') is not None and app.config.get('artist') is not None:
+    if app.config.get('song') and app.config.get('artist'):
         song = app.config.get('song')
         artist = app.config.get('artist')
     else:
