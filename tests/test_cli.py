@@ -4,6 +4,8 @@ Contains unit tests for cli.py
 import unittest
 from swaglyrics.cli import stripper, lyrics, get_lyrics, clear
 from mock import mock, patch
+from appdirs import  AppDirs
+import platform
 import os
 import requests
 
@@ -21,6 +23,15 @@ class Tests(unittest.TestCase):
 	"""
 	Unit tests
 	"""
+
+	appDataDir = AppDirs('swaglyrics', os.getlogin()).user_config_dir
+	if platform.system() == "Windows":
+		if not os.path.exists("C:\\Users\\"+os.getlogin()+"\\AppData\\Local\\swaglyrics\\"):
+			os.makedirs("C:\\Users\\"+os.getlogin()+"\\AppData\\Local\\swaglyrics\\")
+		appDataDir = "C:\\Users\\"+os.getlogin()+"\\AppData\\Local\\swaglyrics\\"
+	
+	else:
+		appDataDir = appDataDir + "/"
 
 	def setup(self):
 		pass
@@ -66,9 +77,9 @@ class Tests(unittest.TestCase):
 		self.assertEqual(get_lyrics("Battle Symphony", "Drake", False), "Couldn't get lyrics for Battle Symphony by Drake.\n")
 
 		# Deleting above songs and artists from unsupported.txt
-		with open("unsupported.txt", "r") as f:
+		with open(appDataDir+"unsupported.txt", "r") as f:
 			lines = f.readlines()
-		with open("unsupported.txt", "w") as f:
+		with open(appDataDir+"unsupported.txt", "w") as f:
 			for line in lines:
 				if line not in [" Battle Symphony by One Direction \n", " Faded by Muhmello \n", " Battle Symphony by Drake \n"]:
 					f.write(line)
@@ -85,9 +96,9 @@ class Tests(unittest.TestCase):
 		self.assertEqual(lyrics("Fantastic", "Beasts"), "Lyrics unavailable for Fantastic by Beasts.\n")
 
 		# Deleting above songs and artists from unsupported.txt
-		with open("unsupported.txt", "r") as f:
+		with open(appDataDir+"unsupported.txt", "r") as f:
 			lines = f.readlines()
-		with open("unsupported.txt", "w") as f:
+		with open(appDataDir+"unsupported.txt", "w") as f:
 			for line in lines:
 				if line not in [" Hello by World \n", " Foo by Bar \n", " Fantastic by Beasts \n"]:
 					f.write(line)
@@ -104,7 +115,7 @@ class Tests(unittest.TestCase):
 		"""
 		test that lyrics function does not break if unsupported.txt is not found
 		"""
-		os.rename("unsupported.txt", "unsupported2.txt")
+		os.rename(appDataDir+"unsupported.txt", appDataDir+"unsupported2.txt")
 		self.assertEqual(lyrics("Crimes", "Grindelwald", False), "Couldn\'t get lyrics for Crimes by Grindelwald.\n")
 
 	def test_database_for_unsupported_song(self):
