@@ -4,8 +4,9 @@ import webbrowser
 import threading
 import requests
 import time
-from swaglyrics.cli import lyrics, clear
+from swaglyrics import config
 from swaglyrics import spotify
+from swaglyrics.cli import lyrics, clear
 from swaglyrics.tab import app
 
 
@@ -19,7 +20,7 @@ def main():
 	#                     |___/      |___/
 	# 	""")
 	print('Updating unsupported.txt from server.')
-	with open('unsupported.txt', 'w', encoding='utf-8') as f:
+	with open(config.unsupported_path, 'w', encoding='utf-8') as f:
 		response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
 		f.write(response.text)
 	print("Updated unsupported.txt successfully.")

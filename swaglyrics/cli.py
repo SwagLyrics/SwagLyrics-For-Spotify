@@ -5,6 +5,7 @@ import re
 import sys
 import time
 import os
+from swaglyrics import config
 
 
 def clear():
@@ -60,7 +61,7 @@ def get_lyrics(song, artist, make_issue=True):
 	# TODO: Add error handling
 	lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
 	if lyrics_path is None:
-		with open('unsupported.txt', 'a') as f:
+		with open(config.unsupported_path, 'a') as f:
 			f.write('{song} by {artist} \n'.format(song=song, artist=artist))
 			f.close()
 		lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
@@ -87,7 +88,7 @@ def lyrics(song, artist, make_issue=True):
 	"""
 	if song and artist:  # check if song playing
 		try:
-			with open('unsupported.txt') as unsupported:
+			with open(config.unsupported_path) as unsupported:
 				if song in unsupported.read():
 					return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
 		except FileNotFoundError:
