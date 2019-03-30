@@ -59,7 +59,7 @@ def get_lyrics(song, artist, make_issue=True):
         url = 'https://genius.com/{}-lyrics'.format(url_data)
         page = requests.get(url)
     html = BeautifulSoup(page.text, "html.parser")
-    # TODO: Add error handling
+
     lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
 	if lyrics_path is None:
         lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
@@ -67,7 +67,7 @@ def get_lyrics(song, artist, make_issue=True):
 			with open(config.unsupported_path, 'a', encoding='utf-8') as f:
 	            f.write('{song} by {artist} \n'.format(song=song, artist=artist))
 	            f.close()
-		except OSError as e:
+		except OSError:
 			print('Could not update unsupported.txt')
 
         try:
