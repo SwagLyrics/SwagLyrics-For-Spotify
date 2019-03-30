@@ -54,7 +54,8 @@ def main():
 				song = args.song	# get song from command line argument
 				artist = args.artist	# get artist from command line argument
 				print(lyrics(song, artist))
-				exit()
+				raise SystemExit(0)
+
 		print(lyrics(song, artist))
 		print('\n(Press Ctrl+C to quit)')
 		while True:

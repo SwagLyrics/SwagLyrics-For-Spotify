@@ -57,6 +57,24 @@ class Tests(unittest.TestCase):
         sys.stdout = sys.__stdout__
         self.assertIn("\n(Press Ctrl+C to quit)", capturedOutput.getvalue())
 
+    @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True,
+                                                                                      song="Perfect",
+                                                                                      artist="Ed Sheeran"))
+    def test_parser_runs_cli_with_song_and_artist(self, mock_argparse):
+        with self.assertRaises(SystemExit):
+            main()
+
+    @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True,
+                                                                                     song=None, artist="Ed Sheeran"))
+    def test_parser_runs_cli_without_song_and_with_artist(self, mock_argparse):
+        with self.assertRaises(SystemExit):
+            main()
+
+    @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True,
+                                                                                      song="Perfect", artist=None))
+    def test_parser_runs_cli_with_song_and_without_artist(self, mock_argparse):
+        with self.assertRaises(SystemExit):
+            main()
 
 if __name__ == '__main__':
 	unittest.main()

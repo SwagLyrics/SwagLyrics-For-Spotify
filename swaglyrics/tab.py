@@ -29,9 +29,9 @@ def tab():
 def song_changed():
     # to refresh lyrics when song changed
     global song
+    app.config['song'] = None
+    app.config['artist'] = None
     if song == spotify.song() or spotify.song() is None:
-        app.config['song'] = None
-        app.config['artist'] = None
         return 'no'
     return 'yes'
 
