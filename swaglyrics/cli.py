@@ -62,10 +62,14 @@ def get_lyrics(song, artist, make_issue=True):
     # TODO: Add error handling
     lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
 	if lyrics_path is None:
-        with open(config.unsupported_path, 'a') as f:
-            f.write('{song} by {artist} \n'.format(song=song, artist=artist))
-            f.close()
         lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
+		try:
+			with open(config.unsupported_path, 'a', encoding='utf-8') as f:
+	            f.write('{song} by {artist} \n'.format(song=song, artist=artist))
+	            f.close()
+		except OSError as e:
+			print('Could not update unsupported.txt')
+
         try:
             # Log song and artist for which lyrics couldn't be obtained
             if make_issue:
@@ -90,11 +94,11 @@ def lyrics(song, artist, make_issue=True):
     """
     if song and artist:  # check if song playing
         try:
-            with open(config.unsupported_path) as unsupported:
+            with open(config.unsupported_path, 'r', encoding='utf-8') as unsupported:
                 if song in unsupported.read():
                     return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
-        except FileNotFoundError:
-            pass
+        except OSError as e:
+            print('Could not check from unsupported.txt\n')
         print('\nGetting lyrics for {song} by {artist} '.format(song=song, artist=artist), end='')
         lyrics = get_lyrics(song, artist, make_issue)
         for _ in range(30):  # loading spinner

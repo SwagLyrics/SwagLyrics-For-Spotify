@@ -20,10 +20,13 @@ def main():
     #                     |___/      |___/
     # 	""")
     print('Updating unsupported.txt from server.')
-    with open(config.unsupported_path, 'w', encoding='utf-8') as f:
-        response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
-        f.write(response.text)
-    print("Updated unsupported.txt successfully.")
+	try:
+	    with open(config.unsupported_path, 'w', encoding='utf-8') as f:
+	        response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
+	        f.write(response.text)
+		print('Updated unsupported.txt successfully.')
+	except OSError as e:
+		print('Could not update: {}'.format(e))
 
     parser = argparse.ArgumentParser(
         description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
