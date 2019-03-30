@@ -62,25 +62,25 @@ def get_lyrics(song, artist, make_issue=True):
 
     lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
 	if lyrics_path is None:
-        lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
+		lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
 		try:
 			with open(config.unsupported_path, 'a', encoding='utf-8') as f:
-	            f.write('{song} by {artist} \n'.format(song=song, artist=artist))
-	            f.close()
+				f.write('{song} by {artist} \n'.format(song=song, artist=artist))
+				f.close()
 		except OSError:
 			print('Could not update unsupported.txt')
 
-        try:
-            # Log song and artist for which lyrics couldn't be obtained
-            if make_issue:
-                r = requests.post('http://aadibajpai.pythonanywhere.com/unsupported',
-                                  data={'song': song, 'artist': artist})
-                if r.status_code == 200:
-                    lyrics += r.text
-        except requests.exceptions.RequestException:
-            pass
+		try:
+			# Log song and artist for which lyrics couldn't be obtained
+			if make_issue:
+				r = requests.post('http://aadibajpai.pythonanywhere.com/unsupported', data={'song': song, 'artist': artist})
+				if r.status_code == 200:
+					lyrics += r.text
+		except:
+			pass
     else:
         lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
+
     return lyrics
 
 
