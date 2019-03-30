@@ -27,15 +27,6 @@ class Tests(flask_testing.TestCase):
 			response = c.get('/')
 			self.assert_template_used("lyrics.html")
 
-	@mock.patch("app.config.get('song')", return_value="Perfect")
-	@mock.patch("app.config.get('artist')", return_value="Ed Sheeran")
-	def test_lyrics_are_shown_in_tab_when_searched(self, mock_song, mock_artist):
-		"""
-		tests that lyrics are shown when searched
-		"""
-		with self.app.test_client() as c:
-			response = c.get('/')
-			self.assert_template_used("lyrics.html")
 
 if __name__ == '__main__':
 	flask_testing.main()
