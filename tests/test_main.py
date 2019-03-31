@@ -45,57 +45,51 @@ class Tests(unittest.TestCase):
         self.assertIn("Firing up a browser tab!", capturedOutput.getvalue())
         self.assertTrue(mock_app.called)
 
-    # @mock.patch('threading.Timer', side_effect=None)
-    # @mock.patch('swaglyrics.tab.app.run', side_effect=None)
-    # @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=True, cli=False,
-    #                                                                                   song="Perfect",
-    #                                                                                   artist="Ed Sheeran"))
-    # def test_parser_runs_tab_with_song_and_artist_search_value(self, mock_argparse, mock_app, mock_threader):
-    #     """
-    #     Tests whether tab recieves song and artist value or not
-    #     """
-    #     capturedOutput = io.StringIO()
-    #     sys.stdout = capturedOutput
-    #     main()
-    #     self.assertEqual(app.config['song'], "Perfect")
-    #     self.assertEqual(app.config['artist'], "Ed Sheeran")
-    #     sys.stdout = sys.__stdout__
-    #     self.assertIn("Firing up a browser tab!", capturedOutput.getvalue())
-    #     self.assertTrue(mock_app.called)
+    @mock.patch('threading.Timer', side_effect=None)
+    @mock.patch('swaglyrics.tab.app.run', side_effect=None)
+    @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=True, cli=False,
+                                                                                      song="Perfect",
+                                                                                      artist="Ed Sheeran"))
+    def test_parser_runs_tab_with_song_and_artist_search_value(self, mock_argparse, mock_app, mock_threader):
+        """
+        Tests whether tab recieves song and artist value or not
+        """
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        main()
+        sys.stdout = sys.__stdout__
+        self.assertIn("Firing up a browser tab!", capturedOutput.getvalue())
+        self.assertTrue(mock_app.called)
+
+    @mock.patch('threading.Timer', side_effect=None)
+    @mock.patch('swaglyrics.tab.app.run', side_effect=None)
+    @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=True, cli=False, song=None,
+                                                                                      artist="Ed Sheeran"))
+    def test_parser_runs_tab_with_song_and_without_artist_search_value(self, mock_argparse, mock_app, mock_threader):
+        """
+        Tests whether tab recieves song and artist value or not
+        """
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        main()
+        sys.stdout = sys.__stdout__
+        self.assertIn("Firing up a browser tab!", capturedOutput.getvalue())
+        self.assertTrue(mock_app.called)
     #
-    # @mock.patch('threading.Timer', side_effect=None)
-    # @mock.patch('swaglyrics.tab.app.run', side_effect=None)
-    # @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=True, cli=False, song=None,
-    #                                                                                   artist="Ed Sheeran"))
-    # def test_parser_runs_tab_with_song_and_without_artist_search_value(self, mock_argparse, mock_app, mock_threader):
-    #     """
-    #     Tests whether tab recieves song and artist value or not
-    #     """
-    #     capturedOutput = io.StringIO()
-    #     sys.stdout = capturedOutput
-    #     main()
-    #     self.assertEqual(app.config['song'], None)
-    #     self.assertEqual(app.config['artist'], "Ed Sheeran")
-    #     sys.stdout = sys.__stdout__
-    #     self.assertIn("Firing up a browser tab!", capturedOutput.getvalue())
-    #     self.assertTrue(mock_app.called)
-    #
-    # @mock.patch('threading.Timer', side_effect=None)
-    # @mock.patch('swaglyrics.tab.app.run', side_effect=None)
-    # @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=True, cli=False,
-    #                                                                                   song="Perfect", artist=None))
-    # def test_parser_runs_tab_without_song_and_with_artist_search_value(self, mock_argparse, mock_app, mock_threader):
-    #     """
-    #     Tests whether tab recieves song and artist value or not
-    #     """
-    #     capturedOutput = io.StringIO()
-    #     sys.stdout = capturedOutput
-    #     main()
-    #     self.assertEqual(app.config['song'], "Perfect")
-    #     self.assertEqual(app.config['artist'], None)
-    #     sys.stdout = sys.__stdout__
-    #     self.assertIn("Firing up a browser tab!", capturedOutput.getvalue())
-    #     self.assertTrue(mock_app.called)
+    @mock.patch('threading.Timer', side_effect=None)
+    @mock.patch('swaglyrics.tab.app.run', side_effect=None)
+    @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=True, cli=False,
+                                                                                      song="Perfect", artist=None))
+    def test_parser_runs_tab_without_song_and_with_artist_search_value(self, mock_argparse, mock_app, mock_threader):
+        """
+        Tests whether tab recieves song and artist value or not
+        """
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        main()
+        sys.stdout = sys.__stdout__
+        self.assertIn("Firing up a browser tab!", capturedOutput.getvalue())
+        self.assertTrue(mock_app.called)
 
     @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True, song=None,
                                                                                       artist=None))
