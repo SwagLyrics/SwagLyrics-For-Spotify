@@ -27,15 +27,6 @@ class Tests(flask_testing.TestCase):
 			response = c.get('/')
 			self.assert_template_used("lyrics.html")
 
-	# @mock.patch("swaglyrics.tab.song", "Perfect")
-	# @mock.patch("swaglyrics.tab.artist", "Ed Sheeran")
-	# @mock.patch('swaglyrics.spotify.song', return_value=None)
-	# @mock.patch('swaglyrics.spotify.artist', return_value=None)
-	# def test_lyrics_are_shown_in_tab_with_song_artist(self, mock_song, mock_artist):
-	# 	with self.app.test_client() as c:
-	# 		response = c.get('/')
-	# 		self.assert_template_used("lyrics.html")
-
 	@mock.patch('swaglyrics.spotify.get_searched_song', return_value="Perfect")
 	@mock.patch('swaglyrics.spotify.get_searched_artist', return_value="Ed Sheeran")
 	def test_lyrics_are_shown_in_tab_when_song_and_artist_given(self, mock_song, mock_artist):
@@ -48,7 +39,8 @@ class Tests(flask_testing.TestCase):
 	def test_lyrics_are_not_shown_when_no_song_and_artist_on_spotify(self, mock_song, mock_artist):
 		with self.app.test_client() as c:
 			response = c.get('/songChanged')
-			self.assert_template_used("lyrics.html")
+			self.assertEqual(response.status_code, 200)
+
 
 if __name__ == '__main__':
 	flask_testing.main()
