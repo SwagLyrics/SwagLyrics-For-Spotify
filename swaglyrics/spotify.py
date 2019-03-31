@@ -1,5 +1,6 @@
 import platform
-
+searched_song = None
+searched_artist = None
 
 def get_info_windows():
 	import win32gui
@@ -97,10 +98,6 @@ def song():
 			return None
 
 
-searched_song = None
-searched_artist = None
-
-
 def set_searched_song(song):
 	global searched_song
 	searched_song = song
@@ -117,3 +114,4 @@ def get_searched_song():
 
 def get_searched_artist():
 	return searched_artist
+
