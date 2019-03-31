@@ -27,6 +27,15 @@ class Tests(flask_testing.TestCase):
 			response = c.get('/')
 			self.assert_template_used("lyrics.html")
 
+	@mock.patch("swaglyrics.tab.song", "Perfect")
+	@mock.patch("swaglyrics.tab.artist", "Ed Sheeran")
+	@mock.patch('swaglyrics.spotify.song', return_value=None)
+	@mock.patch('swaglyrics.spotify.artist', return_value=None)
+	def test_lyrics_are_shown_in_tab_with_song_artist(self, mock_song, mock_artist):
+		with self.app.test_client() as c:
+			response = c.get('/')
+			self.assert_template_used("lyrics.html")
+
 
 if __name__ == '__main__':
 	flask_testing.main()
