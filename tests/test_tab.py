@@ -36,11 +36,17 @@ class Tests(flask_testing.TestCase):
 
 	@mock.patch('swaglyrics.spotify.song', return_value=None)
 	@mock.patch('swaglyrics.spotify.artist', return_value=None)
-	def test_lyrics_are_not_shown_when_no_song_and_artist_on_spotify(self, mock_song, mock_artist):
+	def test_tab_runs_when_no_song_and_artist_on_spotify(self, mock_song, mock_artist):
 		with self.app.test_client() as c:
 			response = c.get('/songChanged')
 			self.assertEqual(response.status_code, 200)
 
+	@mock.patch('swaglyrics.spotify.song', return_value="Truthfully")
+	@mock.patch('swaglyrics.spotify.artist', return_value="DNCE")
+	def test_tab_runs_when_song_and_artist_on_spotify(self, mock_song, mock_artist):
+		with self.app.test_client() as c:
+			response = c.get('/songChanged')
+			self.assertEqual(response.status_code, 200)
 
 if __name__ == '__main__':
 	flask_testing.main()
