@@ -7,7 +7,7 @@ import time
 from swaglyrics.cli import lyrics, clear
 from swaglyrics import spotify
 from swaglyrics.tab import app
-
+from swaglyrics.spotify import set_searched_song, set_searched_artist
 
 def main():
 	# 	print(r"""
@@ -35,8 +35,8 @@ def main():
 	args = parser.parse_args()
 
 	if args.tab:
-		app.config['song'] = args.song
-		app.config['artist'] = args.artist
+		set_searched_song(args.song)
+		set_searched_artist(args.artist)
 		print('Firing up a browser tab!')
 		app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 		app.static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
