@@ -10,6 +10,7 @@ import sys
 import threading
 from swaglyrics.tab import app
 
+
 class Tests(unittest.TestCase):
     """
     Unit tests
@@ -122,5 +123,6 @@ class Tests(unittest.TestCase):
         with self.assertRaises(SystemExit):
             main()
 
+
 if __name__ == '__main__':
-	unittest.main()
+    unittest.main()

@@ -98,20 +98,20 @@ def song():
 			return None
 
 
-def set_searched_song(song):
-	global searched_song
-	searched_song = song
-
-
-def set_searched_artist(artist):
-	global searched_artist
-	searched_artist = artist
-
-
-def get_searched_song():
-	return searched_song
-
-
-def get_searched_artist():
-	return searched_artist
-
+# def set_searched_song(song):
+# 	global searched_song
+# 	searched_song = song
+#
+#
+# def set_searched_artist(artist):
+# 	global searched_artist
+# 	searched_artist = artist
+#
+#
+# def get_searched_song():
+# 	return searched_song
+#
+#
+# def get_searched_artist():
+# 	return searched_artist
+#
