@@ -25,7 +25,7 @@ class Tests(flask_testing.TestCase):
 		that that tab.py is working
 		"""
 		with self.app.test_client() as c:
-			c.get('/')
+			response = c.get('/')
 			self.assert_template_used("lyrics.html")
 
 	@mock.patch('swaglyrics.spotify.song', return_value=None)
