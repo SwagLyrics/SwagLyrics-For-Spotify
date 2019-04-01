@@ -15,10 +15,6 @@ artist = None
 def tab():
     # format lyrics for the browser tab template
     global song, artist
-    # if spotify.get_searched_song() and spotify.get_searched_artist():
-    #     song = spotify.get_searched_song()
-    #     artist = spotify.get_searched_artist()
-    # else:
     song = spotify.song()
     artist = spotify.artist()
     current_lyrics = lyrics(song, artist)
@@ -30,8 +26,6 @@ def tab():
 def song_changed():
     # to refresh lyrics when song changed
     global song
-    # spotify.set_searched_song(None)
-    # spotify.set_searched_artist(None)
     if song == spotify.song() or spotify.song() is None:
         return 'no'
     return 'yes'

@@ -25,15 +25,8 @@ class Tests(flask_testing.TestCase):
 		that that tab.py is working
 		"""
 		with self.app.test_client() as c:
-			response = c.get('/')
+			c.get('/')
 			self.assert_template_used("lyrics.html")
-
-	# @mock.patch('swaglyrics.spotify.get_searched_song', return_value="Perfect")
-	# @mock.patch('swaglyrics.spotify.get_searched_artist', return_value="Ed Sheeran")
-	# def test_lyrics_are_shown_in_tab_when_song_and_artist_given(self, mock_song, mock_artist):
-	# 	with self.app.test_client() as c:
-	# 		response = c.get('/')
-	# 		self.assert_template_used("lyrics.html")
 
 	@mock.patch('swaglyrics.spotify.song', return_value=None)
 	@mock.patch('swaglyrics.spotify.artist', return_value=None)
