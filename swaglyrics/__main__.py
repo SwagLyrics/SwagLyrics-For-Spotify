@@ -48,13 +48,13 @@ def main():
 
 	elif args.cli:
 		if args.song is None and args.artist is None:
-		song = spotify.song()  # get currently playing song
-		artist = spotify.artist()  # get currently playing artist
+			song = spotify.song()  # get currently playing song
+			artist = spotify.artist()  # get currently playing artist
 		else:
-		song = args.song  # get song from command line argument
-		artist = args.artist  # get artist from command line argument
-		print(lyrics(song, artist))
-		raise SystemExit(0)
+			song = args.song  # get song from command line argument
+			artist = args.artist  # get artist from command line argument
+			print(lyrics(song, artist))
+			raise SystemExit(0)
 
 		print(lyrics(song, artist))
 		print('\n(Press Ctrl+C to quit)')
