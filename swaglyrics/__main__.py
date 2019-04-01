@@ -7,7 +7,7 @@ import time
 from swaglyrics.cli import lyrics, clear
 from swaglyrics import spotify
 from swaglyrics.tab import app
-from swaglyrics.spotify import set_searched_song, set_searched_artist
+
 
 def main():
 	# 	print(r"""
@@ -25,18 +25,19 @@ def main():
 	print("Updated unsupported.txt successfully.")
 
 	parser = argparse.ArgumentParser(
+		prog="Swaglyrics",
+		usage='%(prog)s [options]',
 		description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
 
-	parser.add_argument('-t', '--tab', action='store_true', help='Display lyrics in a browser tab.')
-	parser.add_argument('-c', '--cli', action='store_true', help='Display lyrics in the command-line.')
-	parser.add_argument('--song', help='Enter song name')
-	parser.add_argument('--artist', help='Enter artist name')
+	group = parser.add_mutually_exclusive_group()
+	group.add_argument('-t', '--tab', action='store_true', help='Display lyrics in a browser tab.')
+	group.add_argument('-c', '--cli', action='store_true', help='Display lyrics in the command-line.')
+	parser.add_argument('--song', help='Enter song name', type=str)
+	parser.add_argument('--artist', help='Enter artist name', type=str)
 
 	args = parser.parse_args()
 
 	if args.tab:
-		set_searched_song(args.song)
-		set_searched_artist(args.artist)
 		print('Firing up a browser tab!')
 		app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 		app.static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
@@ -46,15 +47,14 @@ def main():
 		app.run(port=port)
 
 	elif args.cli:
-
 		if args.song is None and args.artist is None:
-			song = spotify.song()	# get currently playing song
-			artist = spotify.artist()	# get currently playing artist
+			song = spotify.song()  # get currently playing song
+			artist = spotify.artist()  # get currently playing artist
 		else:
-				song = args.song	# get song from command line argument
-				artist = args.artist	# get artist from command line argument
-				print(lyrics(song, artist))
-				raise SystemExit(0)
+			song = args.song  # get song from command line argument
+			artist = args.artist  # get artist from command line argument
+			print(lyrics(song, artist))
+			raise SystemExit(0)
 
 		print(lyrics(song, artist))
 		print('\n(Press Ctrl+C to quit)')
