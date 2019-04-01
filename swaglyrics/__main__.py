@@ -47,7 +47,8 @@ def main():
 		app.run(port=port)
 
 	elif args.cli:
-		if args.song is None and args.artist is None:
+		if (args.song is None and
+				args.artist is None):
 			song = spotify.song()  # get currently playing song
 			artist = spotify.artist()  # get currently playing artist
 		else:
