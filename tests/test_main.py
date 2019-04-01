@@ -111,8 +111,8 @@ class Tests(unittest.TestCase):
         with self.assertRaises(SystemExit):
             main()
 
-    @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True,
-                                                                                     song=None, artist="Ed Sheeran"))
+    @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True, song=None,
+                                                                                      artist="Ed Sheeran"))
     def test_parser_runs_cli_without_song_and_with_artist(self, mock_argparse):
         with self.assertRaises(SystemExit):
             main()
