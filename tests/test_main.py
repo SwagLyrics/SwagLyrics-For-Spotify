@@ -7,8 +7,6 @@ from mock import mock
 import argparse
 import io
 import sys
-import threading
-from swaglyrics.tab import app
 
 
 class Tests(unittest.TestCase):
