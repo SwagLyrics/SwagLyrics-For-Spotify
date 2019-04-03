@@ -23,10 +23,10 @@ def main():
 		response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
 		f.write(response.text)
 	print("Updated unsupported.txt successfully.")
-
+	program = "Swaglyrics"
 	parser = argparse.ArgumentParser(
-		prog="Swaglyrics",
-		usage='%(prog)s [options]',
+		prog=program,
+		usage='{prog} [options]'.format(prog=program),
 		description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
 
 	group = parser.add_mutually_exclusive_group()
