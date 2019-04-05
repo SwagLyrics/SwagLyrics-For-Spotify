@@ -1,0 +1,5 @@
+beautifulsoup4==4.7.1
+bs4==0.0.1
+Flask==1.0.2
+requests==2.21.0
+Unidecode==1.0.23
