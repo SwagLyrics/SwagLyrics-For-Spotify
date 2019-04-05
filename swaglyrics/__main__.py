@@ -29,6 +29,7 @@ def main():
 		usage='{prog} [options]'.format(prog=program),
 		description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
 
+	# add_mutually_exclusive_group - makes sure either -c or -t is selected but not both
 	group = parser.add_mutually_exclusive_group()
 	group.add_argument('-t', '--tab', action='store_true', help='Display lyrics in a browser tab.')
 	group.add_argument('-c', '--cli', action='store_true', help='Display lyrics in the command-line.')
