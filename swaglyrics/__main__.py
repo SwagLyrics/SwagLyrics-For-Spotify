@@ -28,8 +28,7 @@ def main():
     parser = argparse.ArgumentParser(
         prog=program,
         usage='{prog} [options]'.format(prog=program),
-        description="Get lyrics for the currently playing song on Spotify."
-                    "Either --tab or --cli is required.")
+        description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
 
     """
     add_mutually_exclusive_group - makes sure either -c or -t is
