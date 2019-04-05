@@ -26,6 +26,7 @@ class Tests(flask_testing.TestCase):
         """
         with self.app.test_client() as c:
             response = c.get('/')
+            self.assertEqual(response.status_code, 200)
             self.assert_template_used("lyrics.html")
 
     @mock.patch('swaglyrics.spotify.song', return_value=None)
