@@ -22,7 +22,7 @@ class Tests(flask_testing.TestCase):
 	@mock.patch('swaglyrics.spotify.artist', return_value="Taylor Swift")
 	def test_lyrics_are_shown_in_tab(self, mock_song, mock_artist):
 		"""
-		that that tab.py is working
+		that tab.py is working on '/' route
 		"""
 		with self.app.test_client() as c:
 			response = c.get('/')
@@ -31,6 +31,9 @@ class Tests(flask_testing.TestCase):
 	@mock.patch('swaglyrics.spotify.song', return_value=None)
 	@mock.patch('swaglyrics.spotify.artist', return_value=None)
 	def test_tab_runs_when_no_song_and_artist_on_spotify(self, mock_song, mock_artist):
+		"""
+		that tab.py is working on '/songChanged' route when no song and artist
+		"""
 		with self.app.test_client() as c:
 			response = c.get('/songChanged')
 			self.assertEqual(response.status_code, 200)
@@ -38,6 +41,9 @@ class Tests(flask_testing.TestCase):
 	@mock.patch('swaglyrics.spotify.song', return_value="Truthfully")
 	@mock.patch('swaglyrics.spotify.artist', return_value="DNCE")
 	def test_tab_runs_when_song_and_artist_on_spotify(self, mock_song, mock_artist):
+		"""
+		that tab.py is working on '/songChanged' route when song and artist are present
+		"""
 		with self.app.test_client() as c:
 			response = c.get('/songChanged')
 			self.assertEqual(response.status_code, 200)
