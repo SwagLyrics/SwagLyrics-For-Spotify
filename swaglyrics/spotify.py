@@ -36,7 +36,7 @@ def get_info_linux():
 	spotify_bus = session_bus.get_object("org.mpris.MediaPlayer2.spotify",
 										"/org/mpris/MediaPlayer2")
 	spotify_properties = dbus.Interface(spotify_bus,
-	                                    "org.freedesktop.DBus.Properties")
+										"org.freedesktop.DBus.Properties")
 	metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
 	track = str(metadata['xesam:title'])
 	artist = str(metadata['xesam:artist'][0])
@@ -71,7 +71,7 @@ def artist():
 		try:
 			return get_info_mac()[0]
 		except:
-			return None	
+			return None
 	else:
 		try:
 			return get_info_linux()[0]
