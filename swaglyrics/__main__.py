@@ -11,22 +11,22 @@ from swaglyrics.tab import app
 
 
 def main():
-    # 	print(r"""
+    #     print(r"""
     #  ____                     _               _
     # / ___|_      ____ _  __ _| |   _   _ _ __(_) ___ ___
     # \___ \ \ /\ / / _` |/ _` | |  | | | | '__| |/ __/ __|
     #  ___) \ V  V / (_| | (_| | |__| |_| | |  | | (__\__ \
     # |____/ \_/\_/ \__,_|\__, |_____\__, |_|  |_|\___|___/
     #                     |___/      |___/
-    # 	""")
+    #     """)
     print('Updating unsupported.txt from server.')
     try:
-		with open(config.unsupported_path, 'w', encoding='utf-8') as f:
-			response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
-			f.write(response.text)
-			print('Updated unsupported.txt successfully.')
-	except OSError as e:
-		print('Could not update: {}'.format(e))
+        with open(config.get_unsupported_path(), 'w', encoding='utf-8') as f:
+            response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
+            f.write(response.text)
+            print('Updated unsupported.txt successfully.')
+    except OSError as e:
+        print('Could not update: {}'.format(e))
 
     parser = argparse.ArgumentParser(
         description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")

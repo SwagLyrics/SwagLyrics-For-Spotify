@@ -61,23 +61,23 @@ def get_lyrics(song, artist, make_issue=True):
     html = BeautifulSoup(page.text, "html.parser")
 
     lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
-	if lyrics_path is None:
-		lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
-		try:
-			with open(config.unsupported_path, 'a', encoding='utf-8') as f:
-				f.write('{song} by {artist} \n'.format(song=song, artist=artist))
-				f.close()
-		except OSError:
-			print('Could not update unsupported.txt')
+    if lyrics_path is None:
+        lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
+        try:
+            with open(config.get_unsupported_path(), 'a', encoding='utf-8') as f:
+                f.write('{song} by {artist} \n'.format(song=song, artist=artist))
+                f.close()
+        except OSError:
+            print('Could not update unsupported.txt')
 
-		try:
-			# Log song and artist for which lyrics couldn't be obtained
-			if make_issue:
-				r = requests.post('http://aadibajpai.pythonanywhere.com/unsupported', data={'song': song, 'artist': artist})
-				if r.status_code == 200:
-					lyrics += r.text
-		except:
-			pass
+        try:
+            # Log song and artist for which lyrics couldn't be obtained
+            if make_issue:
+                r = requests.post('http://aadibajpai.pythonanywhere.com/unsupported', data={'song': song, 'artist': artist})
+                if r.status_code == 200:
+                    lyrics += r.text
+        except:
+            pass
     else:
         lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
 
@@ -94,7 +94,7 @@ def lyrics(song, artist, make_issue=True):
     """
     if song and artist:  # check if song playing
         try:
-            with open(config.unsupported_path, 'r', encoding='utf-8') as unsupported:
+            with open(config.get_unsupported_path(), 'r', encoding='utf-8') as unsupported:
                 if song in unsupported.read():
                     return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
         except OSError as e:
