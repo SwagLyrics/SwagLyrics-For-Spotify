@@ -1,10 +1,13 @@
 import os
-import requests
+import platform
 import site
 
 def get_unsupported_path():
     default = 'unsupported.txt'
-    path = os.path.join(site.getusersitepackages(), 'swaglyrics')
+    if platform.system() == 'Windows':
+        path = os.path.join(site.getusersitepackages(), 'swaglyrics')
+    else:
+        path = os.path.join(site.getsitepackages()[1], 'swaglyrics')
     if not os.path.isdir(path):
         try:
             os.mkdir(path)
