@@ -3,7 +3,7 @@ Contains unit tests for cli.py
 """
 import unittest
 from swaglyrics.cli import stripper, lyrics, get_lyrics, clear
-from swaglyrics.config import unsupported_path
+from swaglyrics import config
 from mock import mock, patch
 import os
 import requests
@@ -73,9 +73,9 @@ class Tests(unittest.TestCase):
                          "Couldn't get lyrics for Battle Symphony by Drake.\n")
 
         # Deleting above songs and artists from unsupported.txt
-        with open(unsupported_path, "r") as f:
+        with open(config.get_unsupported_path(), "r") as f:
             lines = f.readlines()
-        with open(unsupported_path, "w") as f:
+        with open(config.get_unsupported_path(), "w") as f:
             for line in lines:
                 if line not in [" Battle Symphony by One Direction \n", " Faded by Muhmello \n", " Battle Symphony by Drake \n"]:
                     f.write(line)
@@ -93,9 +93,9 @@ class Tests(unittest.TestCase):
                          "Lyrics unavailable for Fantastic by Beasts.\n")
 
         # Deleting above songs and artists from unsupported.txt
-        with open(unsupported_path, "r") as f:
+        with open(config.get_unsupported_path(), "r") as f:
             lines = f.readlines()
-        with open(unsupported_path, "w") as f:
+        with open(config.get_unsupported_path(), "w") as f:
             for line in lines:
                 if line not in [" Hello by World \n", " Foo by Bar \n", " Fantastic by Beasts \n"]:
                     f.write(line)
@@ -112,7 +112,7 @@ class Tests(unittest.TestCase):
         """
         test that lyrics function does not break if unsupported.txt is not found
         """
-        os.rename(unsupported_path, "unsupported2.txt")
+        os.rename(config.get_unsupported_path(), "unsupported2.txt")
         self.assertEqual(lyrics("Crimes", "Grindelwald", False),
                          "Couldn\'t get lyrics for Crimes by Grindelwald.\n")
 
