@@ -1,4 +1,4 @@
-<h1 align="center">SwagLyrics-For-Spotify</h1>
+<h1 align="center"><img src="https://github.com/SwagLyrics/SwagLyrics/blob/master/assets/swaglyrics_transparent.png?raw=true" alt="SwagLyrics" height=200 width=200 align="middle">SwagLyrics-For-Spotify</h1>
 <p align="center">
   <a href="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify">
     <img src="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify.svg?branch=master" alt="Build Status" />
