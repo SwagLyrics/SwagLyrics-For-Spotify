@@ -36,6 +36,8 @@ class Tests(unittest.TestCase):
 		self.assertEqual(stripper('1800-273-8255', 'Logic'), 'Logic-1800-273-8255')
 		self.assertEqual(stripper('Scream & Shout', 'will.i.am'), 'william-Scream-and-Shout')
 		self.assertEqual(stripper('Heebiejeebies - Bonus', 'Aminé'), 'Amine-Heebiejeebies')
+		self.assertEqual(stripper(
+			'Chanel (Go Get It) [feat. Gunna & Lil Baby]', 'Young Thug'), 'Young-Thug-Chanel-Go-Get-It')
 
 	def test_that_no_song_or_artist_does_not_break_stuff(self):
 		"""
