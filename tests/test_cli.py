@@ -13,9 +13,11 @@ class R:
 	"""
 	status_code = 7355608
 	text = 'google this number'
+
 	def __init__(self, status_code=7355608, text='google this number'):
 		self.status_code = status_code
 		self.text = text
+
 
 class Tests(unittest.TestCase):
 	"""
@@ -30,11 +32,6 @@ class Tests(unittest.TestCase):
 		Test that stripping works
 		"""
 		self.assertEqual(stripper('River (feat. Ed Sheeran)', 'Eminem'), 'Eminem-River')
-		self.assertEqual(
-			stripper(
-				'CAN\'T STOP THE FEELING!'
-				' (Original Song from DreamWorks Animation\'s \"TROLLS\")', 'Justin Timberlake'),
-			'Justin-Timberlake-CANT-STOP-THE-FEELING')
 		self.assertEqual(stripper('Ain\'t My Fault - R3hab Remix', 'Zara Larsson'), 'Zara-Larsson-Aint-My-Fault')
 		self.assertEqual(stripper('1800-273-8255', 'Logic'), 'Logic-1800-273-8255')
 		self.assertEqual(stripper('Scream & Shout', 'will.i.am'), 'william-Scream-and-Shout')
