@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup, UnicodeDammit
-from unidecode import unidecode
 import requests
 import re
 import sys
@@ -9,6 +8,11 @@ import os
 
 def clear():
 	os.system('cls' if os.name == 'nt' else 'clear')  # clear command window
+
+
+brc = re.compile(r'([(\[]feat[^)\]]*[)\]]|- .*)', re.I)  # matches braces with feat included or text after -
+aln = re.compile(r'[^ \-a-zA-Z0-9]+')  # matches non space or - or alphanumeric characters
+spc = re.compile(' +')  # matches one or more spaces
 
 
 def stripper(song, artist):
@@ -24,19 +28,14 @@ def stripper(song, artist):
 	:param artist: song artist
 	:return: formatted url path
 	"""
-	song = re.sub(r'[(\[]feat[^)]*[)\]]', '', song).strip()  # remove braces and included text with feat
-	song = re.sub('- .*', '', song)  # remove text after '- '
+	song = re.sub(brc, '', song).strip()  # remove braces and included text with feat and text after '- '
 	song_data = artist + '-' + song
-	# Remove special characters and spaces
+	# swap some special characters
 	url_data = song_data.replace('&', 'and')
-	# re.sub(r"[^a-zA-Z0-9]+", '', url_data) does work of below lines but issue with accented chars
 	url_data = url_data.replace('/', ' ')  # replace / with space to support more songs, needs testing
-	for ch in [',', "'", '!', '.', '’', '"', '+', '?', 'Σ', '#', '$', 'Ø', 'ø', '%', ':', '|', '(', ')', '[', ']']:
-		if ch in url_data:
-			url_data = url_data.replace(ch, '')
-	url_data = ' '.join(url_data.split())  # remove multiple spaces to one space
-	url_data = url_data.replace(' ', '-')  # hyphenate the words together
-	url_data = unidecode(url_data)  # remove accents and other diacritics
+	url_data = url_data.replace('é', 'e')
+	url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
+	url_data = re.sub(spc, '-', url_data)  # substitute one or more spaces to -
 	return url_data
 
 
