@@ -24,14 +24,14 @@ def stripper(song, artist):
 	:param artist: song artist
 	:return: formatted url path
 	"""
-	song = re.sub(r'\([^)]*\)', '', song).strip()  # remove braces and included text
-	song = re.sub('- .*', '', song).strip()  # remove text after '- '
+	song = re.sub(r'[(\[]feat[^)]*[)\]]', '', song).strip()  # remove braces and included text with feat
+	song = re.sub('- .*', '', song)  # remove text after '- '
 	song_data = artist + '-' + song
 	# Remove special characters and spaces
 	url_data = song_data.replace('&', 'and')
-	# re.sub(r"[^a-zA-Z0-9]+", '', url_data) does work of below lines
-	# url_data = url_data.replace('/', ' ')  potentially replace / with space to support more songs, needs testing
-	for ch in [',', "'", '!', '.', '’', '"', '+', '?', 'Σ', '#', '/', '$', 'Ø', 'ø', '%', ':', '|']:
+	# re.sub(r"[^a-zA-Z0-9]+", '', url_data) does work of below lines but issue with accented chars
+	url_data = url_data.replace('/', ' ')  # replace / with space to support more songs, needs testing
+	for ch in [',', "'", '!', '.', '’', '"', '+', '?', 'Σ', '#', '$', 'Ø', 'ø', '%', ':', '|', '(', ')', '[', ']']:
 		if ch in url_data:
 			url_data = url_data.replace(ch, '')
 	url_data = ' '.join(url_data.split())  # remove multiple spaces to one space
@@ -53,7 +53,7 @@ def get_lyrics(song, artist, make_issue=True):
 	url = 'https://genius.com/{}-lyrics'.format(url_data)  # format the url with the url path
 	page = requests.get(url)
 	if page.status_code != 200:
-		url_data = requests.get('http://aadibajpai.pythonanywhere.com/stripper', data={'song': song, 'artist': artist}).text
+		url_data = requests.get('https://aadibajpai.pythonanywhere.com/stripper', data={'song': song, 'artist': artist}).text
 		url = 'https://genius.com/{}-lyrics'.format(url_data)
 		page = requests.get(url)
 	html = BeautifulSoup(page.text, "html.parser")
@@ -67,7 +67,7 @@ def get_lyrics(song, artist, make_issue=True):
 		try:
 			# Log song and artist for which lyrics couldn't be obtained
 			if make_issue:
-				r = requests.post('http://aadibajpai.pythonanywhere.com/unsupported', data={'song': song, 'artist': artist})
+				r = requests.post('https://aadibajpai.pythonanywhere.com/unsupported', data={'song': song, 'artist': artist})
 				if r.status_code == 200:
 					lyrics += r.text
 		except requests.exceptions.RequestException:
@@ -88,7 +88,7 @@ def lyrics(song, artist, make_issue=True):
 	if song and artist:  # check if song playing
 		try:
 			with open('unsupported.txt') as unsupported:
-				if '{song} by {artist}'.format(song=song, artist=artist) in unsupported.read():
+				if song in unsupported.read():
 					return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
 		except FileNotFoundError:
 			pass
