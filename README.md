@@ -1,4 +1,4 @@
-<h1 align="center">SwagLyrics-For-Spotify</h1>
+<h1 align="center"><img src="https://github.com/SwagLyrics/SwagLyrics/blob/master/assets/swaglyrics_transparent.png?raw=true" alt="SwagLyrics" height=200 width=200 align="middle">SwagLyrics-For-Spotify</h1>
 <p align="center">
   <a href="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify">
     <img src="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify.svg?branch=master" alt="Build Status" />
@@ -32,19 +32,10 @@ can see helping me and other users in the same situation.
 Packaged so I can first hand handle production-ready code to an extent and to make
 distribution and usage easier.
 
----
-[![Google Code-in 2018](https://raw.githubusercontent.com/CCExtractor/ccextractor-org-media/master/ext/google-code-In-2018.gif)](https://codein.withgoogle.com/)
-<p align="center">
-  SwagLyrics is participating in Google Code-in 2018 with CCExtractor Development!
-</p>
+## Community
+- SwagLyrics participated in [Google Code-in 2018](https://g.co/gci) with CCExtractor Development.
+- SwagLyrics is participating in [Google Summer of Code](https://g.co/gsoc) with CCExtractor Development. Interested? Read more about it [here](https://www.ccextractor.org/public:gsoc:swaglyrics).
 
-Google Code-in is a global, online open source development & outreach contest for pre-university students aged between 13-17. Participants complete “tasks” ranging from coding, documentation, quality assurance, design, outreach and research to earn t-shirts, digital certificates, and hooded sweatshirts for their work. Grand Prize Winners receive a four day trip to Google in Mountain View, CA, USA the following summer!
-
-We have a long and proud history of taking part in the Google Summer of Code with university students, and are excited to participate in GCI again for 3rd year with pre-university students!
-
-Sounds interesting? Read more about it on our website [here](https://ccextractor.org/public:codein:google_code-in_2018) and on the official website [here](https://codein.withgoogle.com/).
-
----
 ## Changelog
 - #### v0.2.4
     - Added server-side database
@@ -87,24 +78,11 @@ Arguments:
 ```
 You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 
-## Package Structure
-```
-.
-|-- swaglyrics
-    |-- static  # contains styling and the AJAX script needed to dynamically refresh browser tab with new lyrics
-    |-- templates  # contains template for the browser tab
-    |-- __init__.py
-    |-- __main__.py  # holds primary function that parses args and executes accordingly
-    |-- cli.py  # defines functions to fetch lyrics from Genius
-    |-- spotify.py  # defines functions to get currently playing song and artist from the Spotify app
-    |-- tab.py  # Flask app to display lyrics in a browser tab
-    |-- unsupported.txt  # to log unsupported songs
-|--tests
-|-- LICENSE.md
-|-- MANIFEST.in
-|-- README.md
-|-- setup.py
-```
+## Compiling SwagLyrics for Development
+
+- Clone the repo by `git clone https://github.com/SwagLyrics/SwagLyrics-For-Spotify.git` or use ssh.
+- `cd` into the cloned repo.
+- `pip install -e .` the -e flag installs it locally in editable mode.
 
 ## Improvements Planned
 1. ~~Linux and macOS support **done**~~
