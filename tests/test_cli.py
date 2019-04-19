@@ -38,6 +38,9 @@ class Tests(unittest.TestCase):
 		self.assertEqual(stripper('Heebiejeebies - Bonus', 'Aminé'), 'Amine-Heebiejeebies')
 		self.assertEqual(stripper(
 			'Chanel (Go Get It) [feat. Gunna & Lil Baby]', 'Young Thug'), 'Young-Thug-Chanel-Go-Get-It')
+		self.assertEqual(stripper(
+			'MONOPOLY (with Victoria Monét)', 'Ariana Grande'), 'Ariana-Grande-and-Victoria-Monet-MONOPOLY')
+		self.assertEqual(stripper('Seasons (with Sjava & Reason)', 'Mozzy'), 'Mozzy-Sjava-and-Reason-Seasons')
 
 	def test_that_no_song_or_artist_does_not_break_stuff(self):
 		"""
