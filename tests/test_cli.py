@@ -141,5 +141,6 @@ class Tests(unittest.TestCase):
 		clear()
 		self.assertTrue(mock.called)
 
+
 if __name__ == '__main__':
 	unittest.main()
