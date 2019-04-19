@@ -10,7 +10,7 @@ from swaglyrics.tab import app
 
 
 def main():
-	# 	print(r"""
+	# print(r"""
 	#  ____                     _               _
 	# / ___|_      ____ _  __ _| |   _   _ _ __(_) ___ ___
 	# \___ \ \ /\ / / _` |/ _` | |  | | | | '__| |/ __/ __|
@@ -18,6 +18,7 @@ def main():
 	# |____/ \_/\_/ \__,_|\__, |_____\__, |_|  |_|\___|___/
 	#                     |___/      |___/
 	# 	""")
+	# print('\n')
 	print('Updating unsupported.txt from server.')
 	with open('unsupported.txt', 'w', encoding='utf-8') as f:
 		response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
@@ -29,7 +30,7 @@ def main():
 
 	parser.add_argument('-t', '--tab', action='store_true', help='Display lyrics in a browser tab.')
 	parser.add_argument('-c', '--cli', action='store_true', help='Display lyrics in the command-line.')
-
+	parser.add_argument('-n', '--no-issue', action='store_false', help='Disable issue-making on cli.')
 	args = parser.parse_args()
 
 	if args.tab:
@@ -42,9 +43,10 @@ def main():
 		app.run(port=port)
 
 	elif args.cli:
+		make_issue = args.no_issue
 		song = spotify.song()  # get currently playing song
 		artist = spotify.artist()  # get currently playing artist
-		print(lyrics(song, artist))
+		print(lyrics(song, artist, make_issue))
 		print('\n(Press Ctrl+C to quit)')
 		while True:
 			# refresh every 5s to check whether song changed
@@ -57,7 +59,7 @@ def main():
 					artist = spotify.artist()
 					if song and artist is not None:
 						clear()
-						print(lyrics(song, artist))
+						print(lyrics(song, artist, make_issue))
 						print('\n(Press Ctrl+C to quit)')
 			except KeyboardInterrupt:
 				exit()
