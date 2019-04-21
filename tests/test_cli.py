@@ -7,6 +7,7 @@ from mock import mock, patch
 import os
 import requests
 
+
 class R:
 	"""
 	This is a fake class created to mock requests' status code
@@ -41,6 +42,8 @@ class Tests(unittest.TestCase):
 		self.assertEqual(stripper(
 			'MONOPOLY (with Victoria Monét)', 'Ariana Grande'), 'Ariana-Grande-and-Victoria-Monet-MONOPOLY')
 		self.assertEqual(stripper('Seasons (with Sjava & Reason)', 'Mozzy'), 'Mozzy-Sjava-and-Reason-Seasons')
+		self.assertEqual(stripper(
+			'거품 안 넘치게 따라줘 [Life Is Good] (feat. Crush, Dj Friz)', 'Dynamic Duo'), 'Dynamic-Duo-Life-Is-Good')
 
 	def test_that_no_song_or_artist_does_not_break_stuff(self):
 		"""
