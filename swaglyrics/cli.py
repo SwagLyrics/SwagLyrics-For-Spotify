@@ -1,14 +1,17 @@
 from bs4 import BeautifulSoup, UnicodeDammit
-from unidecode import unidecode
 import requests
 import re
-import sys
-import time
 import os
 
 
 def clear():
 	os.system('cls' if os.name == 'nt' else 'clear')  # clear command window
+
+
+brc = re.compile(r'([(\[]feat[^)\]]*[)\]]|- .*)', re.I)  # matches braces with feat included or text after -
+aln = re.compile(r'[^ \-a-zA-Z0-9]+')  # matches non space or - or alphanumeric characters
+spc = re.compile(' *- *| +')  # matches one or more spaces
+wth = re.compile(r'(?: *\(with )([^)]+)\)')  # capture text after with
 
 
 def stripper(song, artist):
@@ -24,19 +27,22 @@ def stripper(song, artist):
 	:param artist: song artist
 	:return: formatted url path
 	"""
-	song = re.sub(r'\([^)]*\)', '', song).strip()  # remove braces and included text
-	song = re.sub('- .*', '', song).strip()  # remove text after '- '
+	song = re.sub(brc, '', song).strip()  # remove braces and included text with feat and text after '- '
+	ft = wth.search(song)  # find supporting artists if any
+	if ft:
+		song = song.replace(ft.group(), '')  # remove (with supporting artists) from song
+		ar = ft.group(1)  # the supporting artist(s)
+		if '&' in ar:  # check if more than one supporting artist and add them to artist
+			artist += '-{ar}'.format(ar=ar)
+		else:
+			artist += '-and-{ar}'.format(ar=ar)
 	song_data = artist + '-' + song
-	# Remove special characters and spaces
+	# swap some special characters
 	url_data = song_data.replace('&', 'and')
-	# re.sub(r"[^a-zA-Z0-9]+", '', url_data) does work of below lines
-	# url_data = url_data.replace('/', ' ')  potentially replace / with space to support more songs, needs testing
-	for ch in [',', "'", '!', '.', '’', '"', '+', '?', 'Σ', '#', '/', '$', 'Ø', 'ø', '%', ':', '|']:
-		if ch in url_data:
-			url_data = url_data.replace(ch, '')
-	url_data = ' '.join(url_data.split())  # remove multiple spaces to one space
-	url_data = url_data.replace(' ', '-')  # hyphenate the words together
-	url_data = unidecode(url_data)  # remove accents and other diacritics
+	url_data = url_data.replace('/', ' ')  # replace / with space to support more songs, needs testing
+	url_data = url_data.replace('é', 'e')
+	url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
+	url_data = re.sub(spc, '-', url_data)  # substitute one or more spaces to -
 	return url_data
 
 
@@ -92,27 +98,12 @@ def lyrics(song, artist, make_issue=True):
 					return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
 		except FileNotFoundError:
 			pass
-		print('\nGetting lyrics for {song} by {artist} '.format(song=song, artist=artist), end='')
+		print('\nGetting lyrics for {song} by {artist}.\n'.format(song=song, artist=artist))
 		lyrics = get_lyrics(song, artist, make_issue)
-		for _ in range(30):  # loading spinner
-			sys.stdout.write(next(spinner))
-			sys.stdout.flush()
-			time.sleep(0.1)
-			sys.stdout.write('\b')
-		sys.stdout.write('\b.   \n\n')
-		sys.stdout.flush()
 		return lyrics
 	else:
 		return 'Nothing playing at the moment.'
 
-
-def spinning_cursor():
-	while True:
-		for cursor in '|/-\\':
-			yield cursor
-
-
-spinner = spinning_cursor()
 
 if __name__ == '__main__':
 	pass

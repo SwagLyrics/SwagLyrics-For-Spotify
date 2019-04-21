@@ -10,6 +10,7 @@ import sys
 import threading
 from swaglyrics.tab import app
 
+
 class Tests(unittest.TestCase):
     """
     Unit tests
@@ -31,7 +32,8 @@ class Tests(unittest.TestCase):
 
     @mock.patch('threading.Timer', side_effect=None)
     @mock.patch('swaglyrics.tab.app.run', side_effect=None)
-    @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=True, cli=False))
+    @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=True, cli=False,
+                                                                                      no_issue=False))
     def test_parser_runs_tab(self, mock_argparse, mock_app, mock_threader):
         """
         Tests whether parser runs tab
@@ -43,7 +45,7 @@ class Tests(unittest.TestCase):
         self.assertIn("Firing up a browser tab!", capturedOutput.getvalue())
         self.assertTrue(mock_app.called)
 
-    @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True))
+    @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True, no_issue=False))
     def test_parser_runs_cli(self, mock_argparse):
         """
         Tests whether parser runs cli
@@ -56,4 +58,4 @@ class Tests(unittest.TestCase):
 
 
 if __name__ == '__main__':
-	unittest.main()
+    unittest.main()
