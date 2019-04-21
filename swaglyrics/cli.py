@@ -1,8 +1,6 @@
 from bs4 import BeautifulSoup, UnicodeDammit
 import requests
 import re
-import sys
-import time
 import os
 
 
@@ -12,7 +10,7 @@ def clear():
 
 brc = re.compile(r'([(\[]feat[^)\]]*[)\]]|- .*)', re.I)  # matches braces with feat included or text after -
 aln = re.compile(r'[^ \-a-zA-Z0-9]+')  # matches non space or - or alphanumeric characters
-spc = re.compile(' +')  # matches one or more spaces
+spc = re.compile(' *- *| +')  # matches one or more spaces
 wth = re.compile(r'(?: *\(with )([^)]+)\)')  # capture text after with
 
 

@@ -9,6 +9,14 @@ from swaglyrics import spotify
 from swaglyrics.tab import app
 
 
+def update_unsupported():
+	print('Updating unsupported.txt from server.')
+	with open('unsupported.txt', 'w', encoding='utf-8') as f:
+		response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
+		f.write(response.text)
+	print("Updated unsupported.txt successfully.")
+
+
 def main():
 	# print(r"""
 	#  ____                     _               _
@@ -19,11 +27,6 @@ def main():
 	#                     |___/      |___/
 	# 	""")
 	# print('\n')
-	print('Updating unsupported.txt from server.')
-	with open('unsupported.txt', 'w', encoding='utf-8') as f:
-		response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
-		f.write(response.text)
-	print("Updated unsupported.txt successfully.")
 
 	parser = argparse.ArgumentParser(
 		description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
@@ -32,6 +35,8 @@ def main():
 	parser.add_argument('-c', '--cli', action='store_true', help='Display lyrics in the command-line.')
 	parser.add_argument('-n', '--no-issue', action='store_false', help='Disable issue-making on cli.')
 	args = parser.parse_args()
+
+	update_unsupported()
 
 	if args.tab:
 		print('Firing up a browser tab!')
