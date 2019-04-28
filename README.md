@@ -1,4 +1,4 @@
-<h1 align="center">SwagLyrics-For-Spotify</h1>
+<h1 align="center"><img src="https://github.com/SwagLyrics/SwagLyrics/blob/master/assets/swaglyrics_transparent.png?raw=true" alt="SwagLyrics" height=200 width=200 align="middle">SwagLyrics-For-Spotify</h1>
 <p align="center">
   <a href="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify">
     <img src="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify.svg?branch=master" alt="Build Status" />
@@ -37,6 +37,16 @@ distribution and usage easier.
 - SwagLyrics is participating in [Google Summer of Code](https://g.co/gsoc) with CCExtractor Development. Interested? Read more about it [here](https://www.ccextractor.org/public:gsoc:swaglyrics).
 
 ## Changelog
+- #### v0.2.6
+    - Added favicon
+    - Removed extra dependency
+    
+- #### v0.2.5
+    - Refactored stripper to support more songs straightaway
+    - Fixed bugs
+    - Added -n argument (helps while testing)
+    - Added more test cases
+
 - #### v0.2.4
     - Added server-side database
     - All songs with lyrics on Genius supported now!

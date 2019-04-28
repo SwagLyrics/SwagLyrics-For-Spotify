@@ -7,15 +7,18 @@ from mock import mock, patch
 import os
 import requests
 
+
 class R:
 	"""
 	This is a fake class created to mock requests' status code
 	"""
 	status_code = 7355608
 	text = 'google this number'
+
 	def __init__(self, status_code=7355608, text='google this number'):
 		self.status_code = status_code
 		self.text = text
+
 
 class Tests(unittest.TestCase):
 	"""
@@ -30,15 +33,17 @@ class Tests(unittest.TestCase):
 		Test that stripping works
 		"""
 		self.assertEqual(stripper('River (feat. Ed Sheeran)', 'Eminem'), 'Eminem-River')
-		self.assertEqual(
-			stripper(
-				'CAN\'T STOP THE FEELING!'
-				' (Original Song from DreamWorks Animation\'s \"TROLLS\")', 'Justin Timberlake'),
-			'Justin-Timberlake-CANT-STOP-THE-FEELING')
 		self.assertEqual(stripper('Ain\'t My Fault - R3hab Remix', 'Zara Larsson'), 'Zara-Larsson-Aint-My-Fault')
 		self.assertEqual(stripper('1800-273-8255', 'Logic'), 'Logic-1800-273-8255')
 		self.assertEqual(stripper('Scream & Shout', 'will.i.am'), 'william-Scream-and-Shout')
 		self.assertEqual(stripper('Heebiejeebies - Bonus', 'Aminé'), 'Amine-Heebiejeebies')
+		self.assertEqual(stripper(
+			'Chanel (Go Get It) [feat. Gunna & Lil Baby]', 'Young Thug'), 'Young-Thug-Chanel-Go-Get-It')
+		self.assertEqual(stripper(
+			'MONOPOLY (with Victoria Monét)', 'Ariana Grande'), 'Ariana-Grande-and-Victoria-Monet-MONOPOLY')
+		self.assertEqual(stripper('Seasons (with Sjava & Reason)', 'Mozzy'), 'Mozzy-Sjava-and-Reason-Seasons')
+		self.assertEqual(stripper(
+			'거품 안 넘치게 따라줘 [Life Is Good] (feat. Crush, Dj Friz)', 'Dynamic Duo'), 'Dynamic-Duo-Life-Is-Good')
 
 	def test_that_no_song_or_artist_does_not_break_stuff(self):
 		"""
@@ -138,6 +143,7 @@ class Tests(unittest.TestCase):
 	def test_clear(self, mock):
 		clear()
 		self.assertTrue(mock.called)
+
 
 if __name__ == '__main__':
 	unittest.main()
