@@ -27,6 +27,7 @@ def main():
 	#                     |___/      |___/
 	# 	""")
 	# print('\n')
+	
 	program = "Swaglyrics"
 	parser = argparse.ArgumentParser(
 		prog=program,
@@ -37,7 +38,7 @@ def main():
 	group = parser.add_mutually_exclusive_group()
 	group.add_argument('-t', '--tab', action='store_true', help='Display lyrics in a browser tab.')
 	group.add_argument('-c', '--cli', action='store_true', help='Display lyrics in the command-line.')
-	group.add_argument('-n', '--no-issue', action='store_false', help='Disable issue-making on cli.')
+	parser.add_argument('-n', '--no-issue', action='store_false', help='Disable issue-making on cli.')
 	parser.add_argument('--song', help='Enter song name', type=str)
 	parser.add_argument('--artist', help='Enter artist name', type=str)
 	args = parser.parse_args()
