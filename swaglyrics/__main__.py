@@ -34,6 +34,7 @@ def main():
     add_mutually_exclusive_group - makes sure either -c or -t is
     selected but not both
     """
+    # To select either --tab or --cli but not both together
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-t', '--tab', action='store_true',
                        help='Display lyrics in a browser tab.')
