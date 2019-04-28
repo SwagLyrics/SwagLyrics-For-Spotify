@@ -1,6 +1,4 @@
 import platform
-searched_song = None
-searched_artist = None
 
 
 def get_info_windows():
