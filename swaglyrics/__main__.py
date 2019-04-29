@@ -27,13 +27,13 @@ def main():
 	#                     |___/      |___/
 	# 	""")
 	# print('\n')
-	
+
 	program = "Swaglyrics"
 	parser = argparse.ArgumentParser(
 		prog=program,
 		usage='{prog} [options]'.format(prog=program),
 		description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
-	
+
 	# To select either one of the arguments provided in a group
 	group = parser.add_mutually_exclusive_group()
 	group.add_argument('-t', '--tab', action='store_true', help='Display lyrics in a browser tab.')
@@ -60,8 +60,8 @@ def main():
 			song = spotify.song()  # get currently playing song
 			artist = spotify.artist()  # get currently playing artist
 		else:
-			song = args.song	# get song from command line argument
-			artist = args.artist	# get artist from command line argument
+			song = args.song	#  get song from command line argument
+			artist = args.artist	#  get artist from command line argument
 			print(lyrics(song, artist, make_issue))
 			raise SystemExit(0)
 
@@ -84,10 +84,10 @@ def main():
 				exit()
 			if os.environ.get("TESTING", "False") != "False":
 				break
-	
+
 	else:
 		parser.print_help()
 
 
 if __name__ == '__main__':
-    main()
+	main()
