@@ -9,7 +9,6 @@ import io
 import sys
 
 
-
 class Tests(unittest.TestCase):
     """
     Unit tests
@@ -121,11 +120,10 @@ class Tests(unittest.TestCase):
         self.assertIn("Firing up a browser tab!", capturedOutput.getvalue())
         self.assertTrue(mock_app.called)
 
-    @mock.patch('argparse.ArgumentParser.parse_args',
-                return_value=argparse.Namespace(tab=False, cli=True,
-                                                song=None,
-                                                artist=None,
-                                                no_issue=False))
+    @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True,
+                                                                                      song=None,
+                                                                                      artist=None,
+                                                                                      no_issue=False))
     def test_parser_runs_cli(self, mock_argparse):
         """
         Tests whether parser runs cli
@@ -139,7 +137,8 @@ class Tests(unittest.TestCase):
     @mock.patch('argparse.ArgumentParser.parse_args',
                 return_value=argparse.Namespace(tab=False, cli=True,
                                                 song="Perfect",
-                                                artist="Ed Sheeran", no_issue=False))
+                                                artist="Ed Sheeran",
+                                                no_issue=False))
     def test_parser_runs_cli_with_song_and_artist(self, mock_argparse):
         with self.assertRaises(SystemExit):
             main()
@@ -147,7 +146,8 @@ class Tests(unittest.TestCase):
     @mock.patch('argparse.ArgumentParser.parse_args',
                 return_value=argparse.Namespace(tab=False, cli=True,
                                                 song=None,
-                                                artist="Ed Sheeran", no_issue=False))
+                                                artist="Ed Sheeran",
+                                                no_issue=False))
     def test_parser_runs_cli_without_song_and_with_artist(self, mock_argparse):
         with self.assertRaises(SystemExit):
             main()
@@ -155,7 +155,8 @@ class Tests(unittest.TestCase):
     @mock.patch('argparse.ArgumentParser.parse_args',
                 return_value=argparse.Namespace(tab=False, cli=True,
                                                 song="Perfect",
-                                                artist=None, no_issue=False))
+                                                artist=None,
+                                                no_issue=False))
     def test_parser_runs_cli_with_song_and_without_artist(self, mock_argparse):
         with self.assertRaises(SystemExit):
             main()
