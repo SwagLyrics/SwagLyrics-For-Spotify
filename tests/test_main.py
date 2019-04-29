@@ -30,8 +30,7 @@ class Tests(unittest.TestCase):
         main()
         sys.stdout = sys.__stdout__
         self.assertIn(
-            "Get lyrics for the currently playing song on Spotify. " +
-            "Either --tab or --cli is\nrequired.",
+            "Get lyrics for the currently playing song on Spotify. Either --tab or --cli is\nrequired.",
             capturedOutput.getvalue())
 
     @mock.patch('threading.Timer', side_effect=None)
