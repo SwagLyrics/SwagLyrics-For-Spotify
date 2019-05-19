@@ -32,6 +32,27 @@ can see helping me and other users in the same situation.
 Packaged so I can first hand handle production-ready code to an extent and to make
 distribution and usage easier.
 
+## Installation
+Requires Python3. Use pip or pip3 depending on your installation.
+```
+pip install swaglyrics
+```
+Make sure to use a version >= 0.1.6 since the previous ones don't have the `tab` option supported.
+
+## Usage
+`usage: swaglyrics [-h] [-t] [-c] [-n]`
+
+Either the tab or cli argument is required to output lyrics.
+
+Arguments:
+```
+  -h, --help      show this help message and exit       
+  -t, --tab       Display lyrics in a browser tab.      
+  -c, --cli       Display lyrics in the command-line.   
+  -n, --no-issue  Disable issue-making on cli.
+```
+You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
+
 ## Community
 - SwagLyrics participated in [Google Code-in 2018](https://g.co/gci) with CCExtractor Development.
 - SwagLyrics is participating in [Google Summer of Code](https://g.co/gsoc) with CCExtractor Development. Interested? Read more about it [here](https://www.ccextractor.org/public:gsoc:swaglyrics).
@@ -67,26 +88,6 @@ distribution and usage easier.
     - Set up code coverage and continuous integration
 - #### v0.1.9
     - A GitHub issue is created automatically on the repo when an unsupported song is encountered (implemented server-side using pythonanywhere).
-
-## Installation
-Requires Python3. Use pip or pip3 depending on your installation.
-```
-pip install swaglyrics
-```
-Make sure to use a version >= 0.1.6 since the previous ones don't have the `tab` option supported.
-
-## Usage
-`swaglyrics [-h] [-t] [-c]`
-
-Either the tab or cli argument is required to output lyrics.
-
-Arguments:
-```
-  -h, --help  show this help message and exit
-  -t, --tab   Display lyrics in a browser tab.
-  -c, --cli   Display lyrics in the command-line.
-```
-You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 
 ## Compiling SwagLyrics for Development
 
