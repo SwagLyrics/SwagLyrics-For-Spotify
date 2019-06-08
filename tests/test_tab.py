@@ -17,8 +17,8 @@ class Tests(flask_testing.TestCase):
 		from swaglyrics.tab import app
 		return app
 
-	@mock.patch('swaglyrics.spotify.song', return_value="Blank Space")
-	@mock.patch('swaglyrics.spotify.artist', return_value="Taylor Swift")
+	@mock.patch('SwSpotify.spotify.song', return_value="Blank Space")
+	@mock.patch('SwSpotify.spotify.artist', return_value="Taylor Swift")
 	def test_lyrics_are_shown_in_tab(self, mock_song, mock_artist):
 		"""
 		that that tab.py is working
