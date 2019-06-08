@@ -7,14 +7,25 @@ import time
 from swaglyrics.cli import lyrics, clear
 from swaglyrics import spotify
 from swaglyrics.tab import app
+from swaglyrics import __version__ as version
 
 
-def update_unsupported():
+def unsupported_precheck():
+	try:
+		v = requests.get('https://aadibajpai.pythonanywhere.com/version')
+		ver = v.text
+		if ver > version:
+			print("Update SwagLyrics to the latest version {ver}\n".format(ver=ver))
+	except requests.exceptions.RequestException:
+		pass
 	print('Updating unsupported.txt from server.')
 	with open('unsupported.txt', 'w', encoding='utf-8') as f:
-		response = requests.get('http://aadibajpai.pythonanywhere.com/master_unsupported')
-		f.write(response.text)
-	print("Updated unsupported.txt successfully.")
+		try:
+			response = requests.get('https://aadibajpai.pythonanywhere.com/master_unsupported')
+			f.write(response.text)
+			print("Updated unsupported.txt successfully.")
+		except requests.exceptions.RequestException:
+			print("Could not update unsupported.txt successfully.")
 
 
 def main():
@@ -36,7 +47,7 @@ def main():
 	parser.add_argument('-n', '--no-issue', action='store_false', help='Disable issue-making on cli.')
 	args = parser.parse_args()
 
-	update_unsupported()
+	unsupported_precheck()
 
 	if args.tab:
 		print('Firing up a browser tab!')
