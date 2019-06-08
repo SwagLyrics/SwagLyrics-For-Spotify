@@ -5,7 +5,7 @@ import threading
 import requests
 import time
 from swaglyrics.cli import lyrics, clear
-from swaglyrics import spotify
+from SwSpotify import spotify
 from swaglyrics.tab import app
 from swaglyrics import __version__ as version
 
