@@ -14,6 +14,8 @@ brc = re.compile(r'([(\[]feat[^)\]]*[)\]]|- .*)', re.I)  # matches braces with f
 aln = re.compile(r'[^ \-a-zA-Z0-9]+')  # matches non space or - or alphanumeric characters
 spc = re.compile(' *- *| +')  # matches one or more spaces
 wth = re.compile(r'(?: *\(with )([^)]+)\)')  # capture text after with
+nlt = re.compile(r'[^\x00-\x7F\x80-\xFF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]')  # match only latin characters,
+# built using latin character tables (basic, supplement, extended a,b and extended additional
 
 
 def stripper(song, artist):
@@ -45,6 +47,7 @@ def stripper(song, artist):
 	for ch in ['Ø', 'ø']:
 		if ch in url_data:
 			url_data = url_data.replace(ch, '')
+	url_data = re.sub(nlt, '', url_data)  # remove non-latin characters before unidecode
 	url_data = unidecode(url_data)  # convert accents and other diacritics
 	url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
 	url_data = re.sub(spc, '-', url_data)  # substitute one or more spaces to -
