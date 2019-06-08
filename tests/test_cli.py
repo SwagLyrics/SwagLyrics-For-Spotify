@@ -19,7 +19,6 @@ class R:
 		self.status_code = status_code
 		self.text = text
 
-
 class Tests(unittest.TestCase):
 	"""
 	Unit tests
@@ -37,6 +36,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(stripper('1800-273-8255', 'Logic'), 'Logic-1800-273-8255')
 		self.assertEqual(stripper('Scream & Shout', 'will.i.am'), 'william-Scream-and-Shout')
 		self.assertEqual(stripper('Heebiejeebies - Bonus', 'Aminé'), 'Amine-Heebiejeebies')
+		self.assertEqual(stripper('FRÜHLING IN PARIS', 'Rammstein'), 'Rammstein-FRUHLING-IN-PARIS')
 		self.assertEqual(stripper(
 			'Chanel (Go Get It) [feat. Gunna & Lil Baby]', 'Young Thug'), 'Young-Thug-Chanel-Go-Get-It')
 		self.assertEqual(stripper(

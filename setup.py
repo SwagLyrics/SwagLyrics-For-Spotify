@@ -17,7 +17,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     license='MIT',
     include_package_data=True,
-    install_requires=['flask', 'requests', 'beautifulsoup4', 'pywin32; platform_system=="Windows"',
+    install_requires=['flask', 'requests', 'unidecode', 'beautifulsoup4', 'pywin32; platform_system=="Windows"',
                       'pyobjc; platform_system=="Darwin"'],
     keywords='spotify lyrics python genius',
     classifiers=(

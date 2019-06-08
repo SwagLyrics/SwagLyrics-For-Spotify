@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup, UnicodeDammit
+from unidecode import unidecode
 import requests
 import re
 import os
@@ -40,8 +41,11 @@ def stripper(song, artist):
 	song_data = artist + '-' + song
 	# swap some special characters
 	url_data = song_data.replace('&', 'and')
-	url_data = url_data.replace('/', ' ')  # replace / with space to support more songs, needs testing
-	url_data = url_data.replace('é', 'e')
+	url_data = url_data.replace('/', ' ').replace('!', ' ')  # replace /, ! with space to support more songs
+	for ch in ['Ø', 'ø']:
+		if ch in url_data:
+			url_data = url_data.replace(ch, '')
+	url_data = unidecode(url_data)  # convert accents and other diacritics
 	url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
 	url_data = re.sub(spc, '-', url_data)  # substitute one or more spaces to -
 	return url_data
