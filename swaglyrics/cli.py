@@ -1,9 +1,10 @@
-from bs4 import BeautifulSoup, UnicodeDammit
-from unidecode import unidecode
 import requests
 import re
 import os
 import swaglyrics
+from bs4 import BeautifulSoup, UnicodeDammit
+from unidecode import unidecode
+from colorama import init, Fore
 
 
 def clear():
@@ -111,7 +112,8 @@ def lyrics(song, artist, make_issue=True):
 					return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
 		except FileNotFoundError:
 			pass
-		print('\nGetting lyrics for {song} by {artist}.\n'.format(song=song, artist=artist))
+		init(autoreset=True)
+		print(Fore.CYAN + '\nGetting lyrics for {song} by {artist}.\n'.format(song=song, artist=artist))
 		lyrics = get_lyrics(song, artist, make_issue)
 		return lyrics
 	else:
