@@ -3,7 +3,7 @@ Contains unit tests for tab.py
 """
 import flask_testing
 from mock import mock
-import os
+
 
 class Tests(flask_testing.TestCase):
 	"""
@@ -26,6 +26,7 @@ class Tests(flask_testing.TestCase):
 		with self.app.test_client() as c:
 			response = c.get('/')
 			self.assert_template_used("lyrics.html")
+
 
 if __name__ == '__main__':
 	flask_testing.main()

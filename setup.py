@@ -17,7 +17,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     license='MIT',
     include_package_data=True,
-    install_requires=['SwSpotify', 'flask', 'requests', 'unidecode', 'beautifulsoup4', 'colorama'],
+    install_requires=['SwSpotify', 'flask<=1.0.2', 'requests', 'unidecode', 'beautifulsoup4', 'colorama'],
     keywords='spotify lyrics python genius',
     classifiers=(
         "Programming Language :: Python :: 3",
