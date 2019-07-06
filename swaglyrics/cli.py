@@ -11,7 +11,7 @@ def clear():
 	os.system('cls' if os.name == 'nt' else 'clear')  # clear command window
 
 
-brc = re.compile(r'([(\[]feat[^)\]]*[)\]]|- .*)', re.I)  # matches braces with feat included or text after -
+brc = re.compile(r'([(\[](feat|ft)[^)\]]*[)\]]|- .*)', re.I)  # matches braces with feat included or text after -
 aln = re.compile(r'[^ \-a-zA-Z0-9]+')  # matches non space or - or alphanumeric characters
 spc = re.compile(' *- *| +')  # matches one or more spaces
 wth = re.compile(r'(?: *\(with )([^)]+)\)')  # capture text after with
@@ -44,7 +44,8 @@ def stripper(song, artist):
 	song_data = artist + '-' + song
 	# swap some special characters
 	url_data = song_data.replace('&', 'and')
-	url_data = url_data.replace('/', ' ').replace('!', ' ')  # replace /, ! with space to support more songs
+	# replace /, !, _ with space to support more songs
+	url_data = url_data.replace('/', ' ').replace('!', ' ').replace('_', ' ')
 	for ch in ['Ø', 'ø']:
 		if ch in url_data:
 			url_data = url_data.replace(ch, '')
