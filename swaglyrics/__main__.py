@@ -7,7 +7,7 @@ import time
 from SwSpotify import spotify
 from swaglyrics.cli import lyrics, clear
 from swaglyrics.tab import app
-from swaglyrics import __version__ as version
+from swaglyrics import unsupported_txt, __version__ as version
 
 
 def unsupported_precheck():
@@ -19,7 +19,7 @@ def unsupported_precheck():
 	except requests.exceptions.RequestException:
 		pass
 	print('Updating unsupported.txt from server.')
-	with open('unsupported.txt', 'w', encoding='utf-8') as f:
+	with open(unsupported_txt, 'w', encoding='utf-8') as f:
 		try:
 			response = requests.get('https://aadibajpai.pythonanywhere.com/master_unsupported')
 			f.write(response.text)
