@@ -3,6 +3,7 @@ Contains unit tests for cli.py
 """
 import unittest
 from swaglyrics.cli import stripper, lyrics, get_lyrics, clear
+from swaglyrics import unsupported_txt
 from mock import mock, patch
 import os
 import requests
@@ -73,9 +74,9 @@ class Tests(unittest.TestCase):
 		self.assertEqual(get_lyrics("Pixel2XL", "Elgoog", False), "Couldn't get lyrics for Pixel2XL by Elgoog.\n")
 
 		# Deleting above songs and artists from unsupported.txt
-		with open("unsupported.txt", "r") as f:
+		with open(unsupported_txt, "r") as f:
 			lines = f.readlines()
-		with open("unsupported.txt", "w") as f:
+		with open(unsupported_txt, "w") as f:
 			for line in lines:
 				if line not in ["xyzzy by Yeet \n", "wiuegi by Muhmello \n", "Pixel2XL by Elgoog \n"]:
 					f.write(line)
@@ -92,9 +93,9 @@ class Tests(unittest.TestCase):
 		self.assertEqual(lyrics("Pixel2XL", "Elgoog"), "Lyrics unavailable for Pixel2XL by Elgoog.\n")
 
 		# Deleting above songs and artists from unsupported.txt
-		with open("unsupported.txt", "r") as f:
+		with open(unsupported_txt, "r") as f:
 			lines = f.readlines()
-		with open("unsupported.txt", "w") as f:
+		with open(unsupported_txt, "w") as f:
 			for line in lines:
 				if line not in ["xyzzy by Yeet \n", "wiuegi by Muhmello \n", "Pixel2XL by Elgoog \n"]:
 					f.write(line)
@@ -111,7 +112,7 @@ class Tests(unittest.TestCase):
 		"""
 		test that lyrics function does not break if unsupported.txt is not found
 		"""
-		os.rename("unsupported.txt", "unsupported2.txt")
+		os.rename(unsupported_txt, "unsupported2.txt")
 		self.assertEqual(lyrics("Pixel2XL", "Elgoog", False), "Couldn\'t get lyrics for Pixel2XL by Elgoog.\n")
 
 	def test_database_for_unsupported_song(self):
