@@ -36,6 +36,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(stripper('River (feat. Ed Sheeran)', 'Eminem'), 'Eminem-River')
 		self.assertEqual(stripper('Ain\'t My Fault - R3hab Remix', 'Zara Larsson'), 'Zara-Larsson-Aint-My-Fault')
 		self.assertEqual(stripper('1800-273-8255', 'Logic'), 'Logic-1800-273-8255')
+		self.assertEqual(stripper('Garota', 'Erlend Øye'), 'Erlend-ye-Garota')
 		self.assertEqual(stripper('Scream & Shout', 'will.i.am'), 'william-Scream-and-Shout')
 		self.assertEqual(stripper('Heebiejeebies - Bonus', 'Aminé'), 'Amine-Heebiejeebies')
 		self.assertEqual(stripper('FRÜHLING IN PARIS', 'Rammstein'), 'Rammstein-FRUHLING-IN-PARIS')
