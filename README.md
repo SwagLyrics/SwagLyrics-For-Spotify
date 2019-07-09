@@ -33,7 +33,8 @@ Packaged so I can first hand handle production-ready code to an extent and to ma
 distribution and usage easier.
 
 ## Installation
-Requires Python3. Use pip or pip3 depending on your installation.
+Requires Python3. Use pip or pip3 depending on your installation. You might want to use the `--user` flag on Linux to
+avoid using pip as root.
 ```
 pip install swaglyrics
 ```
@@ -55,9 +56,19 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 
 ## Community
 - SwagLyrics participated in [Google Code-in 2018](https://g.co/gci) with CCExtractor Development.
-- SwagLyrics is participating in [Google Summer of Code](https://g.co/gsoc) with CCExtractor Development. Interested? Read more about it [here](https://www.ccextractor.org/public:gsoc:swaglyrics).
+- SwagLyrics is participating in [Google Summer of Code 2019](https://g.co/gsoc) with CCExtractor Development. 
+The selected project can be found [here](https://summerofcode.withgoogle.com/projects/#5694893526089728).
 
 ## Changelog
+
+- #### v0.2.8
+	- Fixed creation of multiple unsupported.txt
+	- Improved stripper + genius_stripper on backend as fallback
+	- Full test coverage for cli.py
+	- Add support for local music too
+	- Add coloring
+	- Remove extra dependency
+	
 - #### v0.2.6
     - Added favicon
     - Removed extra dependency
@@ -100,11 +111,17 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 2. ~~Better logging of unsupported songs, the isolated unsupported.txt is sub-optimal for multiple users since the
 file will only update locally with songs which worked fine when it was just me but since I hope others use it too, I'll
 try to add a better method with server support.~~
-3. Better tests to test all of the functionality.
+3. Better tests to test all of the functionality. (cli.py fully tested!)
 4. Perhaps a tiny app using Electron that could fit in your tray to be opened whenever you want lyrics for a song.
-5. Supporting more songs, currently the program sometimes fails at remixes since while the lyrics are same as original,
- the artist is the remixer.
+5. ~~Supporting more songs, currently the program sometimes fails at remixes since while the lyrics are same as 
+original,
+ the artist is the remixer. **done**~~
 6. Documenting all the files.
+
+## SwagLyrics on Windows with Terminal
+<p align="center">
+  <img src="https://i.imgur.com/SRRbxbr.png" alt="SwagLyrics with Hyper">
+</p>
 
 ## SwagLyrics on Windows with Firefox Side-View
 <p align="center">

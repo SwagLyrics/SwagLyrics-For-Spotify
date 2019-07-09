@@ -1,5 +1,6 @@
 import argparse
 import os
+import sys
 import webbrowser
 import threading
 import requests
@@ -24,8 +25,11 @@ def unsupported_precheck():
 			response = requests.get('https://aadibajpai.pythonanywhere.com/master_unsupported')
 			f.write(response.text)
 			print("Updated unsupported.txt successfully.")
-		except requests.exceptions.RequestException:
-			print("Could not update unsupported.txt successfully.")
+		except requests.exceptions.RequestException as e:
+			print("Could not update unsupported.txt successfully.", e)
+		except PermissionError as e:
+			print("You should install SwagLyrics as --user or use sudo to access unsupported.txt.", e)
+			sys.exit(1)
 
 
 def main():
