@@ -52,7 +52,10 @@ Arguments:
   -c, --cli       Display lyrics in the command-line.   
   -n, --no-issue  Disable issue-making on cli.
 ```
-You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
+You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>.
+
+Before using, you should check [USING.txt](swaglyrics/USING.txt) to comply with the Genius ToS. There's a copy 
+included when you download SwagLyrics.
 
 ## Community
 - SwagLyrics participated in [Google Code-in 2018](https://g.co/gci) with CCExtractor Development.
