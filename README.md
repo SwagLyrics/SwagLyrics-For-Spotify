@@ -32,6 +32,29 @@ can see helping me and other users in the same situation.
 Packaged so I can first hand handle production-ready code to an extent and to make
 distribution and usage easier.
 
+## Why SwagLyrics?
+SwagLyrics is THE fastest and the most accurate package for getting lyrics <a href=#footnote1><sup>1</sup></a>. 
+
+Provided good internet speed, it can fetch lyrics for a track in as less as 0.38s <a href=#footnote2><sup>2</sup></a>.
+
+It also does not require the user to generate any sort of API token (Spotify or Genius) and serves functionality 
+right off the bat. This is possible as the song identification is done using our in-house library 
+[SwSpotify](https://github.com/SwagLyrics/SwSpotify) which does it locally for all operating systems. 
+
+The enhanced user experience is possible due to the [backend](https://github.com/SwagLyrics/swaglyrics-issue-maker) 
+which manages creating issues for unsupported songs and then adding support for them where possible by employing various 
+techniques. Any song with lyrics on Genius can be supported without any user interaction owing to the backend.
+If say, lyrics do not exist for a track then subsequent playings of that track will not waste your resources in trying
+to fetch lyrics, this [master list of unsupported songs](https://aadibajpai.pythonanywhere.com) is managed by the 
+backend as well. 
+
+<a href="https://colab.research.google.com/gist/aadibajpai/439cd358b001ae7d1ba970b68f70d92b/swaglyrics_test.ipynb" id="footnote1">
+[1]</a> We tested it against <a href=https://github.com/johnwmillr/LyricsGenius>LyricsGenius</a>, the most popular 
+similar package on the US Top 50 Chart on Spotify. SwagLyrics was fractionally more accurate and 2.4x times faster.
+<br>
+<a href="https://colab.research.google.com/gist/aadibajpai/06a596ad753007b0faea132e96f372e0/swaglyrics_test.ipynb" id="footnote2">
+[2]</a> Speed and accuracy benchmark using Google Colab on the Spotify US Top 50 chart. 
+
 ## Installation
 Requires Python3. Use pip or pip3 depending on your installation. You might want to use the `--user` flag on Linux to
 avoid using pip as root.
