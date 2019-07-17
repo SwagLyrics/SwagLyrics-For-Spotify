@@ -45,8 +45,8 @@ The enhanced user experience is possible due to the [backend](https://github.com
 which manages creating issues for unsupported songs and then adding support for them where possible by employing various 
 techniques. Any song with lyrics on Genius can be supported without any user interaction owing to the backend.
 If say, lyrics do not exist for a track then subsequent playings of that track will not waste your resources in trying
-to fetch lyrics, this [master list of unsupported songs](https://aadibajpai.pythonanywhere.com) is managed by the 
-backend as well. 
+to fetch lyrics, this is done by a [master list of unsupported songs](https://aadibajpai.pythonanywhere.com) which is 
+handled by the backend as well. 
 
 <a href="https://colab.research.google.com/gist/aadibajpai/439cd358b001ae7d1ba970b68f70d92b/swaglyrics_test.ipynb" id="footnote1">
 1. <small>[results]</small></a> Tested against <a href=https://github.com/johnwmillr/LyricsGenius>LyricsGenius</a>, the most popular 
@@ -80,7 +80,7 @@ Arguments:
 You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>.
 
 Before using, you should check [USING.txt](swaglyrics/USING.txt) to comply with the Genius ToS. There's a copy 
-included when you download SwagLyrics.
+included inside the package as well.
 
 ## Community
 - SwagLyrics participated in [Google Code-in 2018](https://g.co/gci) with CCExtractor Development.
@@ -89,44 +89,13 @@ The selected project can be found [here](https://summerofcode.withgoogle.com/pro
 
 ## Changelog
 
-- #### v0.2.8
-	- Fixed creation of multiple unsupported.txt
-	- Improved stripper + genius_stripper on backend as fallback
-	- Full test coverage for cli.py
-	- Add support for local music too
-	- Add coloring
-	- Remove extra dependency
+- #### v0.2.9
+	- Added USING.txt
+	- Added comparison tests on Colab
+	- Improved stripper
+	- Set Travis auto-push to PyPI
 	
-- #### v0.2.6
-    - Added favicon
-    - Removed extra dependency
-    
-- #### v0.2.5
-    - Refactored stripper to support more songs straightaway
-    - Fixed bugs
-    - Added -n argument (helps while testing)
-    - Added more test cases
-
-- #### v0.2.4
-    - Added server-side database
-    - All songs with lyrics on Genius supported now!
-    - Global sync of unsupported songs
-    - Added more tests (85% coverage)
-    - Improved issue-making using Spotify API
-    
-- #### v0.2.3
-    - Added macOS support
-    - Added more tests
-    - Added unidecode to support songs with diacritics
-    - Fixed commandline not clearing b/w songs on Linux
-    - Improved issue-making
-    
-- #### v0.2.1
-    - Added Linux support
-    - Added more tests
-    - Set up code coverage and continuous integration
-- #### v0.1.9
-    - A GitHub issue is created automatically on the repo when an unsupported song is encountered (implemented server-side using pythonanywhere).
+See [CHANGES.md](CHANGES.md) for prior release notes.
 
 ## Compiling SwagLyrics for Development
 
