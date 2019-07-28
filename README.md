@@ -35,7 +35,7 @@ distribution and usage easier.
 ## Why SwagLyrics?
 SwagLyrics is THE fastest and the most accurate package for getting lyrics.<a href=#footnote1 id=a1><sup>1</sup></a>
 
-Provided optimal internet, SwagLyrics can fetch lyrics for a track in as less as 0.38s.<a href=#footnote2 id=a2><sup>2</sup></a>
+Provided optimal internet, SwagLyrics can fetch lyrics for a track in as less as 0.28s.<a href=#footnote2 id=a2><sup>2</sup></a>
 
 It also does not require the user to generate any sort of API token (Spotify or Genius) and serves functionality 
 right off the bat. This is possible as the song identification is done using our in-house library 

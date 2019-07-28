@@ -1,8 +1,6 @@
 import argparse
 import os
 import sys
-import webbrowser
-import threading
 import requests
 import time
 from SwSpotify import spotify
@@ -16,7 +14,7 @@ def unsupported_precheck():
 		v = requests.get('https://aadibajpai.pythonanywhere.com/version')
 		ver = v.text
 		if ver > version:
-			print("Update SwagLyrics to the latest version {ver}\n".format(ver=ver))
+			print("New version of SwagLyrics available: v{ver}\nPlease update :)".format(ver=ver))
 	except requests.exceptions.RequestException:
 		pass
 	print('Updating unsupported.txt from server.')
@@ -54,6 +52,8 @@ def main():
 	unsupported_precheck()
 
 	if args.tab:
+		import webbrowser
+		import threading
 		print('Firing up a browser tab!')
 		app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 		app.static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
@@ -82,6 +82,7 @@ def main():
 						print(lyrics(song, artist, make_issue))
 						print('\n(Press Ctrl+C to quit)')
 			except KeyboardInterrupt:
+				print('\nSure boss, exiting.')
 				exit()
 			if os.environ.get("TESTING", "False") != "False":
 				break

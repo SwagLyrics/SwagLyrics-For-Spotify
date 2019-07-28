@@ -67,22 +67,18 @@ def get_lyrics(song, artist, make_issue=True):
 	"""
 	url_data = stripper(song, artist)  # generate url path using stripper()
 	url = 'https://genius.com/{}-lyrics'.format(url_data)  # format the url with the url path
-	page = requests.get(url)
-	if page.status_code != 200:
-		url_data = requests.get('https://aadibajpai.pythonanywhere.com/stripper',
-								data={'song': song, 'artist': artist}).text
-		url = 'https://genius.com/{}-lyrics'.format(url_data)
-		page = requests.get(url)
-	html = BeautifulSoup(page.text, "html.parser")
-	# TODO: Add error handling
-	lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
-	if lyrics_path is None:
-		with open(unsupported_txt, 'a') as f:
-			f.write('{song} by {artist} \n'.format(song=song, artist=artist))
-			f.close()
-		lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
-		try:
+	try:
+		page = requests.get(url).raise_for_status()
+	except requests.exceptions.HTTPError:
+		url_data = requests.get('https://aadibajpai.pythonanywhere.com/stripper', data={
+			'song': song,
+			'artist': artist}).text
+		if not url_data:
+			lyrics = None
 			# Log song and artist for which lyrics couldn't be obtained
+			with open(unsupported_txt, 'a') as f:
+				f.write('{song} by {artist} \n'.format(song=song, artist=artist))
+				f.close()
 			if make_issue:
 				r = requests.post('https://aadibajpai.pythonanywhere.com/unsupported', data={
 					'song': song,
@@ -91,10 +87,12 @@ def get_lyrics(song, artist, make_issue=True):
 				})
 				if r.status_code == 200:
 					lyrics += r.text
-		except requests.exceptions.RequestException:
-			pass
-	else:
-		lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
+		url = 'https://genius.com/{}-lyrics'.format(url_data)
+		page = requests.get(url)
+
+	html = BeautifulSoup(page.text, "html.parser")
+	lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
+	lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
 	return lyrics
 
 
@@ -114,8 +112,22 @@ def lyrics(song, artist, make_issue=True):
 		except FileNotFoundError:
 			pass
 		init(autoreset=True)
-		print(Fore.CYAN + '\nGetting lyrics for {song} by {artist}.\n'.format(song=song, artist=artist))
+		print(Fore.CYAN + 'Getting lyrics for {song} by {artist}.\n'.format(song=song, artist=artist))
 		lyrics = get_lyrics(song, artist, make_issue)
+		if not lyrics:
+			lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
+			# Log song and artist for which lyrics couldn't be obtained
+			with open(unsupported_txt, 'a') as f:
+				f.write('{song} by {artist} \n'.format(song=song, artist=artist))
+				f.close()
+			if make_issue:
+				r = requests.post('https://aadibajpai.pythonanywhere.com/unsupported', data={
+					'song': song,
+					'artist': artist,
+					'version': __version__
+				})
+				if r.status_code == 200:
+					lyrics += r.text
 		return lyrics
 	else:
 		return 'Nothing playing at the moment.'
