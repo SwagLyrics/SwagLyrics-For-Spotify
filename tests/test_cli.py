@@ -70,27 +70,19 @@ class Tests(unittest.TestCase):
 		Test that get_lyrics function does not break with wrong data
 		"""
 		self.assertEqual(get_lyrics(
-			"xyzzy", "Yeet", False), "Couldn't get lyrics for xyzzy by Yeet.\n")
-		self.assertEqual(get_lyrics("wiuegi", "Muhmello", False), "Couldn't get lyrics for wiuegi by Muhmello.\n")
-		self.assertEqual(get_lyrics("Pixel2XL", "Elgoog", False), "Couldn't get lyrics for Pixel2XL by Elgoog.\n")
-
-		# Deleting above songs and artists from unsupported.txt
-		with open(unsupported_txt, "r") as f:
-			lines = f.readlines()
-		with open(unsupported_txt, "w") as f:
-			for line in lines:
-				if line not in ["xyzzy by Yeet \n", "wiuegi by Muhmello \n", "Pixel2XL by Elgoog \n"]:
-					f.write(line)
+			"xyzzy", "Yeet", False), None)
+		self.assertEqual(get_lyrics("wiuegi", "Muhmello", False), None)
+		self.assertEqual(get_lyrics("Pixel2XL", "Elgoog", False), None)
 
 	def test_that_lyrics_works_for_unsupported_songs(self):
 		"""
 		Test that lyrics function gives 'unsupported' message to unsupported files
 		"""
-		get_lyrics("xyzzy", "Yeet", False)
+		lyrics("xyzzy", "Yeet", False)
 		self.assertEqual(lyrics("xyzzy", "Yeet"), "Lyrics unavailable for xyzzy by Yeet.\n")
-		get_lyrics("wiuegi", "Muhmello", False)
+		lyrics("wiuegi", "Muhmello", False)
 		self.assertEqual(lyrics("wiuegi", "Muhmello"), "Lyrics unavailable for wiuegi by Muhmello.\n")
-		get_lyrics("Pixel2XL", "Elgoog", False)
+		lyrics("Pixel2XL", "Elgoog", False)
 		self.assertEqual(lyrics("Pixel2XL", "Elgoog"), "Lyrics unavailable for Pixel2XL by Elgoog.\n")
 
 		# Deleting above songs and artists from unsupported.txt
