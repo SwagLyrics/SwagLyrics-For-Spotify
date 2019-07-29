@@ -126,7 +126,7 @@ class Tests(unittest.TestCase):
 		"""
 		Test the get_lyrics does not break with error in requests
 		"""
-		self.assertEqual(get_lyrics("xyzzy", "Yeet"), "Couldn\'t get lyrics for xyzzy by Yeet.\n")
+		self.assertEqual(get_lyrics("xyzzy", "Yeet"), None)
 
 	@mock.patch('requests.post', return_value=R(200, "Phone is dope"))
 	def test_that_lyrics_calls_requests(self, mock_requests):
