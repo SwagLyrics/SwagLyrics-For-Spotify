@@ -70,9 +70,9 @@ class Tests(unittest.TestCase):
 		Test that get_lyrics function does not break with wrong data
 		"""
 		self.assertEqual(get_lyrics(
-			"xyzzy", "Yeet", False), None)
-		self.assertEqual(get_lyrics("wiuegi", "Muhmello", False), None)
-		self.assertEqual(get_lyrics("Pixel2XL", "Elgoog", False), None)
+			"xyzzy", "Yeet"), None)
+		self.assertEqual(get_lyrics("wiuegi", "Muhmello"), None)
+		self.assertEqual(get_lyrics("Pixel2XL", "Elgoog"), None)
 
 	def test_that_lyrics_works_for_unsupported_songs(self):
 		"""
@@ -119,21 +119,21 @@ class Tests(unittest.TestCase):
 		"""
 		Test the get_lyrics does not break with requests giving wrong status code
 		"""
-		self.assertEqual(get_lyrics("xyzzy", "Yeet", True), "Couldn\'t get lyrics for xyzzy by Yeet.\n")
+		self.assertEqual(get_lyrics("xyzzy", "Yeet"), None)
 
 	@mock.patch('requests.post', side_effect=requests.exceptions.RequestException)
 	def test_that_get_lyrics_do_not_break_with_error_in_request(self, mock_requests):
 		"""
 		Test the get_lyrics does not break with error in requests
 		"""
-		self.assertEqual(get_lyrics("xyzzy", "Yeet", True), "Couldn\'t get lyrics for xyzzy by Yeet.\n")
+		self.assertEqual(get_lyrics("xyzzy", "Yeet"), "Couldn\'t get lyrics for xyzzy by Yeet.\n")
 
 	@mock.patch('requests.post', return_value=R(200, "Phone is dope"))
-	def test_that_get_lyrics_calls_requests(self, mock_requests):
+	def test_that_lyrics_calls_requests(self, mock_requests):
 		"""
 		Test that get_lyrics calls requests
 		"""
-		self.assertEqual(get_lyrics(
+		self.assertEqual(lyrics(
 			"Pixel2XL", "Elgoog", True), "Couldn't get lyrics for Pixel2XL by Elgoog.\nPhone is dope")
 
 	@patch('os.system')
