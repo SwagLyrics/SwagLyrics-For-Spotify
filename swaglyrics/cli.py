@@ -103,7 +103,7 @@ def lyrics(song, artist, make_issue=True):
 		print(Fore.CYAN + '\nGetting lyrics for {song} by {artist}.\n'.format(song=song, artist=artist))
 		lyrics = get_lyrics(song, artist)
 		if not lyrics:
-			lyrics = 'Couldn\'t get lyrics for {song} by {artist}.\n'.format(song=song, artist=artist)
+			lyrics = "Couldn't get lyrics for {song} by {artist}.\n".format(song=song, artist=artist)
 			# Log song and artist for which lyrics couldn't be obtained
 			with open(unsupported_txt, 'a') as f:
 				f.write('{song} by {artist} \n'.format(song=song, artist=artist))

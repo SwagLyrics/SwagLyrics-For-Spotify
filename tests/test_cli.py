@@ -106,7 +106,7 @@ class Tests(unittest.TestCase):
 		test that lyrics function does not break if unsupported.txt is not found
 		"""
 		os.rename(unsupported_txt, "unsupported2.txt")
-		self.assertEqual(lyrics("Pixel2XL", "Elgoog", False), "Couldn\'t get lyrics for Pixel2XL by Elgoog.\n")
+		self.assertEqual(lyrics("Pixel2XL", "Elgoog", False), "Couldn't get lyrics for Pixel2XL by Elgoog.\n")
 
 	def test_database_for_unsupported_song(self):
 		"""
@@ -127,6 +127,13 @@ class Tests(unittest.TestCase):
 		Test the get_lyrics does not break with error in requests
 		"""
 		self.assertEqual(get_lyrics("xyzzy", "Yeet"), None)
+
+	@mock.patch('requests.post', side_effect=requests.exceptions.RequestException)
+	def test_that_lyrics_do_not_break_with_error_in_request(self, mock_requests):
+		"""
+		Test the get_lyrics does not break with error in requests
+		"""
+		self.assertEqual(lyrics("xyzzy", "Yee"), "Couldn't get lyrics for xyzzy by Yee.\n")
 
 	@mock.patch('requests.post', return_value=R(200, "Phone is dope"))
 	def test_that_lyrics_calls_requests(self, mock_requests):
