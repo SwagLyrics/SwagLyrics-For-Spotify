@@ -38,9 +38,9 @@ def stripper(song, artist):
 		song = song.replace(ft.group(), '')  # remove (with supporting artists) from song
 		ar = ft.group(1)  # the supporting artist(s)
 		if '&' in ar:  # check if more than one supporting artist and add them to artist
-			artist += '-{ar}'.format(ar=ar)
+			artist += f'-{ar}'
 		else:
-			artist += '-and-{ar}'.format(ar=ar)
+			artist += f'-and-{ar}'
 	song_data = artist + '-' + song
 	# swap some special characters
 	url_data = song_data.replace('&', 'and')
@@ -96,17 +96,17 @@ def lyrics(song, artist, make_issue=True):
 		try:
 			with open(unsupported_txt) as unsupported:
 				if f'{song} by {artist}' in unsupported.read():
-					return 'Lyrics unavailable for {song} by {artist}.\n'.format(song=song, artist=artist)
+					return f'Lyrics unavailable for {song} by {artist}.\n'
 		except FileNotFoundError:
 			pass
 		init(autoreset=True)
-		print(Fore.CYAN + '\nGetting lyrics for {song} by {artist}.\n'.format(song=song, artist=artist))
+		print(Fore.CYAN + f'\nGetting lyrics for {song} by {artist}.\n')
 		lyrics = get_lyrics(song, artist)
 		if not lyrics:
-			lyrics = "Couldn't get lyrics for {song} by {artist}.\n".format(song=song, artist=artist)
+			lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
 			# Log song and artist for which lyrics couldn't be obtained
 			with open(unsupported_txt, 'a') as f:
-				f.write('{song} by {artist} \n'.format(song=song, artist=artist))
+				f.write(f'{song} by {artist} \n')
 				f.close()
 			if make_issue:
 				r = requests.post('https://aadibajpai.pythonanywhere.com/unsupported', data={
