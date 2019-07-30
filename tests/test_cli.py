@@ -128,10 +128,10 @@ class Tests(unittest.TestCase):
 		"""
 		self.assertEqual(get_lyrics("xyzzy", "Yeet"), None)
 
-	@mock.patch('requests.post', side_effect=requests.exceptions.RequestException)
-	def test_that_lyrics_do_not_break_with_error_in_request(self, mock_requests):
+	@mock.patch('requests.post', return_value=R())
+	def test_that_lyrics_does_not_break_with_request_giving_wrong_status_code(self, mock_requests):
 		"""
-		Test the get_lyrics does not break with error in requests
+		Test the lyrics does not break with requests giving wrong status code
 		"""
 		self.assertEqual(lyrics("xyzzy", "Yee"), "Couldn't get lyrics for xyzzy by Yee.\n")
 
