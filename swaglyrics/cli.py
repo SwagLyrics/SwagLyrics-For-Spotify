@@ -1,7 +1,7 @@
 import requests
 import re
 import os
-from swaglyrics import __version__, unsupported_txt
+from swaglyrics import __version__, unsupported_txt, backend_url
 from bs4 import BeautifulSoup, UnicodeDammit
 from unidecode import unidecode
 from colorama import init, Fore
@@ -70,7 +70,7 @@ def get_lyrics(song, artist):
 		page = requests.get(url)
 		page.raise_for_status()
 	except requests.exceptions.HTTPError:
-		url_data = requests.get('https://aadibajpai.pythonanywhere.com/stripper', data={
+		url_data = requests.get(f'{backend_url}/stripper', data={
 			'song': song,
 			'artist': artist}).text
 		if not url_data:
@@ -109,7 +109,7 @@ def lyrics(song, artist, make_issue=True):
 				f.write(f'{song} by {artist} \n')
 				f.close()
 			if make_issue:
-				r = requests.post('https://aadibajpai.pythonanywhere.com/unsupported', data={
+				r = requests.post(f'{backend_url}/unsupported', data={
 					'song': song,
 					'artist': artist,
 					'version': __version__
