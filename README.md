@@ -58,12 +58,11 @@ similar package on the US Top 50 Chart on Spotify. SwagLyrics was fractionally m
 <a href=#a2>↩</a>
 
 ## Installation
-Requires Python3. Use pip or pip3 depending on your installation. You might want to use the `--user` flag on Linux to
+Requires Python 3.6+. Use pip or pip3 depending on your installation. You might want to use the `--user` flag on Linux to
 avoid using pip as root.
 ```
 pip install swaglyrics
 ```
-Make sure to use a version >= 0.1.6 since the previous ones don't have the `tab` option supported.
 
 ## Usage
 `usage: swaglyrics [-h] [-t] [-c] [-n]`
@@ -89,11 +88,13 @@ The selected project can be found [here](https://summerofcode.withgoogle.com/pro
 
 ## Changelog
 
-- #### v0.2.9
-	- Added USING.txt
-	- Added comparison tests on Colab
-	- Improved stripper
-	- Set Travis auto-push to PyPI
+- #### v1.0.0
+	- Refactor cli.py
+	- Unify backend
+	- Refactor testsuite
+	- Fix bug in unsupported.txt handling
+	- drop support for pre Python 3.6 versions 
+	- use f-strings
 	
 See [CHANGES.md](CHANGES.md) for prior release notes.
 

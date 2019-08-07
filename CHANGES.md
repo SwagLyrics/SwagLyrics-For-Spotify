@@ -1,5 +1,13 @@
 # Changelog
 
+- #### v1.0.0
+	- Refactor cli.py
+	- Unify backend
+	- Refactor testsuite
+	- Fix bug in unsupported.txt handling
+	- drop support for pre Python 3.6 versions 
+	- use f-strings
+
 - #### v0.2.9
 	- Added USING.txt
 	- Added comparison tests on Colab
