@@ -7,6 +7,7 @@ import requests
 from swaglyrics.cli import stripper, lyrics, get_lyrics, clear
 from swaglyrics import unsupported_txt
 from mock import mock, patch
+from time import sleep
 
 
 class R:
@@ -80,11 +81,9 @@ class Tests(unittest.TestCase):
 		"""
 		Test that lyrics function gives 'unsupported' message to unsupported files
 		"""
-		lyrics("xyzzy", "Yeet", False)
-		self.assertEqual(lyrics("xyzzy", "Yeet"), "Lyrics unavailable for xyzzy by Yeet.\n")
-		lyrics("wiuegi", "Muhmello", False)
-		self.assertEqual(lyrics("wiuegi", "Muhmello"), "Lyrics unavailable for wiuegi by Muhmello.\n")
+		sleep(5)
 		lyrics("Pixel2XL", "Elgoog", False)
+		sleep(5)
 		self.assertEqual(lyrics("Pixel2XL", "Elgoog"), "Lyrics unavailable for Pixel2XL by Elgoog.\n")
 
 		# Deleting above songs and artists from unsupported.txt
@@ -92,7 +91,7 @@ class Tests(unittest.TestCase):
 			lines = f.readlines()
 		with open(unsupported_txt, "w") as f:
 			for line in lines:
-				if line not in ["xyzzy by Yeet \n", "wiuegi by Muhmello \n", "Pixel2XL by Elgoog \n"]:
+				if line not in ["Pixel2XL by Elgoog \n"]:
 					f.write(line)
 
 	@patch('swaglyrics.cli.get_lyrics')
@@ -108,6 +107,7 @@ class Tests(unittest.TestCase):
 		test that lyrics function does not break if unsupported.txt is not found
 		"""
 		os.rename(unsupported_txt, "unsupported2.txt")
+		sleep(5)
 		self.assertEqual(lyrics("Pixel2XL", "Elgoog", False), "Couldn't get lyrics for Pixel2XL by Elgoog.\n")
 
 	def test_database_for_unsupported_song(self):
@@ -119,8 +119,9 @@ class Tests(unittest.TestCase):
 	@mock.patch('requests.post', return_value=R())
 	def test_that_get_lyrics_does_not_break_with_request_giving_wrong_status_code(self, mock_requests):
 		"""
-		Test the get_lyrics does not break with requests giving wrong status code
+		Test get_lyrics does not break with requests giving wrong status code
 		"""
+		sleep(5)
 		self.assertEqual(get_lyrics("xyzzy", "Yeet"), None)
 
 	@mock.patch('requests.post', side_effect=requests.exceptions.RequestException)
@@ -128,13 +129,15 @@ class Tests(unittest.TestCase):
 		"""
 		Test the get_lyrics does not break with error in requests
 		"""
+		sleep(5)
 		self.assertEqual(get_lyrics("xyzzy", "Yeet"), None)
 
 	@mock.patch('requests.post', return_value=R())
 	def test_that_lyrics_does_not_break_with_request_giving_wrong_status_code(self, mock_requests):
 		"""
-		Test the lyrics does not break with requests giving wrong status code
+		Test lyrics does not break with requests giving wrong status code
 		"""
+		sleep(5)
 		self.assertEqual(lyrics("xyzzy", "Yee"), "Couldn't get lyrics for xyzzy by Yee.\n")
 
 	@mock.patch('requests.post', return_value=R(200, "Phone is dope"))
@@ -142,6 +145,7 @@ class Tests(unittest.TestCase):
 		"""
 		Test that get_lyrics calls requests
 		"""
+		sleep(5)
 		self.assertEqual(lyrics(
 			"Pixel2XL", "Elgoog", True), "Couldn't get lyrics for Pixel2XL by Elgoog.\nPhone is dope")
 
