@@ -2,19 +2,17 @@
 Contains unit tests for cli.py
 """
 import unittest
+import os
+import requests
 from swaglyrics.cli import stripper, lyrics, get_lyrics, clear
 from swaglyrics import unsupported_txt
 from mock import mock, patch
-import os
-import requests
 
 
 class R:
 	"""
 	This is a fake class created to mock requests' status code
 	"""
-	status_code = 7355608
-	text = 'google this number'
 
 	def __init__(self, status_code=7355608, text='google this number'):
 		self.status_code = status_code
@@ -65,13 +63,17 @@ class Tests(unittest.TestCase):
 		self.assertEqual(get_lyrics("Radioactive", "Imagine Dragons")[:7], "[Intro]")
 		self.assertEqual(get_lyrics("Battle Symphony", "Linkin Park")[:9], "[Verse 1]")
 
-	def test_that_get_lyrics_does_not_break_with_wrong_data(self):
+	@patch('requests.get')
+	def test_that_get_lyrics_does_not_break_with_wrong_data(self, fake_get):
 		"""
 		Test that get_lyrics function does not break with wrong data
 		"""
+		fake_resp = requests.Response()
+		fake_resp.status_code = 404
+		fake_get.return_value = fake_resp
 		self.assertEqual(get_lyrics(
 			"xyzzy", "Yeet"), None)
-		self.assertEqual(get_lyrics("wiuegi", "Muhmello"), None)
+		self.assertEqual(get_lyrics("aifone", "Muhmello"), None)
 		self.assertEqual(get_lyrics("Pixel2XL", "Elgoog"), None)
 
 	def test_that_lyrics_works_for_unsupported_songs(self):
