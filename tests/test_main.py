@@ -7,7 +7,7 @@ import requests
 import io
 import sys
 from swaglyrics.__main__ import main, unsupported_precheck, unsupported_txt
-from mock import mock
+from mock import patch
 
 
 def unsupported_txt_data():
@@ -25,7 +25,7 @@ class Tests(unittest.TestCase):
 		pass
 
 	# @mock.patch('swaglyrics.__version__', '0.2.9')
-	@mock.patch('requests.get')
+	@patch('swaglyrics.__main__.requests.get')
 	def test_that_unsupported_precheck_works(self, fake_get):
 		# fake_txt = 'unsupported txt test'
 		# fake_ver = '0.2.8'
@@ -41,7 +41,7 @@ class Tests(unittest.TestCase):
 		# data = unsupported_txt_data()
 		# self.assertEqual(data, fake_txt)
 
-	@mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=False))
+	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=False))
 	def test_parser_prints_description(self, mock_argparse):
 		"""
 		Tests whether prints its description
@@ -53,9 +53,9 @@ class Tests(unittest.TestCase):
 		self.assertIn("Get lyrics for the currently playing song on Spotify. Either --tab or --cli is\nrequired.",
 					  capturedOutput.getvalue())
 
-	@mock.patch('threading.Timer', side_effect=None)
-	@mock.patch('swaglyrics.tab.app.run', side_effect=None)
-	@mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=True, cli=False, no_issue=False))
+	@patch('threading.Timer', side_effect=None)
+	@patch('swaglyrics.tab.app.run', side_effect=None)
+	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=True, cli=False, no_issue=False))
 	def test_parser_runs_tab(self, mock_argparse, mock_app, mock_threader):
 		"""
 		Tests whether parser runs tab
@@ -67,7 +67,7 @@ class Tests(unittest.TestCase):
 		self.assertIn("Firing up a browser tab!", capturedOutput.getvalue())
 		self.assertTrue(mock_app.called)
 
-	@mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True, no_issue=False))
+	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True, no_issue=False))
 	def test_parser_runs_cli(self, mock_argparse):
 		"""
 		Tests whether parser runs cli
