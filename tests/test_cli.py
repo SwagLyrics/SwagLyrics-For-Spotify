@@ -7,17 +7,7 @@ import requests
 from swaglyrics.cli import stripper, lyrics, get_lyrics, clear
 from swaglyrics import unsupported_txt
 from mock import patch
-from time import sleep
-
-
-class R:
-	"""
-	This is a fake class created to mock requests' status code
-	"""
-
-	def __init__(self, status_code=7355608, text='google this number'):
-		self.status_code = status_code
-		self.text = text
+from tests.base import R
 
 
 class Tests(unittest.TestCase):
@@ -33,7 +23,7 @@ class Tests(unittest.TestCase):
 		Test that stripping works
 		"""
 		self.assertEqual(stripper('River (feat. Ed Sheeran)', 'Eminem'), 'Eminem-River')
-		self.assertEqual(stripper('Ain\'t My Fault - R3hab Remix', 'Zara Larsson'), 'Zara-Larsson-Aint-My-Fault')
+		self.assertEqual(stripper("Ain't My Fault - R3hab Remix", 'Zara Larsson'), 'Zara-Larsson-Aint-My-Fault')
 		self.assertEqual(stripper('1800-273-8255', 'Logic'), 'Logic-1800-273-8255')
 		self.assertEqual(stripper('Garota', 'Erlend Øye'), 'Erlend-ye-Garota')
 		self.assertEqual(stripper('Scream & Shout', 'will.i.am'), 'william-Scream-and-Shout')
@@ -52,10 +42,11 @@ class Tests(unittest.TestCase):
 		"""
 		Test that None parameters in lyrics function does not break stuff
 		"""
-		self.assertEqual(lyrics(None, 'lol'), 'Nothing playing at the moment.')
-		self.assertEqual(lyrics('', None), 'Nothing playing at the moment.')
-		self.assertEqual(lyrics(None, None), 'Nothing playing at the moment.')
+		self.assertEqual(lyrics('', 'lol'), 'Nothing playing at the moment.')
+		self.assertEqual(lyrics('lol', ''), 'Nothing playing at the moment.')
+		self.assertEqual(lyrics('', ''), 'Nothing playing at the moment.')
 
+	# Integration test
 	def test_that_get_lyrics_works(self):
 		"""
 		Test that get_lyrics function works
@@ -75,7 +66,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(get_lyrics(
 			"xyzzy", "Yeet"), None)
 		self.assertEqual(get_lyrics("aifone", "Muhmello"), None)
-		self.assertEqual(get_lyrics("Pixel2XL", "Elgoog"), None)
+		self.assertEqual(get_lyrics("Pixel2XL", "Goog-el"), None)
 
 	@patch('swaglyrics.cli.get_lyrics')
 	def test_that_lyrics_works_for_unsupported_songs(self, fake_get_lyrics):
@@ -112,6 +103,7 @@ class Tests(unittest.TestCase):
 		resp = lyrics("Pixel2XL", "Elgoog", False)
 		self.assertEqual(resp, "Couldn't get lyrics for Pixel2XL by Elgoog.\n")
 
+	# Integration test
 	def test_database_for_unsupported_song(self):
 		"""
 		test that the database set on pythonanywhere is working and giving strippers for unsupported songs

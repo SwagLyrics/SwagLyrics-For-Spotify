@@ -7,6 +7,7 @@ import requests
 import io
 import sys
 from swaglyrics.__main__ import main, unsupported_precheck, unsupported_txt
+from tests.base import R
 from mock import patch
 
 
@@ -24,22 +25,42 @@ class Tests(unittest.TestCase):
 	def setup(self):
 		pass
 
-	# @mock.patch('swaglyrics.__version__', '0.2.9')
+	@patch('swaglyrics.__main__.version', '0.2.6')
 	@patch('swaglyrics.__main__.requests.get')
-	def test_that_unsupported_precheck_works(self, fake_get):
-		# fake_txt = 'unsupported txt test'
-		# fake_ver = '0.2.8'
-		# fake_get.text = fake_ver
-		# fake_get.side_effect = [fake_ver, fake_txt]
+	def test_that_unsupported_precheck_works_normally(self, fake_get):
+		fake_txt = 'unsupported txt test'
+		fake_get.side_effect = [R(200, '0.2.9'), R(200, fake_txt)]
+		capturedOutput = io.StringIO()
+		sys.stdout = capturedOutput
+		unsupported_precheck()
+		sys.stdout = sys.__stdout__
+		self.assertIn("New version of SwagLyrics available: v0.2.9\nPlease update :)", capturedOutput.getvalue())
+		self.assertIn("Updated unsupported.txt successfully.", capturedOutput.getvalue())
+		data = unsupported_txt_data()
+		self.assertEqual(data, fake_txt)
+
+	@patch('swaglyrics.__main__.requests.get')
+	def test_that_unsupported_precheck_works_on_requests_errors(self, fake_get):
 		fake_get.side_effect = requests.exceptions.RequestException
 		capturedOutput = io.StringIO()
 		sys.stdout = capturedOutput
 		unsupported_precheck()
 		sys.stdout = sys.__stdout__
-		# self.assertIn("New version of SwagLyrics available: v0.2.9\nPlease update :)", capturedOutput.getvalue())
+		self.assertNotIn("New version of SwagLyrics available:", capturedOutput.getvalue())
 		self.assertIn("Could not update unsupported.txt successfully.", capturedOutput.getvalue())
-		# data = unsupported_txt_data()
-		# self.assertEqual(data, fake_txt)
+
+	@patch('swaglyrics.__main__.requests.get')
+	def test_that_unsupported_precheck_works_on_permission_error(self, fake_get):
+		fake_get.side_effect = [requests.exceptions.RequestException, PermissionError]
+		capturedOutput = io.StringIO()
+		sys.stdout = capturedOutput
+		with self.assertRaises(SystemExit) as se:
+			unsupported_precheck()
+		sys.stdout = sys.__stdout__
+		self.assertEqual(se.exception.code, 1)
+		self.assertNotIn("New version of SwagLyrics available:", capturedOutput.getvalue())
+		self.assertIn("You should install SwagLyrics as --user or use sudo to access unsupported.txt.",
+					  capturedOutput.getvalue())
 
 	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=False))
 	def test_parser_prints_description(self, mock_argparse):
@@ -50,6 +71,7 @@ class Tests(unittest.TestCase):
 		sys.stdout = capturedOutput
 		main()
 		sys.stdout = sys.__stdout__
+		# the newline is necessary since argparse wraps it there in terminal
 		self.assertIn("Get lyrics for the currently playing song on Spotify. Either --tab or --cli is\nrequired.",
 					  capturedOutput.getvalue())
 
