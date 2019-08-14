@@ -7,7 +7,7 @@ from unidecode import unidecode
 from colorama import init, Fore
 
 
-def clear():
+def clear() -> None:
 	os.system('cls' if os.name == 'nt' else 'clear')  # clear command window
 
 
@@ -19,14 +19,14 @@ nlt = re.compile(r'[^\x00-\x7F\x80-\xFF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]'
 # built using latin character tables (basic, supplement, extended a,b and extended additional
 
 
-def stripper(song, artist):
+def stripper(song: str, artist: str) -> str:
 	"""
 	Generate the url path given the song and artist to format the Genius URL with.
 	Strips the song and artist of special characters and unresolved text such as 'feat.' or text within braces.
 	Then concatenates both with hyphens replacing the blank spaces.
 	Eg.
 	>>>stripper('Paradise City', 'Guns n’ Roses')
-	Guns-n-Roses-Paradise-City
+	>>>'Guns-n-Roses-Paradise-City'
 	Which then formats the url to https://genius.com/Guns-n-Roses-Paradise-City-lyrics
 	:param song: currently playing song
 	:param artist: song artist
@@ -84,7 +84,7 @@ def get_lyrics(song, artist):
 	return lyrics
 
 
-def lyrics(song, artist, make_issue=True):
+def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	"""
 	Displays the fetched lyrics if song playing and handles if lyrics unavailable.
 	:param song: currently playing song

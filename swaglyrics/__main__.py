@@ -66,18 +66,20 @@ def main():
 		make_issue = args.no_issue
 		song = spotify.song()  # get currently playing song
 		artist = spotify.artist()  # get currently playing artist
+		prev_song, prev_artist = song, artist
 		print(lyrics(song, artist, make_issue))
 		print('\n(Press Ctrl+C to quit)')
 		while True:
 			# refresh every 5s to check whether song changed
 			# if changed, display the new lyrics
 			try:
-				if song == spotify.song() and artist == spotify.artist():
+				if spotify.song() in {song, None} and spotify.artist() in {artist, None}:
 					time.sleep(5)
 				else:
 					song = spotify.song()
 					artist = spotify.artist()
-					if song and artist is not None:
+					if (song, artist) != (prev_song, prev_artist):
+						prev_song, prev_artist = song, artist
 						clear()
 						print(lyrics(song, artist, make_issue))
 						print('\n(Press Ctrl+C to quit)')
