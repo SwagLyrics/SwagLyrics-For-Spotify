@@ -49,9 +49,10 @@ class Tests(unittest.TestCase):
 		self.assertNotIn("New version of SwagLyrics available:", capturedOutput.getvalue())
 		self.assertIn("Could not update unsupported.txt successfully.", capturedOutput.getvalue())
 
+	@patch('swaglyrics.__main__.version', '1.0.0')
 	@patch('swaglyrics.__main__.requests.get')
 	def test_that_unsupported_precheck_works_on_permission_error(self, fake_get):
-		fake_get.side_effect = [requests.exceptions.RequestException, PermissionError]
+		fake_get.side_effect = [R(200, '0.2.6'), PermissionError]
 		capturedOutput = io.StringIO()
 		sys.stdout = capturedOutput
 		with self.assertRaises(SystemExit) as se:

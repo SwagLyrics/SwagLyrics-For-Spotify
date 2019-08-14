@@ -1,5 +1,12 @@
 # Changelog
 
+- #### v1.0.1
+	- Refactor cli.py to fix #1682
+	- Add type annotations to cli.py
+	- Bump code coverage to 90%
+	- Fully mock backend API calls in unit tests
+	- Add integration tests
+
 - #### v1.0.0
 	- Refactor cli.py
 	- Unify backend
@@ -50,5 +57,6 @@
     - Added Linux support
     - Added more tests
     - Set up code coverage and continuous integration
+
 - #### v0.1.9
     - A GitHub issue is created automatically on the repo when an unsupported song is encountered (implemented server-side using pythonanywhere).
