@@ -88,13 +88,12 @@ The selected project can be found [here](https://summerofcode.withgoogle.com/pro
 
 ## Changelog
 
-- #### v1.0.0
-	- Refactor cli.py
-	- Unify backend
-	- Refactor testsuite
-	- Fix bug in unsupported.txt handling
-	- drop support for pre Python 3.6 versions 
-	- use f-strings
+- #### v1.0.1
+	- Refactor cli.py to fix #1682
+	- Add type annotations to cli.py
+	- Bump code coverage to 90%
+	- Fully mock backend API calls in unit tests
+	- Add integration tests
 	
 See [CHANGES.md](CHANGES.md) for prior release notes.
 
