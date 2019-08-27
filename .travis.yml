@@ -12,11 +12,10 @@ install:
   - pip install flask_testing
   - pip install codecov
   - pip install nose-cov
-  - pip install nose-exclude
 # command to run tests
 script:
   - export TESTING=True
-  - nosetests --exclude-test=test_spotify.WindowsTests --nocapture --with-cov --cov-config .coveragerc
+  - nosetests --nocapture --with-cov --cov-config .coveragerc
 
 after_success:
 - codecov

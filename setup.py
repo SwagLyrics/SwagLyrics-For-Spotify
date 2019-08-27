@@ -15,7 +15,7 @@ setuptools.setup(
 	long_description_content_type="text/markdown",
 	url="https://github.com/SwagLyrics/SwagLyrics-For-Spotify",
 	entry_points={'console_scripts': ['swaglyrics=swaglyrics.__main__:main']},
-	packages=setuptools.find_packages(),
+	packages=['swaglyrics'],
 	license='MIT',
 	include_package_data=True,
 	install_requires=['SwSpotify', 'flask', 'requests', 'unidecode', 'beautifulsoup4', 'colorama'],
