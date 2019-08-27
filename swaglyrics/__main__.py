@@ -3,10 +3,10 @@ import os
 import sys
 import requests
 import time
-from SwSpotify import spotify
+from SwSpotify import spotify, SpotifyNotRunning
 from swaglyrics.cli import lyrics, clear
 from swaglyrics.tab import app
-from swaglyrics import unsupported_txt, __version__ as version
+from swaglyrics import unsupported_txt, SameSongPlaying, __version__ as version
 
 
 def unsupported_precheck():
@@ -64,25 +64,27 @@ def main():
 
 	elif args.cli:
 		make_issue = args.no_issue
-		song = spotify.song()  # get currently playing song
-		artist = spotify.artist()  # get currently playing artist
-		prev_song, prev_artist = song, artist
-		print(lyrics(song, artist, make_issue))
-		print('\n(Press Ctrl+C to quit)')
+		try:
+			song, artist = spotify.current()  # get currently playing song, artist
+			print(lyrics(song, artist, make_issue))
+			print('\n(Press Ctrl+C to quit)')
+		except SpotifyNotRunning:
+			print('Nothing playing at the moment.')
+			song, artist = None, None
 		while True:
 			# refresh every 5s to check whether song changed
 			# if changed, display the new lyrics
 			try:
-				if spotify.song() in {song, None} and spotify.artist() in {artist, None}:
-					time.sleep(5)
-				else:
-					song = spotify.song()
-					artist = spotify.artist()
-					if (song, artist) != (prev_song, prev_artist):
-						prev_song, prev_artist = song, artist
+				try:
+					if spotify.current() == (song, artist):
+						raise SameSongPlaying
+					else:
+						song, artist = spotify.current()
 						clear()
 						print(lyrics(song, artist, make_issue))
 						print('\n(Press Ctrl+C to quit)')
+				except (SpotifyNotRunning, SameSongPlaying):
+					time.sleep(5)
 			except KeyboardInterrupt:
 				print('\nSure boss, exiting.')
 				exit()
