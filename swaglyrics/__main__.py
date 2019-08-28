@@ -70,6 +70,7 @@ def main():
 			print('\n(Press Ctrl+C to quit)')
 		except SpotifyNotRunning:
 			print('Nothing playing at the moment.')
+			print('\n(Press Ctrl+C to quit)')
 			song, artist = None, None
 		while True:
 			# refresh every 5s to check whether song changed
