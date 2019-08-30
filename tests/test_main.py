@@ -7,6 +7,7 @@ import requests
 import io
 import sys
 from swaglyrics.__main__ import main, unsupported_precheck, unsupported_txt
+from swaglyrics import SameSongPlaying
 from SwSpotify import SpotifyNotRunning
 from tests.base import R
 from mock import patch
@@ -97,7 +98,7 @@ class Tests(unittest.TestCase):
 	@patch('swaglyrics.__main__.unsupported_precheck')
 	def test_parser_cli_changes_song(self, f_precheck, fake_lyrics, fake_spotify, mock_argparse):
 		"""
-		Tests whether parser runs cli
+		Tests whether parser runs cli properly
 		"""
 		outputs = [('Hello', 'Adele'), ('Panini', 'Lil Nas X'), ('Panini', 'Lil Nas X'),
 													SpotifyNotRunning, KeyboardInterrupt]
@@ -118,7 +119,7 @@ class Tests(unittest.TestCase):
 	@patch('swaglyrics.__main__.unsupported_precheck')
 	def test_parser_cli_works_when_spotify_not_playing(self, f_precheck, fake_spotify, mock_argparse):
 		"""
-		Tests whether parser runs cli
+		Tests whether parser prints Nothing Playing initially
 		"""
 		outputs = [SpotifyNotRunning, KeyboardInterrupt]
 		fake_spotify.side_effect = outputs
@@ -129,6 +130,24 @@ class Tests(unittest.TestCase):
 		sys.stdout = sys.__stdout__
 		self.assertIn("\n(Press Ctrl+C to quit)", capturedOutput.getvalue())
 		self.assertIn("Nothing playing at the moment.", capturedOutput.getvalue())
+		self.assertIn("\nSure boss, exiting.", capturedOutput.getvalue())
+
+	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True, no_issue=True))
+	@patch('swaglyrics.__main__.spotify.current')
+	@patch('swaglyrics.cli.get_lyrics', return_value='Bruhnini')
+	@patch('swaglyrics.__main__.unsupported_precheck')
+	def test_parser_cli_works_when_same_song_playing(self, f_precheck, fake_lyrics, fake_spotify, mock_argparse):
+		"""
+		Tests whether parser cli can raise SongNotPlaying
+		"""
+		outputs = [('Panini', 'Lil Nas X'), ('Panini', 'Lil Nas X'), KeyboardInterrupt]
+		fake_spotify.side_effect = outputs
+		capturedOutput = io.StringIO()
+		sys.stdout = capturedOutput
+		with self.assertRaises((SystemExit, SameSongPlaying)):
+			main()
+		sys.stdout = sys.__stdout__
+		self.assertIn("Bruhnini", capturedOutput.getvalue())
 		self.assertIn("\nSure boss, exiting.", capturedOutput.getvalue())
 
 
