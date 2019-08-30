@@ -2,7 +2,7 @@
 Contains unit tests for tab.py
 """
 import flask_testing
-from mock import mock
+from mock import patch
 
 
 class Tests(flask_testing.TestCase):
@@ -17,9 +17,8 @@ class Tests(flask_testing.TestCase):
 		from swaglyrics.tab import app
 		return app
 
-	@mock.patch('SwSpotify.spotify.song', return_value="Blank Space")
-	@mock.patch('SwSpotify.spotify.artist', return_value="Taylor Swift")
-	def test_lyrics_are_shown_in_tab(self, mock_song, mock_artist):
+	@patch('SwSpotify.spotify.current', return_value=("Blank Space", "Taylor Swift"))
+	def test_lyrics_are_shown_in_tab(self, mock_song):
 		"""
 		that that tab.py is working
 		"""
@@ -27,6 +26,24 @@ class Tests(flask_testing.TestCase):
 			response = c.get('/')
 			self.assert_template_used("lyrics.html")
 
+	@patch('SwSpotify.spotify.song', return_value=None)
+	def test_songchanged_returns_no(self, mock_current):
+		"""
+		that that songChanged can return no
+		"""
+		with self.app.test_client() as c:
+			response = c.get('/songChanged')
+			self.assertEqual(response.data, b'no')
+
+	@patch('SwSpotify.spotify.song', return_value='Rodeo')
+	def test_songchanged_returns_yes(self, mock_current):
+		"""
+		that that songChanged can return yes
+		"""
+		with self.app.test_client() as c:
+			response = c.get('/songChanged')
+			self.assertEqual(response.data, b'yes')
+
 
 if __name__ == '__main__':
-	flask_testing.main()
+	pass
