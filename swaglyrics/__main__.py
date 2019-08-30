@@ -52,14 +52,14 @@ def main():
 	unsupported_precheck()
 
 	if args.tab:
-		import webbrowser
-		import threading
+		from threading import Timer
+		from webbrowser import open
 		print('Firing up a browser tab!')
 		app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 		app.static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
 		port = 5042  # random
-		url = "http://127.0.0.1:{port}".format(port=port)
-		threading.Timer(1.25, lambda: webbrowser.open(url)).start()
+		url = f"http://127.0.0.1:{port}"
+		Timer(1.25, open, args=[url]).start()
 		app.run(port=port)
 
 	elif args.cli:

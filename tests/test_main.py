@@ -90,7 +90,6 @@ class Tests(unittest.TestCase):
 		sys.stdout = capturedOutput
 		main()
 		sys.stdout = sys.__stdout__
-		# This might actually fire a browser tab, the things we do for 100% coverage :)
 		self.assertIn("Firing up a browser tab!", capturedOutput.getvalue())
 		self.assertTrue(mock_app.called)
 
