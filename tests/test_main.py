@@ -78,9 +78,11 @@ class Tests(unittest.TestCase):
 		self.assertIn("Get lyrics for the currently playing song on Spotify. Either --tab or --cli is\nrequired.",
 					  capturedOutput.getvalue())
 
+	@patch('webbrowser.open')
+	@patch('threading.Timer', side_effect=None)
 	@patch('swaglyrics.tab.app.run', side_effect=None)
 	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=True, cli=False, no_issue=False))
-	def test_parser_runs_tab(self, mock_argparse, mock_app):
+	def test_parser_runs_tab(self, mock_argparse, mock_app, mock_timer, mock_browser):
 		"""
 		Tests whether parser runs tab
 		"""
@@ -88,7 +90,7 @@ class Tests(unittest.TestCase):
 		sys.stdout = capturedOutput
 		main()
 		sys.stdout = sys.__stdout__
-		# This will actually fire a browser tab, the things we do for 100% coverage :)
+		# This might actually fire a browser tab, the things we do for 100% coverage :)
 		self.assertIn("Firing up a browser tab!", capturedOutput.getvalue())
 		self.assertTrue(mock_app.called)
 
