@@ -89,9 +89,6 @@ def main():
 			except KeyboardInterrupt:
 				print('\nSure boss, exiting.')
 				exit()
-			if os.environ.get("TESTING", "False") != "False":
-				break
-
 	else:
 		parser.print_help()
 
