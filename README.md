@@ -33,7 +33,7 @@ Packaged so I can first hand handle production-ready code to an extent and to ma
 distribution and usage easier.
 
 ## Why SwagLyrics?
-SwagLyrics is THE fastest and the most accurate package for getting lyrics.<a href=#footnote1 id=a1><sup>1</sup></a>
+SwagLyrics is the fastest and the most accurate package for getting lyrics.<a href=#footnote1 id=a1><sup>1</sup></a>
 
 Provided optimal internet, SwagLyrics can fetch lyrics for a track in as less as 0.28s.<a href=#footnote2 id=a2><sup>2</sup></a>
 
