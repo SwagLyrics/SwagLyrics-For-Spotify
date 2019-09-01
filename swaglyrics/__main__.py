@@ -30,6 +30,46 @@ def unsupported_precheck():
 			sys.exit(1)
 
 
+def show_tab():
+	from threading import Timer
+	from webbrowser import open
+	print('Firing up a browser tab!')
+	app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
+	app.static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+	port = 5042  # random
+	url = f"http://127.0.0.1:{port}"
+	Timer(1.25, open, args=[url]).start()
+	app.run(port=port)
+
+
+def show_cli(make_issue=False):
+	try:
+		song, artist = spotify.current()  # get currently playing song, artist
+		print(lyrics(song, artist, make_issue))
+		print('\n(Press Ctrl+C to quit)')
+	except SpotifyNotRunning:
+		print('Nothing playing at the moment.')
+		print('\n(Press Ctrl+C to quit)')
+		song, artist = None, None
+	while True:
+		# refresh every 5s to check whether song changed
+		# if changed, display the new lyrics
+		try:
+			try:
+				if spotify.current() == (song, artist):
+					raise SameSongPlaying
+				else:
+					song, artist = spotify.current()
+					clear()
+					print(lyrics(song, artist, make_issue))
+					print('\n(Press Ctrl+C to quit)')
+			except (SpotifyNotRunning, SameSongPlaying):
+				time.sleep(5)
+		except KeyboardInterrupt:
+			print('\nSure boss, exiting.')
+			exit()
+
+
 def main():
 	# print(r"""
 	#  ____                     _               _
@@ -52,43 +92,11 @@ def main():
 	unsupported_precheck()
 
 	if args.tab:
-		from threading import Timer
-		from webbrowser import open
-		print('Firing up a browser tab!')
-		app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
-		app.static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
-		port = 5042  # random
-		url = f"http://127.0.0.1:{port}"
-		Timer(1.25, open, args=[url]).start()
-		app.run(port=port)
+		show_tab()
 
 	elif args.cli:
 		make_issue = args.no_issue
-		try:
-			song, artist = spotify.current()  # get currently playing song, artist
-			print(lyrics(song, artist, make_issue))
-			print('\n(Press Ctrl+C to quit)')
-		except SpotifyNotRunning:
-			print('Nothing playing at the moment.')
-			print('\n(Press Ctrl+C to quit)')
-			song, artist = None, None
-		while True:
-			# refresh every 5s to check whether song changed
-			# if changed, display the new lyrics
-			try:
-				try:
-					if spotify.current() == (song, artist):
-						raise SameSongPlaying
-					else:
-						song, artist = spotify.current()
-						clear()
-						print(lyrics(song, artist, make_issue))
-						print('\n(Press Ctrl+C to quit)')
-				except (SpotifyNotRunning, SameSongPlaying):
-					time.sleep(5)
-			except KeyboardInterrupt:
-				print('\nSure boss, exiting.')
-				exit()
+		show_cli(make_issue)
 	else:
 		parser.print_help()
 
