@@ -3,6 +3,7 @@ Contains unit tests for tab.py
 """
 import flask_testing
 from mock import patch
+from SwSpotify import SpotifyNotRunning
 
 
 class Tests(flask_testing.TestCase):
@@ -26,7 +27,7 @@ class Tests(flask_testing.TestCase):
 			response = c.get('/')
 			self.assert_template_used("lyrics.html")
 
-	@patch('SwSpotify.spotify.song', return_value=None)
+	@patch('SwSpotify.spotify.current', side_effect=SpotifyNotRunning)
 	def test_songchanged_returns_no(self, mock_current):
 		"""
 		that that songChanged can return no
@@ -35,7 +36,7 @@ class Tests(flask_testing.TestCase):
 			response = c.get('/songChanged')
 			self.assertEqual(response.data, b'no')
 
-	@patch('SwSpotify.spotify.song', return_value='Rodeo')
+	@patch('SwSpotify.spotify.current', return_value=('Rodeo', 'Lil Nas X'))
 	def test_songchanged_returns_yes(self, mock_current):
 		"""
 		that that songChanged can return yes
