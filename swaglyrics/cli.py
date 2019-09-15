@@ -65,7 +65,7 @@ def get_lyrics(song, artist):
 	:return: song lyrics or None if lyrics unavailable
 	"""
 	url_data = stripper(song, artist)  # generate url path using stripper()
-	url = 'https://genius.com/{}-lyrics'.format(url_data)  # format the url with the url path
+	url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
 	try:
 		page = requests.get(url)
 		page.raise_for_status()

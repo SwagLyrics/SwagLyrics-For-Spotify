@@ -6,12 +6,12 @@ import time
 from SwSpotify import spotify, SpotifyNotRunning
 from swaglyrics.cli import lyrics, clear
 from swaglyrics.tab import app
-from swaglyrics import unsupported_txt, SameSongPlaying, __version__ as version
+from swaglyrics import unsupported_txt, SameSongPlaying, __version__ as version, backend_url
 
 
 def unsupported_precheck():
 	try:
-		v = requests.get('https://aadibajpai.pythonanywhere.com/version')
+		v = requests.get(f'{backend_url}/version')
 		ver = v.text
 		if ver > version:
 			print("New version of SwagLyrics available: v{ver}\nPlease update :)".format(ver=ver))
@@ -20,7 +20,7 @@ def unsupported_precheck():
 	print('Updating unsupported.txt from server.')
 	with open(unsupported_txt, 'w', encoding='utf-8') as f:
 		try:
-			response = requests.get('https://aadibajpai.pythonanywhere.com/master_unsupported')
+			response = requests.get(f'{backend_url}/master_unsupported')
 			f.write(response.text)
 			print("Updated unsupported.txt successfully.")
 		except requests.exceptions.RequestException as e:
