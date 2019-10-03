@@ -89,12 +89,12 @@ def main():
 	parser.add_argument('-n', '--no-issue', action='store_false', help='Disable issue-making on cli.')
 	args = parser.parse_args()
 
-	unsupported_precheck()
-
 	if args.tab:
+		unsupported_precheck()
 		show_tab()
 
 	elif args.cli:
+		unsupported_precheck()
 		make_issue = args.no_issue
 		show_cli(make_issue)
 	else:
