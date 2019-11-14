@@ -108,7 +108,7 @@ See [CHANGES.md](CHANGES.md) for prior release notes.
 2. ~~Better logging of unsupported songs, the isolated unsupported.txt is sub-optimal for multiple users since the
 file will only update locally with songs which worked fine when it was just me but since I hope others use it too, I'll
 try to add a better method with server support.~~
-3. Better tests to test all of the functionality. (cli.py fully tested!)
+3. ~~Better tests to test all of the functionality. (cli.py fully tested!)~~ 100% code coverage
 4. Perhaps a tiny app using Electron that could fit in your tray to be opened whenever you want lyrics for a song.
 5. ~~Supporting more songs, currently the program sometimes fails at remixes since while the lyrics are same as 
 original,
