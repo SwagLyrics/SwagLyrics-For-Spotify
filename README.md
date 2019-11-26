@@ -82,8 +82,9 @@ Before using, you should check [USING.txt](swaglyrics/USING.txt) to comply with 
 included inside the package as well.
 
 ## Community
+- SwagLyrics is participating in [Google Code-in 2019](https://g.co/gci) with CCExtractor Development.
 - SwagLyrics participated in [Google Code-in 2018](https://g.co/gci) with CCExtractor Development.
-- SwagLyrics is participating in [Google Summer of Code 2019](https://g.co/gsoc) with CCExtractor Development. 
+- SwagLyrics participated in [Google Summer of Code 2019](https://g.co/gsoc) with CCExtractor Development. 
 The selected project can be found [here](https://summerofcode.withgoogle.com/projects/#5694893526089728).
 
 ## Changelog
