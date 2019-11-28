@@ -18,7 +18,8 @@ setuptools.setup(
 	packages=['swaglyrics'],
 	license='MIT',
 	include_package_data=True,
-	install_requires=['SwSpotify==1.1.1', 'flask', 'requests', 'unidecode', 'beautifulsoup4', 'colorama'],
+	install_requires=['SwSpotify==1.1.1', 'flask==1.1.1', 'requests==2.22.0', 'unidecode==1.1.1',
+                      'beautifulsoup4==4.8.1', 'colorama==0.4.1'],
 	python_requires='>=3.6',
 	keywords='spotify lyrics python genius',
 	project_urls={
