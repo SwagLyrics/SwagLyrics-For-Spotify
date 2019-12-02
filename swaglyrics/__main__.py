@@ -47,8 +47,8 @@ def show_cli(make_issue=False):
 		song, artist = spotify.current()  # get currently playing song, artist
 		print(lyrics(song, artist, make_issue))
 		print('\n(Press Ctrl+C to quit)')
-	except SpotifyNotRunning:
-		print('Nothing playing at the moment.')
+	except SpotifyNotRunning as e:
+		print(e)
 		print('\n(Press Ctrl+C to quit)')
 		song, artist = None, None
 	while True:
