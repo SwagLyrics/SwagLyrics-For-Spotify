@@ -130,7 +130,7 @@ class Tests(unittest.TestCase):
 			main()
 		sys.stdout = sys.__stdout__
 		self.assertIn("\n(Press Ctrl+C to quit)", capturedOutput.getvalue())
-		self.assertIn("Nothing playing at the moment.", capturedOutput.getvalue())
+		self.assertIn("Spotify appears to be paused or closed at the moment.", capturedOutput.getvalue())
 		self.assertIn("\nSure boss, exiting.", capturedOutput.getvalue())
 
 	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True, no_issue=True))
