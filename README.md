@@ -81,6 +81,8 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>.
 Before using, you should check [USING.txt](swaglyrics/USING.txt) to comply with the Genius ToS. There's a copy 
 included inside the package as well.
 
+Note: If you have trouble displaying Japanese/Chinese characters on the command-line, simply type `chcp 936` to change your code page. List of code pages can be found here: https://en.wikipedia.org/wiki/Code_page
+
 ## Community
 - SwagLyrics is participating in [Google Code-in 2019](https://g.co/gci) with CCExtractor Development.
 - SwagLyrics participated in [Google Code-in 2018](https://g.co/gci) with CCExtractor Development.
