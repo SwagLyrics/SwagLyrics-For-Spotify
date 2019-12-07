@@ -37,7 +37,12 @@ class Tests(unittest.TestCase):
 		self.assertEqual(stripper(
 			'거품 안 넘치게 따라줘 [Life Is Good] (feat. Crush, Dj Friz)', 'Dynamic Duo'), 'Dynamic-Duo-Life-Is-Good')
 		self.assertEqual(stripper('Ice Hotel (ft. SZA)', 'XXXTENTACION'), 'XXXTENTACION-Ice-Hotel')
-
+    
+    def test_that_stripping_works(self):
+        self.assertEqual(lyrics("ハゼ馳せる果てるまで","ZUTOMAYO"), 'Lyrics unavailable for ハゼ馳せる果てるまで by ZUTOMAYO.\n')
+        self.assertEqual(lyrics("Song","占位符"), 'Lyrics unavailable for Song by 占位符.\n')
+        self.assertEqual(lyrics("音乐","占位符"), 'Lyrics unavailable for 音乐 by 占位符.\n')
+    
 	# Integration test
 	def test_that_get_lyrics_works(self):
 		"""
