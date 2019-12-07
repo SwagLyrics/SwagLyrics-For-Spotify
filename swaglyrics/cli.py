@@ -47,7 +47,7 @@ def stripper(song: str, artist: str) -> str:
 	url_data = unidecode(url_data)  # convert accents and other diacritics
 	url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
 	if len(re.sub(spc, '', url_data.strip())) > 0:		 
-			 return "Empty URL Data"
+			 return None
 	url_data = re.sub(spc, '-', url_data.strip())  # substitute one or more spaces to -
 	return url_data
 def get_lyrics(song, artist):
@@ -59,7 +59,9 @@ def get_lyrics(song, artist):
 	:return: song lyrics or None if lyrics unavailable
 	"""
 	url_data = stripper(song, artist)  # generate url path using stripper()
-	if url_data != "Empty URL Data": 
+	if not url_data: 		
+		return None
+	else:
 		url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
 		try:
 			page = requests.get(url)
@@ -76,8 +78,7 @@ def get_lyrics(song, artist):
 		lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
 		lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
 		return lyrics
-	else:
-		return None
+	
 
 def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	"""Displays the fetched lyrics if song playing and handles if lyrics unavailable.
