@@ -33,6 +33,8 @@ def stripper(song: str, artist: str) -> str:
 	:return: formatted url path
 	"""
 	song = re.sub(brc, '', song).strip()  # remove braces and included text with feat and text after '- '
+	if not re.sub(nlt, '', song):  # check if title contains strictly non-latin characters
+		return None
 	ft = wth.search(song)  # find supporting artists if any
 	if ft:
 		song = song.replace(ft.group(), '')  # remove (with supporting artists) from song
@@ -65,6 +67,8 @@ def get_lyrics(song, artist):
 	:return: song lyrics or None if lyrics unavailable
 	"""
 	url_data = stripper(song, artist)  # generate url path using stripper()
+	if url_data is None:  # url path returned none, pass it along
+		return None
 	url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
 	try:
 		page = requests.get(url)
