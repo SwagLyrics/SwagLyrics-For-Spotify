@@ -80,12 +80,11 @@ def get_lyrics(song, artist):
 		return "Empty URL Data"
 
 	def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
-	"""
-	Displays the fetched lyrics if song playing and handles if lyrics unavailable.
-	:param song: currently playing song
-	:param artist: song artist
-	:param make_issue: whether to make an issue on GitHub if song unsupported
-	:return: lyrics if song playing"""
+		"""Displays the fetched lyrics if song playing and handles if lyrics unavailable.
+		:param song: currently playing song
+		:param artist: song artist
+		:param make_issue: whether to make an issue on GitHub if song unsupported:return: lyrics if song playing
+		"""
 	try:
 		with open(unsupported_txt, encoding='utf-8') as unsupported:
 			if f'{song} by {artist}' in unsupported.read():
