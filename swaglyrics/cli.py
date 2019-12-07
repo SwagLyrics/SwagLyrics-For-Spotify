@@ -58,9 +58,9 @@ def stripper(song: str, artist: str) -> str:
 	url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
 	if len(re.sub(spc, '', url_data.strip())) < 1:		 
 		return None
-	if url_data[0] = '-':
+	if url_data[0] == '-':
 		return None
-	if url_data[-1:] = '-':
+	if url_data[-1:] == '-':
 		return None
 	url_data = re.sub(spc, '-', url_data.strip())  # substitute one or more spaces to -
 	return url_data
