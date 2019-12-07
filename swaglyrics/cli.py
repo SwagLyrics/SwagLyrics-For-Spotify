@@ -5,14 +5,20 @@ from swaglyrics import __version__, unsupported_txt, backend_url
 from bs4 import BeautifulSoup, UnicodeDammit
 from unidecode import unidecode
 from colorama import init, Fore
+
+
 def clear() -> None:
 	os.system('cls' if os.name == 'nt' else 'clear')  # clear command window
+
+
 brc = re.compile(r'([(\[](feat|ft)[^)\]]*[)\]]|- .*)', re.I)  # matches braces with feat included or text after -
 aln = re.compile(r'[^ \-a-zA-Z0-9]+')  # matches non space or - or alphanumeric characters
 spc = re.compile(' *- *| +')  # matches one or more spaces
 wth = re.compile(r'(?: *\(with )([^)]+)\)')  # capture text after with
 nlt = re.compile(r'[^\x00-\x7F\x80-\xFF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]')  # match only latin characters,
 # built using latin character tables (basic, supplement, extended a,b and extended additional
+
+
 def stripper(song: str, artist: str) -> str:
 	"""
 	Generate the url path given the song and artist to format the Genius URL with.
@@ -50,6 +56,8 @@ def stripper(song: str, artist: str) -> str:
 			 return None
 	url_data = re.sub(spc, '-', url_data.strip())  # substitute one or more spaces to -
 	return url_data
+
+
 def get_lyrics(song, artist):
 	"""
 	Get lyrics from Genius given the song and artist.
@@ -81,10 +89,12 @@ def get_lyrics(song, artist):
 	
 
 def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
-	"""Displays the fetched lyrics if song playing and handles if lyrics unavailable.
+	"""
+	Displays the fetched lyrics if song playing and handles if lyrics unavailable.
 	:param song: currently playing song
 	:param artist: song artist
-	:param make_issue: whether to make an issue on GitHub if song unsupported:return: lyrics if song playing
+	:param make_issue: whether to make an issue on GitHub if song unsupported
+	:return: lyrics if song playing
 	"""
 	try:
 		with open(unsupported_txt, encoding='utf-8') as unsupported:
