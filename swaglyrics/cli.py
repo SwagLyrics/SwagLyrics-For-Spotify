@@ -41,21 +41,23 @@ def stripper(song: str, artist: str) -> str:
 			artist += f'-{ar}'
 		else:
 			artist += f'-and-{ar}'
-	song_data = artist + '-' + song
-	# swap some special characters
-	url_data = song_data.replace('&', 'and')
-	# replace /, !, _ with space to support more songs
-	url_data = url_data.replace('/', ' ').replace('!', ' ').replace('_', ' ')
-	for ch in ['Ø', 'ø']:
-		if ch in url_data:
-			url_data = url_data.replace(ch, '')
-	url_data = re.sub(nlt, '', url_data)  # remove non-latin characters before unidecode
-	url_data = unidecode(url_data)  # convert accents and other diacritics
-	url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
-	if len(re.sub(spc, '', url_data.strip())) < 1:		 
-			 return None
-	url_data = re.sub(spc, '-', url_data.strip())  # substitute one or more spaces to -
-	return url_data
+	if len(artist) < 1 & len(song) < 1:
+		song_data = artist + '-' + song
+		# swap some special characters
+		url_data = song_data.replace('&', 'and')
+		# replace /, !, _ with space to support more songs
+		url_data = url_data.replace('/', ' ').replace('!', ' ').replace('_', ' ')
+		for ch in ['Ø', 'ø']:
+			if ch in url_data:
+				url_data = url_data.replace(ch, '')
+		url_data = re.sub(nlt, '', url_data)  # remove non-latin characters before unidecode
+		url_data = unidecode(url_data)  # convert accents and other diacritics
+		url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
+		if len(re.sub(spc, '', url_data.strip())) < 1:		 
+				return None
+		url_data = re.sub(spc, '-', url_data.strip())  # substitute one or more spaces to -
+		return url_data
+	return None
 
 
 def get_lyrics(song, artist):
