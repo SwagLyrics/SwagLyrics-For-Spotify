@@ -36,7 +36,6 @@ class Tests(unittest.TestCase):
 		self.assertEqual(stripper('Seasons (with Sjava & Reason)', 'Mozzy'), 'Mozzy-Sjava-and-Reason-Seasons')
 		self.assertEqual(stripper(
 			'거품 안 넘치게 따라줘 [Life Is Good] (feat. Crush, Dj Friz)', 'Dynamic Duo'), 'Dynamic-Duo-Life-Is-Good')
-		self.assertEqual(stripper('ハゼ馳せる果てるまで', 'ZUTOMAYO'), None)
 		self.assertEqual(stripper('Ice Hotel (ft. SZA)', 'XXXTENTACION'), 'XXXTENTACION-Ice-Hotel')
 
 	# Integration test
@@ -44,6 +43,9 @@ class Tests(unittest.TestCase):
 		"""
 		Test that get_lyrics function works
 		"""
+		self.assertEqual(get_lyrics('果てるまで', 'ハゼ馳せる'), None)  # song and artist non-latin
+		self.assertEqual(get_lyrics('Hello', 'ハゼ馳せる'), None)  # artist non-latin
+		self.assertEqual(get_lyrics('ハゼ馳せる果てるまで', 'ZUTOMAYO'), None)  # song non-latin
 		self.assertEqual(get_lyrics("Faded", "Alan Walker")[:9], "[Verse 1]")
 		self.assertEqual(get_lyrics("Radioactive", "Imagine Dragons")[:7], "[Intro]")
 		self.assertEqual(get_lyrics("Battle Symphony", "Linkin Park")[:9], "[Verse 1]")
