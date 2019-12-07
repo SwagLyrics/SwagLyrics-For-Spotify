@@ -77,7 +77,7 @@ def get_lyrics(song, artist):
 		lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
 		return lyrics
 	else:
-		return "Empty URL Data"
+		return None
 
 def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	"""Displays the fetched lyrics if song playing and handles if lyrics unavailable.
@@ -95,20 +95,6 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	print(Fore.CYAN + f'\nGetting lyrics for {song} by {artist}.\n')
 	lyrics = get_lyrics(song, artist)
 	if not lyrics:
-		lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
-		# Log song and artist for which lyrics couldn't be obtained
-		with open(unsupported_txt, 'a') as f:
-			f.write(f'{song} by {artist} \n')
-			f.close()
-		if make_issue:
-			r = requests.post(f'{backend_url}/unsupported', data={
-				'song': song,
-				'artist': artist,
-				'version': __version__
-			})
-			if r.status_code == 200:
-				lyrics += r.text
-	if lyrics == "Empty URL Data":
 		lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
 		# Log song and artist for which lyrics couldn't be obtained
 		with open(unsupported_txt, 'a') as f:
