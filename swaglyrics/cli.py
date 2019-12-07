@@ -85,8 +85,7 @@ def get_lyrics(song, artist):
 	:param song: currently playing song
 	:param artist: song artist
 	:param make_issue: whether to make an issue on GitHub if song unsupported
-	:return: lyrics if song playing
-	"""
+	:return: lyrics if song playing"""
 	try:
 		with open(unsupported_txt, encoding='utf-8') as unsupported:
 			if f'{song} by {artist}' in unsupported.read():
