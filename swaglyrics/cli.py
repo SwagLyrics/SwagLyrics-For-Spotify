@@ -64,24 +64,27 @@ def get_lyrics(song, artist):
 	:param artist: song artist
 	:return: song lyrics or None if lyrics unavailable
 	"""
-	url_data = stripper(song, artist)  # generate url path using stripper()
-	url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
-	try:
-		page = requests.get(url)
-		page.raise_for_status()
-	except requests.exceptions.HTTPError:
-		url_data = requests.get(f'{backend_url}/stripper', data={
-			'song': song,
-			'artist': artist}).text
-		if not url_data:
-			return None
-		url = 'https://genius.com/{}-lyrics'.format(url_data)
-		page = requests.get(url)
+	url_data = stripper(song, artist)
+	if len(url_data) > 0:  # generate url path using stripper()
+		url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
+		try:
+			page = requests.get(url)
+			page.raise_for_status()
+		except requests.exceptions.HTTPError:
+			url_data = requests.get(f'{backend_url}/stripper', data={
+				'song': song,
+				'artist': artist}).text
+			if not url_data:
+				return None
+			url = 'https://genius.com/{}-lyrics'.format(url_data)
+			page = requests.get(url)
 
-	html = BeautifulSoup(page.text, "html.parser")
-	lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
-	lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
-	return lyrics
+		html = BeautifulSoup(page.text, "html.parser")
+		lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
+		lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
+		return lyrics
+	else:
+		return "Empty URL Data"
 
 
 def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
@@ -102,6 +105,20 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	print(Fore.CYAN + f'\nGetting lyrics for {song} by {artist}.\n')
 	lyrics = get_lyrics(song, artist)
 	if not lyrics:
+		lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
+		# Log song and artist for which lyrics couldn't be obtained
+		with open(unsupported_txt, 'a') as f:
+			f.write(f'{song} by {artist} \n')
+			f.close()
+		if make_issue:
+			r = requests.post(f'{backend_url}/unsupported', data={
+				'song': song,
+				'artist': artist,
+				'version': __version__
+			})
+			if r.status_code == 200:
+				lyrics += r.text
+	if lyrics == "Empty URL Data":
 		lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
 		# Log song and artist for which lyrics couldn't be obtained
 		with open(unsupported_txt, 'a') as f:
