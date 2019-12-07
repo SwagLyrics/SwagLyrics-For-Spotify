@@ -68,24 +68,23 @@ def get_lyrics(song, artist):
 	"""
 	url_data = stripper(song, artist)  # generate url path using stripper()
 	if not url_data: 		
-		return None
-	else:
-		url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
-		try:
-			page = requests.get(url)
-			page.raise_for_status()
-		except requests.exceptions.HTTPError:
-			url_data = requests.get(f'{backend_url}/stripper', data={
-				'song': song,
-				'artist': artist}).text
-			if not url_data:
-				return None
-			url = 'https://genius.com/{}-lyrics'.format(url_data)
-			page = requests.get(url)
-		html = BeautifulSoup(page.text, "html.parser")
-		lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
-		lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
-		return lyrics
+		return None	
+	url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
+	try:
+		page = requests.get(url)
+		page.raise_for_status()
+	except requests.exceptions.HTTPError:
+		url_data = requests.get(f'{backend_url}/stripper', data={
+			'song': song,
+			'artist': artist}).text
+		if not url_data:
+			return None
+		url = 'https://genius.com/{}-lyrics'.format(url_data)
+		page = requests.get(url)
+	html = BeautifulSoup(page.text, "html.parser")
+	lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
+	lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
+	return lyrics
 	
 
 def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
