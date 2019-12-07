@@ -1,3 +1,4 @@
+import io
 import requests
 import re
 import os
@@ -108,7 +109,7 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	if not lyrics:
 		lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
 		# Log song and artist for which lyrics couldn't be obtained
-		with open(unsupported_txt, 'a') as f:
+		with io.open(unsupported_txt, mode='a', encoding='utf-8') as f:
 			f.write(f'{song} by {artist} \n')
 			f.close()
 		if make_issue:
