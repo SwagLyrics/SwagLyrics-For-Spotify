@@ -1,4 +1,3 @@
-import io
 import requests
 import re
 import os
@@ -34,8 +33,6 @@ def stripper(song: str, artist: str) -> str:
 	:return: formatted url path
 	"""
 	song = re.sub(brc, '', song).strip()  # remove braces and included text with feat and text after '- '
-	if not re.sub(nlt, '', song):  # check if title contains strictly non-latin characters
-		return None
 	ft = wth.search(song)  # find supporting artists if any
 	if ft:
 		song = song.replace(ft.group(), '')  # remove (with supporting artists) from song
@@ -68,7 +65,8 @@ def get_lyrics(song, artist):
 	:return: song lyrics or None if lyrics unavailable
 	"""
 	url_data = stripper(song, artist)  # generate url path using stripper()
-	if url_data is None:  # url path returned none, pass it along
+	if url_data.startswith('-') or \
+			url_data.endswith('-'):  # url path had either song in non-latin, artist in non-latin, or both
 		return None
 	url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
 	try:
@@ -89,7 +87,7 @@ def get_lyrics(song, artist):
 	return lyrics
 
 
-def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
+def lyrics(song: str, artist: str, make_issue: bool = False) -> str:
 	"""
 	Displays the fetched lyrics if song playing and handles if lyrics unavailable.
 	:param song: currently playing song
@@ -109,7 +107,7 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	if not lyrics:
 		lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
 		# Log song and artist for which lyrics couldn't be obtained
-		with io.open(unsupported_txt, mode='a', encoding='utf-8') as f:
+		with open(unsupported_txt, mode='a', encoding='utf-8') as f:
 			f.write(f'{song} by {artist} \n')
 			f.close()
 		if make_issue:
