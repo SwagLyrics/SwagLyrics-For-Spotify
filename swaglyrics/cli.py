@@ -5,19 +5,14 @@ from swaglyrics import __version__, unsupported_txt, backend_url
 from bs4 import BeautifulSoup, UnicodeDammit
 from unidecode import unidecode
 from colorama import init, Fore
-
-
 def clear() -> None:
 	os.system('cls' if os.name == 'nt' else 'clear')  # clear command window
-
-
 brc = re.compile(r'([(\[](feat|ft)[^)\]]*[)\]]|- .*)', re.I)  # matches braces with feat included or text after -
 aln = re.compile(r'[^ \-a-zA-Z0-9]+')  # matches non space or - or alphanumeric characters
 spc = re.compile(' *- *| +')  # matches one or more spaces
 wth = re.compile(r'(?: *\(with )([^)]+)\)')  # capture text after with
 nlt = re.compile(r'[^\x00-\x7F\x80-\xFF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]')  # match only latin characters,
 # built using latin character tables (basic, supplement, extended a,b and extended additional
-
 def stripper(song: str, artist: str) -> str:
 	"""
 	Generate the url path given the song and artist to format the Genius URL with.
@@ -40,31 +35,21 @@ def stripper(song: str, artist: str) -> str:
 			artist += f'-{ar}'
 		else:
 			artist += f'-and-{ar}'
-	if len(artist) > 0 & len(song) > 0: 
-		song_data = artist + '-' + song
-		# swap some special characters
-		url_data = song_data.replace('&', 'and')
-		# replace /, !, _ with space to support more songs
-		url_data = url_data.replace('/', ' ').replace('!', ' ').replace('_', ' ')
-		for ch in ['Ø', 'ø']:
-			if ch in url_data:
-				url_data = url_data.replace(ch, '')
-		url_data = re.sub(nlt, '', url_data)  # remove non-latin characters before unidecode
-		url_data = unidecode(url_data)  # convert accents and other diacritics
-		url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
-		if len(re.sub(spc, '', url_data.strip())) > 0:
-			 
-			 return "Empty"
-		url_data = re.sub(spc, '-', url_data.strip())  # substitute one or more spaces to -
-		return url_data
-		
-	else:
-		
-		return "Empty"
-
-
-
-
+	song_data = artist + '-' + song
+	# swap some special characters
+	url_data = song_data.replace('&', 'and')
+	# replace /, !, _ with space to support more songs
+	url_data = url_data.replace('/', ' ').replace('!', ' ').replace('_', ' ')
+	for ch in ['Ø', 'ø']:
+		if ch in url_data:
+			url_data = url_data.replace(ch, '')
+	url_data = re.sub(nlt, '', url_data)  # remove non-latin characters before unidecode
+	url_data = unidecode(url_data)  # convert accents and other diacritics
+	url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
+	if len(re.sub(spc, '', url_data.strip())) > 0:		 
+			 return "Empty URL Data"
+	url_data = re.sub(spc, '-', url_data.strip())  # substitute one or more spaces to -
+	return url_data
 def get_lyrics(song, artist):
 	"""
 	Get lyrics from Genius given the song and artist.
@@ -73,8 +58,8 @@ def get_lyrics(song, artist):
 	:param artist: song artist
 	:return: song lyrics or None if lyrics unavailable
 	"""
-	url_data = stripper(song, artist) # generate url path using stripper()
-	if url_data != "Empty":  
+	url_data = stripper(song, artist)  # generate url path using stripper()
+	if url_data =! "Empty URL Data": 
 		url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
 		try:
 			page = requests.get(url)
@@ -87,7 +72,6 @@ def get_lyrics(song, artist):
 				return None
 			url = 'https://genius.com/{}-lyrics'.format(url_data)
 			page = requests.get(url)
-
 		html = BeautifulSoup(page.text, "html.parser")
 		lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
 		lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
@@ -95,9 +79,7 @@ def get_lyrics(song, artist):
 	else:
 		return "Empty URL Data"
 
-
-
-def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
+	def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	"""
 	Displays the fetched lyrics if song playing and handles if lyrics unavailable.
 	:param song: currently playing song
