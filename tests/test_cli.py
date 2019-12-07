@@ -36,7 +36,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(stripper('Seasons (with Sjava & Reason)', 'Mozzy'), 'Mozzy-Sjava-and-Reason-Seasons')
 		self.assertEqual(stripper('거품 안 넘치게 따라줘 [Life Is Good] (feat. Crush, Dj Friz)', 'Dynamic Duo'), 'Dynamic-Duo-Life-Is-Good')
 		self.assertEqual(stripper('Ice Hotel (ft. SZA)', 'XXXTENTACION'), 'XXXTENTACION-Ice-Hotel')
-		self.assertEqual(lyrics('ハゼ馳せる果てるまで','ZUTOMAYO'), "Couldn't get lyrics for ハゼ馳せる果てるまで by ZUTOMAYO.\n")
+		self.assertEqual(stripper('ハゼ馳せる果てるまで','ZUTOMAYO'), None)
 		
     
 	def test_that_get_lyrics_works(self):
