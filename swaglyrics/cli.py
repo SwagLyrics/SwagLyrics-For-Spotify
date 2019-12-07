@@ -85,44 +85,44 @@ def get_lyrics(song, artist):
 		:param artist: song artist
 		:param make_issue: whether to make an issue on GitHub if song unsupported:return: lyrics if song playing
 		"""
-	try:
-		with open(unsupported_txt, encoding='utf-8') as unsupported:
-			if f'{song} by {artist}' in unsupported.read():
-				return f'Lyrics unavailable for {song} by {artist}.\n'
-	except FileNotFoundError:
-		pass
-	init(autoreset=True)
-	print(Fore.CYAN + f'\nGetting lyrics for {song} by {artist}.\n')
-	lyrics = get_lyrics(song, artist)
-	if not lyrics:
-		lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
-		# Log song and artist for which lyrics couldn't be obtained
-		with open(unsupported_txt, 'a') as f:
-			f.write(f'{song} by {artist} \n')
-			f.close()
-		if make_issue:
-			r = requests.post(f'{backend_url}/unsupported', data={
-				'song': song,
-				'artist': artist,
-				'version': __version__
-			})
-			if r.status_code == 200:
-				lyrics += r.text
-	if lyrics == "Empty URL Data":
-		lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
-		# Log song and artist for which lyrics couldn't be obtained
-		with open(unsupported_txt, 'a') as f:
-			f.write(f'{song} by {artist} \n')
-			f.close()
-		if make_issue:
-			r = requests.post(f'{backend_url}/unsupported', data={
-				'song': song,
-				'artist': artist,
-				'version': __version__
-			})
-			if r.status_code == 200:
-				lyrics += r.text
-	return lyrics
+		try:
+			with open(unsupported_txt, encoding='utf-8') as unsupported:
+				if f'{song} by {artist}' in unsupported.read():
+					return f'Lyrics unavailable for {song} by {artist}.\n'
+		except FileNotFoundError:
+			pass
+		init(autoreset=True)
+		print(Fore.CYAN + f'\nGetting lyrics for {song} by {artist}.\n')
+		lyrics = get_lyrics(song, artist)
+		if not lyrics:
+			lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
+			# Log song and artist for which lyrics couldn't be obtained
+			with open(unsupported_txt, 'a') as f:
+				f.write(f'{song} by {artist} \n')
+				f.close()
+			if make_issue:
+				r = requests.post(f'{backend_url}/unsupported', data={
+					'song': song,
+					'artist': artist,
+					'version': __version__
+				})
+				if r.status_code == 200:
+					lyrics += r.text
+		if lyrics == "Empty URL Data":
+			lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
+			# Log song and artist for which lyrics couldn't be obtained
+			with open(unsupported_txt, 'a') as f:
+				f.write(f'{song} by {artist} \n')
+				f.close()
+			if make_issue:
+				r = requests.post(f'{backend_url}/unsupported', data={
+					'song': song,
+					'artist': artist,
+					'version': __version__
+				})
+				if r.status_code == 200:
+					lyrics += r.text
+		return lyrics
 
 
 if __name__ == '__main__':
