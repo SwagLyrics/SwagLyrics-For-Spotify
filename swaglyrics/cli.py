@@ -52,7 +52,7 @@ def stripper(song: str, artist: str) -> str:
 	url_data = re.sub(nlt, '', url_data)  # remove non-latin characters before unidecode
 	url_data = unidecode(url_data)  # convert accents and other diacritics
 	url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
-	if len(re.sub(spc, '', url_data.strip())) < 0:		 
+	if len(re.sub(spc, '', url_data.strip())) < 1:		 
 			 return None
 	url_data = re.sub(spc, '-', url_data.strip())  # substitute one or more spaces to -
 	return url_data
