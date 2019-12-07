@@ -18,7 +18,6 @@ wth = re.compile(r'(?: *\(with )([^)]+)\)')  # capture text after with
 nlt = re.compile(r'[^\x00-\x7F\x80-\xFF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]')  # match only latin characters,
 # built using latin character tables (basic, supplement, extended a,b and extended additional
 
-
 def stripper(song: str, artist: str) -> str:
 	"""
 	Generate the url path given the song and artist to format the Genius URL with.
@@ -41,19 +40,29 @@ def stripper(song: str, artist: str) -> str:
 			artist += f'-{ar}'
 		else:
 			artist += f'-and-{ar}'
-	song_data = artist + '-' + song
-	# swap some special characters
-	url_data = song_data.replace('&', 'and')
-	# replace /, !, _ with space to support more songs
-	url_data = url_data.replace('/', ' ').replace('!', ' ').replace('_', ' ')
-	for ch in ['Ø', 'ø']:
-		if ch in url_data:
-			url_data = url_data.replace(ch, '')
-	url_data = re.sub(nlt, '', url_data)  # remove non-latin characters before unidecode
-	url_data = unidecode(url_data)  # convert accents and other diacritics
-	url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
-	url_data = re.sub(spc, '-', url_data.strip())  # substitute one or more spaces to -
-	return url_data
+	if len(artist) > 0 & len(song) > 0: 
+		song_data = artist + '-' + song
+		# swap some special characters
+		url_data = song_data.replace('&', 'and')
+		# replace /, !, _ with space to support more songs
+		url_data = url_data.replace('/', ' ').replace('!', ' ').replace('_', ' ')
+		for ch in ['Ø', 'ø']:
+			if ch in url_data:
+				url_data = url_data.replace(ch, '')
+		url_data = re.sub(nlt, '', url_data)  # remove non-latin characters before unidecode
+		url_data = unidecode(url_data)  # convert accents and other diacritics
+		url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
+		if len(re.sub(spc, '', url_data.strip())) > 0:
+			 
+			 return "Empty"
+		url_data = re.sub(spc, '-', url_data.strip())  # substitute one or more spaces to -
+		return url_data
+		
+	else:
+		
+		return "Empty"
+
+
 
 
 def get_lyrics(song, artist):
@@ -64,8 +73,8 @@ def get_lyrics(song, artist):
 	:param artist: song artist
 	:return: song lyrics or None if lyrics unavailable
 	"""
-	url_data = stripper(song, artist)
-	if len(url_data) > 0:  # generate url path using stripper()
+	url_data = stripper(song, artist) # generate url path using stripper()
+	if url_data != "Empty":  
 		url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
 		try:
 			page = requests.get(url)
@@ -85,6 +94,7 @@ def get_lyrics(song, artist):
 		return lyrics
 	else:
 		return "Empty URL Data"
+
 
 
 def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
