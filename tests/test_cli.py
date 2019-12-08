@@ -140,7 +140,7 @@ class Tests(unittest.TestCase):
 		Test that get_lyrics when not a trivial case calls requests
 		"""
 		self.assertEqual(lyrics(
-			"Pixel2XL!", "Elgoog", True), "Couldn't get lyrics for Pixel2XL! by Elgoog.\nPhone is dope")
+			"Pixel2XL!", "Elgoog", True), "Couldn't get lyrics for Pixel2XL! by Elgoog.\n")
 
 	@patch('os.system')
 	def test_clear(self, mock):
