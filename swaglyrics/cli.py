@@ -118,6 +118,8 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 			})
 			if r.status_code == 200:
 				lyrics += r.text
+			else:
+				lyrics += "Issue Creation Failed"
 	return lyrics
 
 
