@@ -109,7 +109,7 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 		with open(unsupported_txt, 'a', encoding='utf-8') as f:
 			f.write(f'{song} by {artist} \n')
 			f.close()
-		if make_issue and re.sub(aln, '', song + artist) != song+artist:  
+		if make_issue and re.search(aln, song + artist):  
 			#Only runs if other characters are present
 			r = requests.post(f'{backend_url}/unsupported', data={
 				'song': song,
