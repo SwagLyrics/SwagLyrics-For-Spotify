@@ -133,6 +133,15 @@ class Tests(unittest.TestCase):
 		self.assertEqual(lyrics(
 			"Pixel2XL", "Elgoog", True), "Couldn't get lyrics for Pixel2XL by Elgoog.\n")
 
+	@patch('swaglyrics.cli.requests.post', return_value=R(404))
+	@patch('swaglyrics.cli.get_lyrics', return_value=None)
+	def test_that_lyrics_requests_canfail(self, f_get_lyrics, mock_requests):
+		"""
+		Test that get_lyrics when not a trivial case calls requests
+		"""
+		self.assertEqual(lyrics(
+			"Pixel2XL!", "Elgoog", True), "Couldn't get lyrics for Pixel2XL! by Elgoog.\nPhone is dope")
+
 	@patch('os.system')
 	def test_clear(self, mock):
 		clear()
