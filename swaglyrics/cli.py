@@ -42,8 +42,6 @@ def stripper(song: str, artist: str) -> str:
 		else:
 			artist += f'-and-{ar}'
 	song_data = artist + '-' + song
-	if not artist or not song:
-		return None
 	# swap some special characters
 	url_data = song_data.replace('&', 'and')
 	# replace /, !, _ with space to support more songs
@@ -54,10 +52,6 @@ def stripper(song: str, artist: str) -> str:
 	url_data = re.sub(nlt, '', url_data)  # remove non-latin characters before unidecode
 	url_data = unidecode(url_data)  # convert accents and other diacritics
 	url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
-	if url_data[0] == '-':
-		return None
-	if url_data[-1:] == '-':
-		return None
 	url_data = re.sub(spc, '-', url_data.strip())  # substitute one or more spaces to -
 	return url_data
 
@@ -71,8 +65,8 @@ def get_lyrics(song, artist):
 	:return: song lyrics or None if lyrics unavailable
 	"""
 	url_data = stripper(song, artist)  # generate url path using stripper()
-	if not url_data: 		
-		return None	
+	if url_data.startswith('-') or url_data.endswith('-'):
+		return None  # url path had either song in non-latin, artist in non-latin, or both
 	url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
 	try:
 		page = requests.get(url)
@@ -85,11 +79,12 @@ def get_lyrics(song, artist):
 			return None
 		url = 'https://genius.com/{}-lyrics'.format(url_data)
 		page = requests.get(url)
+
 	html = BeautifulSoup(page.text, "html.parser")
 	lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
 	lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
 	return lyrics
-	
+
 
 def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	"""
@@ -111,10 +106,10 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	if not lyrics:
 		lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
 		# Log song and artist for which lyrics couldn't be obtained
-		with open(unsupported_txt, 'a') as f:
+		with open(unsupported_txt, 'a', encoding='utf-8') as f:
 			f.write(f'{song} by {artist} \n')
 			f.close()
-		if make_issue:
+		if make_issue and re.sub(aln, '', song+artist) != song+artist: #Removes Puncation and Checks if Version without Puncation is the same as first version if it is then there is no Puncation 
 			r = requests.post(f'{backend_url}/unsupported', data={
 				'song': song,
 				'artist': artist,
@@ -122,6 +117,7 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 			})
 			if r.status_code == 200:
 				lyrics += r.text
+		
 	return lyrics
 
 
