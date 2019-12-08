@@ -133,11 +133,6 @@ class Tests(unittest.TestCase):
 		self.assertEqual(lyrics(
 			"Pixel2XL", "Elgoog", True), "Couldn't get lyrics for Pixel2XL by Elgoog.\n")
 
-	@patch('swaglyrics.cli.requests.post', return_value=R(404, "Phone is dope"))
-	def test_that_lyrics_calls_requests_and_error_is_blocked(self, f_get_lyrics):
-		self.assertEqual(lyrics(
-			"Pixel2XL!", "Elgoog", True), "Couldn't get lyrics for Pixel2XL! by Elgoog.\nIssue Creation Failed")
-
 	@patch('os.system')
 	def test_clear(self, mock):
 		clear()
