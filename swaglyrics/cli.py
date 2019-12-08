@@ -42,9 +42,7 @@ def stripper(song: str, artist: str) -> str:
 		else:
 			artist += f'-and-{ar}'
 	song_data = artist + '-' + song
-	if len(artist) < 1:
-		return None
-	if len(song) < 1:
+	if not artist or not song:
 		return None
 	# swap some special characters
 	url_data = song_data.replace('&', 'and')
@@ -56,8 +54,6 @@ def stripper(song: str, artist: str) -> str:
 	url_data = re.sub(nlt, '', url_data)  # remove non-latin characters before unidecode
 	url_data = unidecode(url_data)  # convert accents and other diacritics
 	url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
-	if len(re.sub(spc, '', url_data.strip())) < 1:		 
-		return None
 	if url_data[0] == '-':
 		return None
 	if url_data[-1:] == '-':
