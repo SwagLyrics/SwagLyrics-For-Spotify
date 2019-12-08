@@ -109,7 +109,8 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 		with open(unsupported_txt, 'a', encoding='utf-8') as f:
 			f.write(f'{song} by {artist} \n')
 			f.close()
-		if make_issue and re.sub(aln, '', song+artist) != song+artist: #Removes Puncation and Checks if Version without Puncation is the same as first version if it is then there is no Puncation 
+		if make_issue and re.sub(aln, '', song + artist) != song+artist:  
+			#Removes Puncation and Checks if Version without Puncation is the same as first version if it is then there is no Puncation
 			r = requests.post(f'{backend_url}/unsupported', data={
 				'song': song,
 				'artist': artist,
@@ -117,7 +118,7 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 			})
 			if r.status_code == 200:
 				lyrics += r.text
-		
+
 	return lyrics
 
 
