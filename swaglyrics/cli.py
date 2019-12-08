@@ -110,7 +110,7 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 			f.write(f'{song} by {artist} \n')
 			f.close()
 		if make_issue and re.search(aln, song + artist):  
-			#Only runs if other characters are present
+			# only runs if non space or non alphanumeric characters are present
 			r = requests.post(f'{backend_url}/unsupported', data={
 				'song': song,
 				'artist': artist,
