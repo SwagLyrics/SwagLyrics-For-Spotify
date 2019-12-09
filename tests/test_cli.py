@@ -137,7 +137,7 @@ class Tests(unittest.TestCase):
 	@patch('swaglyrics.cli.get_lyrics', return_value=None)
 	def test_that_lyrics_requests_canfail(self, f_get_lyrics, mock_requests):
 		"""
-		Test that get_lyrics when not a trivial case calls requests
+		Test that when get_lyrics calls requests and it does not succeed it doesn't append r.text
 		"""
 		self.assertEqual(lyrics(
 			"Pixel2XL!", "Elgoog", True), "Couldn't get lyrics for Pixel2XL! by Elgoog.\n")
