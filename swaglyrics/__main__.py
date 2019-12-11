@@ -99,9 +99,9 @@ def main():
 		unsupported_precheck()
 		make_issue = args.no_issue
 		show_cli(make_issue)
-
+        
 	elif args.tray:
-        print("Note: Only supported on Windows")
+		print("Note: Only supported on Windows")
 		if sys.platform.startswith("win"):
 			unsupported_precheck()
 			systray()
