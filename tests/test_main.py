@@ -75,7 +75,7 @@ class Tests(unittest.TestCase):
 		main()
 		sys.stdout = sys.__stdout__
 		# the newline is necessary since argparse wraps it there in terminal
-		self.assertIn("Get lyrics for the currently playing song on Spotify. Either --tab, --tray or --cli is required.",
+		self.assertIn("Get lyrics for the currently playing song on Spotify. Either --tab, --tray or\n--cli is required.",
 					  capturedOutput.getvalue())
 
 	@patch('webbrowser.open')
