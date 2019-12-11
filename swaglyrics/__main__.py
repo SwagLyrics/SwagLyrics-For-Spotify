@@ -6,7 +6,9 @@ import time
 from SwSpotify import spotify, SpotifyNotRunning
 from swaglyrics.cli import lyrics, clear
 from swaglyrics.tab import app
+from swaglyrics.systray import systray
 from swaglyrics import unsupported_txt, SameSongPlaying, __version__ as version, backend_url
+from tkinter import *
 
 
 def unsupported_precheck():
@@ -28,7 +30,7 @@ def unsupported_precheck():
 		except PermissionError as e:
 			print("You should install SwagLyrics as --user or use sudo to access unsupported.txt.", e)
 			sys.exit(1)
-
+	
 
 def show_tab():
 	from threading import Timer
@@ -82,10 +84,11 @@ def main():
 	# print('\n')
 
 	parser = argparse.ArgumentParser(
-		description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
+		description="Get lyrics for the currently playing song on Spotify. Either --tab, --tray or --cli is required.")
 
 	parser.add_argument('-t', '--tab', action='store_true', help='Display lyrics in a browser tab.')
 	parser.add_argument('-c', '--cli', action='store_true', help='Display lyrics in the command-line.')
+	parser.add_argument('-ta', '--tray', action='store_true', help='Open app in system tray (windows only) that displays lyrics on click')
 	parser.add_argument('-n', '--no-issue', action='store_false', help='Disable issue-making on cli.')
 	args = parser.parse_args()
 
@@ -97,6 +100,11 @@ def main():
 		unsupported_precheck()
 		make_issue = args.no_issue
 		show_cli(make_issue)
+
+	elif args.tray:
+		unsupported_precheck()
+		systray()
+
 	else:
 		parser.print_help()
 
