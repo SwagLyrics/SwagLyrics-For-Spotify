@@ -8,7 +8,6 @@ from swaglyrics.cli import lyrics, clear
 from swaglyrics.tab import app
 from swaglyrics.systray import systray
 from swaglyrics import unsupported_txt, SameSongPlaying, __version__ as version, backend_url
-from tkinter import *
 
 
 def unsupported_precheck():
@@ -102,8 +101,11 @@ def main():
 		show_cli(make_issue)
 
 	elif args.tray:
-		unsupported_precheck()
-		systray()
+		if sys.platform.startswith("win"):
+			unsupported_precheck()
+			systray()
+		else:
+			print("Currently only supported on Windows")
 
 	else:
 		parser.print_help()
