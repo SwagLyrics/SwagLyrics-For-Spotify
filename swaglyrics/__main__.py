@@ -101,7 +101,7 @@ def main():
 		show_cli(make_issue)
 
 	elif args.tray:
-        print("Note: Currently only supported on Windows")
+        print("Note: Only supported on Windows")
 		if sys.platform.startswith("win"):
 			unsupported_precheck()
 			systray()
