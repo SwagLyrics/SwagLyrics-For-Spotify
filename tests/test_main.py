@@ -65,7 +65,7 @@ class Tests(unittest.TestCase):
 		self.assertIn("You should install SwagLyrics as --user or use sudo to access unsupported.txt.",
 					  capturedOutput.getvalue())
 
-	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=False))
+	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, tray=False, cli=False))
 	def test_parser_prints_description(self, mock_argparse):
 		"""
 		Tests whether prints its description
