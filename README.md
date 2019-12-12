@@ -83,6 +83,14 @@ included inside the package as well.
 
 Note: If you have trouble displaying Japanese/Chinese characters on the command-line, simply type `chcp 936` to change your code page. List of code pages can be found here: https://en.wikipedia.org/wiki/Code_page
 
+## Windows System Tray App
+
+To use the System Tray app please download the program [here](dist/swaglyrics.exe) and install swag lyrics using `pip install swaglyrics`.
+
+After running the .exe you will see the SwagLyrics icon in the system tray, double click it to load the lyrics of the current playing song. To quit the program, right click the icon and select Quit. 
+
+As previously mentioned, you should check [USING.txt](swaglyrics/USING.txt) to comply with the Genius ToS before running.
+
 ## Community
 - SwagLyrics is participating in [Google Code-in 2019](https://g.co/gci) with CCExtractor Development.
 - SwagLyrics participated in [Google Code-in 2018](https://g.co/gci) with CCExtractor Development.
@@ -112,7 +120,7 @@ See [CHANGES.md](CHANGES.md) for prior release notes.
 file will only update locally with songs which worked fine when it was just me but since I hope others use it too, I'll
 try to add a better method with server support.~~
 3. ~~Better tests to test all of the functionality. (cli.py fully tested!)~~ 100% code coverage
-4. Perhaps a tiny app using Electron that could fit in your tray to be opened whenever you want lyrics for a song.
+4. ~~Perhaps a tiny app that could fit in your tray to be opened whenever you want lyrics for a song. **done**~~
 5. ~~Supporting more songs, currently the program sometimes fails at remixes since while the lyrics are same as 
 original,
  the artist is the remixer. **done**~~
@@ -126,6 +134,11 @@ original,
 ## SwagLyrics on Windows with Firefox Side-View
 <p align="center">
   <img src="https://i.imgur.com/TcSpbP9.png" alt="SwagLyrics with Side-View">
+</p>
+
+## SwagLyrics on Windows with System Tray App
+<p align="center">
+  Coming Soon
 </p>
 
 ## Screencast - SwagLyrics on Linux
