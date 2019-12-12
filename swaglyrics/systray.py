@@ -22,6 +22,7 @@ def systray():
             eula.insert("1.0", songlyrics)
             eula.pack(side="left")
             scroll.config(command=eula.yview)
+            master.resizable(False, False)
             master.title(song+" by "+artist)
             mainloop()  
         except SpotifyNotRunning as e:
