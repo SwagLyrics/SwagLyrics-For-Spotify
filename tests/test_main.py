@@ -65,7 +65,7 @@ class Tests(unittest.TestCase):
 		self.assertIn("You should install SwagLyrics as --user or use sudo to access unsupported.txt.",
 					  capturedOutput.getvalue())
 
-	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=False))
+	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=False, tray=False))
 	def test_parser_prints_description(self, mock_argparse):
 		"""
 		Tests whether prints its description
@@ -75,13 +75,13 @@ class Tests(unittest.TestCase):
 		main()
 		sys.stdout = sys.__stdout__
 		# the newline is necessary since argparse wraps it there in terminal
-		self.assertIn("Get lyrics for the currently playing song on Spotify. Either --tab or --cli is\nrequired.",
+		self.assertIn("Get lyrics for the currently playing song on Spotify. Either --tab, --tray or\n--cli is required.",
 					  capturedOutput.getvalue())
 
 	@patch('webbrowser.open')
 	@patch('threading.Timer', side_effect=None)
 	@patch('swaglyrics.tab.app.run', side_effect=None)
-	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=True, cli=False, no_issue=False))
+	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=True, cli=False, tray=False, no_issue=False))
 	def test_parser_runs_tab(self, mock_argparse, mock_app, mock_timer, mock_browser):
 		"""
 		Tests whether parser runs tab
@@ -93,7 +93,7 @@ class Tests(unittest.TestCase):
 		self.assertIn("Firing up a browser tab!", capturedOutput.getvalue())
 		self.assertTrue(mock_app.called)
 
-	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True, no_issue=True))
+	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True, tray=False, no_issue=True))
 	@patch('swaglyrics.__main__.spotify.current')
 	@patch('swaglyrics.cli.get_lyrics')
 	@patch('swaglyrics.__main__.unsupported_precheck')
@@ -115,7 +115,7 @@ class Tests(unittest.TestCase):
 		self.assertIn("Bruhnini", capturedOutput.getvalue())
 		self.assertIn("\nSure boss, exiting.", capturedOutput.getvalue())
 
-	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True, no_issue=True))
+	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True, tray=False, no_issue=True))
 	@patch('swaglyrics.__main__.spotify.current')
 	@patch('swaglyrics.__main__.unsupported_precheck')
 	def test_parser_cli_works_when_spotify_not_playing(self, f_precheck, fake_spotify, mock_argparse):
@@ -133,7 +133,7 @@ class Tests(unittest.TestCase):
 		self.assertIn("Spotify appears to be paused or closed at the moment.", capturedOutput.getvalue())
 		self.assertIn("\nSure boss, exiting.", capturedOutput.getvalue())
 
-	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True, no_issue=True))
+	@patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=True, tray=False, no_issue=True))
 	@patch('swaglyrics.__main__.spotify.current')
 	@patch('swaglyrics.cli.get_lyrics', return_value='Bruhnini')
 	@patch('swaglyrics.__main__.unsupported_precheck')
