@@ -36,4 +36,3 @@ def systray():
     img_path = current_path.replace("systray.py", "icon.ico")
     systray = SysTrayIcon(img_path, "SwagLyrics", menu_options)
     systray.start()
-systray()
