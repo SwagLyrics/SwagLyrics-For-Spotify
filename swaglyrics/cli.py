@@ -4,7 +4,7 @@ import os
 from swaglyrics import __version__, unsupported_txt, backend_url
 from bs4 import BeautifulSoup, UnicodeDammit
 from unidecode import unidecode
-from colorama import init, Fore
+from colorama import init, Fore, Style
 
 
 def clear() -> None:
@@ -99,7 +99,7 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	except FileNotFoundError:
 		pass
 	init(autoreset=True)
-	print(Fore.CYAN + f'\nGetting lyrics for {song} by {artist}.\n')
+	print(Fore.CYAN + Style.BRIGHT + f'\nGetting lyrics for {song} by {artist}.\n')
 	lyrics = get_lyrics(song, artist)
 	if not lyrics:
 		lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
