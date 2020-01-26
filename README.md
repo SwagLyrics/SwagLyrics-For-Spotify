@@ -12,11 +12,11 @@
   <a href="https://pypi.org/project/swaglyrics/">
     <img src="https://img.shields.io/pypi/v/swaglyrics.svg" alt="PyPI" />
   </a>
-  <a href="https://pepy.tech/project/swaglyrics">
-    <img src="https://pepy.tech/badge/swaglyrics" alt="Downloads" />
-  </a>
   <a href="https://discord.gg/DSUZGK4">
     <img src="https://badgen.net/badge/discord/join%20chat/7289DA?icon=discord" alt="Discord Server" />
+  </a>
+  <a href="https://pepy.tech/project/swaglyrics">
+    <img src="https://pepy.tech/badge/swaglyrics" alt="Downloads" />
   </a>
 </p>
 
