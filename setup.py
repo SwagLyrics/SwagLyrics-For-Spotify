@@ -25,6 +25,7 @@ setuptools.setup(
             'mock',
             'pytest',
             'pytest-cov',
+            'blinker',
             'flask_testing'
         ]
     },
