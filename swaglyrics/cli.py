@@ -105,10 +105,11 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	lyrics = get_lyrics(song, artist)
 	if not lyrics:
 		lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
-		# Log song and artist for which lyrics couldn't be obtained
+		# log song and artist for which lyrics couldn't be obtained
 		with open(unsupported_txt, 'a', encoding='utf-8') as f:
 			f.write(f'{song} by {artist} \n')
-		if make_issue:
+		if make_issue and re.search(aln, song + artist):
+			# only runs if non space or non alphanumeric characters are present
 			r = requests.post(f'{backend_url}/unsupported', data={
 				'song': song,
 				'artist': artist,
