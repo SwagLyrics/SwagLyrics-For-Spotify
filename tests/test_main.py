@@ -105,6 +105,18 @@ class Tests(unittest.TestCase):
         val = unsupported_precheck()
         self.assertIsNone(val)
 
+    @patch('swaglyrics.__main__.requests.get')
+    def test_that_unsupported_precheck_does_update_after_a_day(self, fake_get):
+        fake_get.side_effect = requests.exceptions.RequestException
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        with open(unsupported_txt, 'w') as f:
+            f.write(str(time.time()-86500))  # more than a day
+        unsupported_precheck()
+        sys.stdout = sys.__stdout__
+        self.assertTrue(fake_get.called)
+        self.assertIn("Could not update unsupported.txt successfully.", capturedOutput.getvalue())
+
     @patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(tab=False, cli=False))
     def test_parser_prints_description(self, mock_argparse):
         """
