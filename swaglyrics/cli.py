@@ -1,10 +1,12 @@
-import requests
-import re
 import os
-from swaglyrics import __version__, unsupported_txt, backend_url
+import re
+
+import requests
 from bs4 import BeautifulSoup, UnicodeDammit
-from unidecode import unidecode
 from colorama import init, Fore, Style
+from unidecode import unidecode
+
+from swaglyrics import __version__, unsupported_txt, backend_url
 
 
 def clear() -> None:

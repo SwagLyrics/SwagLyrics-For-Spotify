@@ -2,8 +2,9 @@
 Contains unit tests for tab.py
 """
 import flask_testing
-from mock import patch
 from SwSpotify import SpotifyNotRunning
+from mock import patch
+
 from swaglyrics.tab import app
 
 

@@ -1,12 +1,14 @@
 """
 Contains unit tests for cli.py
 """
-import unittest
 import os
+import unittest
+
 import requests
-from swaglyrics.cli import stripper, lyrics, get_lyrics, clear
-from swaglyrics import unsupported_txt
 from mock import patch
+
+from swaglyrics import unsupported_txt
+from swaglyrics.cli import stripper, lyrics, get_lyrics, clear
 from tests.base import R
 
 
