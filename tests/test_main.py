@@ -9,7 +9,7 @@ import time
 
 import requests
 from SwSpotify import SpotifyNotRunning
-from mock import patch, mock_open, MagicMock
+from mock import patch
 
 from swaglyrics import SameSongPlaying
 from swaglyrics.__main__ import main, unsupported_precheck, unsupported_txt
