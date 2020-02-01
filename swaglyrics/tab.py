@@ -1,8 +1,10 @@
 import os
-from swaglyrics.cli import lyrics
-from swaglyrics import SameSongPlaying
-from flask import Flask, render_template
+
 from SwSpotify import spotify, SpotifyNotRunning
+from flask import Flask, render_template
+
+from swaglyrics import SameSongPlaying
+from swaglyrics.cli import lyrics
 
 app = Flask(__name__, template_folder=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates'))
 # use relative path of the template folder
