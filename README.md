@@ -105,6 +105,7 @@ See [CHANGES.md](CHANGES.md) for prior release notes.
 - Clone the repo by `git clone https://github.com/SwagLyrics/SwagLyrics-For-Spotify.git` or use ssh.
 - `cd` into the cloned repo.
 - `pip install -e .` the -e flag installs it locally in editable mode.
+*Note: Use pip for windows and pip3 for linux/macOs*
 
 ## Improvements Planned
 1. ~~Linux and macOS support **done**~~
@@ -141,3 +142,4 @@ original,
     <img src="https://i.imgur.com/7BVWB99.gif" alt="Watch the video">
   </a>
 </p>
+
