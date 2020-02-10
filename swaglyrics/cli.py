@@ -58,7 +58,7 @@ def stripper(song: str, artist: str) -> str:
 	return url_data
 
 
-def get_lyrics(song, artist):
+def get_lyrics(song, artist) -> str:
 	"""
 	Get lyrics from Genius given the song and artist.
 	Formats the URL with the stripped url path to fetch the lyrics.

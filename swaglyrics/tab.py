@@ -27,7 +27,7 @@ def tab():
 
 
 @app.route('/songChanged', methods=['GET'])
-def song_changed():
+def song_changed() -> str:
     # to refresh lyrics when song changed
     global song, artist
     try:
