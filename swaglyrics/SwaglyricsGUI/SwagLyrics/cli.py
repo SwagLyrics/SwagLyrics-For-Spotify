@@ -1,10 +1,22 @@
 import requests
 import re
 import os
-from swaglyrics import __version__, unsupported_txt, backend_url
-from bs4 import BeautifulSoup, UnicodeDammit
+from init import __version__, unsupported_txt, backend_url
+from bs4 import BeautifulSoup, UnicodeDammit, Tag
 from unidecode import unidecode
 from colorama import init, Fore, Style
+
+def get_text_with_br(tag, result=''):
+    for x in tag.contents:
+        if isinstance(x, Tag):  # check if content is a tag
+            if x.name == 'br':  # if tag is <br> append it as string
+                result += str(x)
+            else:  # for any other tag, recurse
+                result = get_text_with_br(x, result)
+        else:  # if content is NavigableString (string), append
+            result += x
+
+    return result
 
 
 def clear() -> None:
@@ -82,7 +94,7 @@ def get_lyrics(song, artist):
 
 	html = BeautifulSoup(page.text, "html.parser")
 	lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
-	lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
+	lyrics = get_text_with_br(lyrics_path)
 	return lyrics
 
 

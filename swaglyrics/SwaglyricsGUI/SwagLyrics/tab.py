@@ -1,6 +1,6 @@
 import os
-from swaglyrics.cli import lyrics
-from swaglyrics import SameSongPlaying
+from cli import lyrics
+from init import SameSongPlaying
 from flask import Flask, render_template
 from SwSpotify import spotify, SpotifyNotRunning
 

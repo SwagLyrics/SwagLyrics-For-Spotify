@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="text/javascript" src="/eel.js"></script>
     <meta charset="UTF-8">
     <link rel='shortcut icon' type='image/x-icon' href='../static/favicon.ico'/>
     <link rel = "stylesheet" type = "text/css" href = "{{url_for('static', filename='style.css')}}">
@@ -11,6 +12,7 @@
     {% endif %}
 </head>
 <body>
+    <input type="button" value="click" onclick="getLyrics()">
 {% if song and artist %}
     <h2>{{song}} by {{artist}}</h2>
 {% else %}
@@ -21,6 +23,15 @@
 {{line}}<br>
 {% endfor %}
     </div>
+<script>
+function getLyrics(){
+    eel.show_tab()(setLyrics)
+}
+
+function setLyrics(base64){
+    document.getElementById("lyrics").innerHTML = base64; 
+}
+</script>
 <script type="text/javascript" src="{{url_for('static', filename='songChanged.js')}}">
 </script>
 </body>
