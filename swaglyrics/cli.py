@@ -96,12 +96,14 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	:param make_issue: whether to make an issue on GitHub if song unsupported
 	:return: lyrics if song playing
 	"""
+    """
 	try:
 		with open(unsupported_txt, encoding='utf-8') as unsupported:
 			if f'{song} by {artist}' in unsupported.read():
 				return f'Lyrics unavailable for {song} by {artist}.\n'
 	except FileNotFoundError:
 		pass
+    """
 	init(autoreset=True)
 	print(Fore.CYAN + Style.BRIGHT + f'\nGetting lyrics for {song} by {artist}.\n')
 	lyrics = get_lyrics(song, artist)
