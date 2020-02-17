@@ -71,9 +71,9 @@ def get_lyrics(song, artist):
 		return None  # url path had either song in non-latin, artist in non-latin, or both
 	if 'From' in url_data:
 		from_list = list(url_data.split("-"))  # If From present in url then convert it into list
-		for j in range(0,len(from_list)):
+		for j in range(0, len(from_list)):
 			if from_list[j] == 'From':
-				while j<len(from_list):
+				while j < len(from_list):
 					from_list.remove(from_list[j])  # remove all character till lyrics from list
 				break
 		url_data = '-'.join(from_list)  # Finally converting into required form of url-data
@@ -104,14 +104,14 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	:param make_issue: whether to make an issue on GitHub if song unsupported
 	:return: lyrics if song playing
 	"""
-    """
+	"""
 	try:
 		with open(unsupported_txt, encoding='utf-8') as unsupported:
 			if f'{song} by {artist}' in unsupported.read():
 				return f'Lyrics unavailable for {song} by {artist}.\n'
 	except FileNotFoundError:
 		pass
-    """
+	"""
 	init(autoreset=True)
 	print(Fore.CYAN + Style.BRIGHT + f'\nGetting lyrics for {song} by {artist}.\n')
 	lyrics = get_lyrics(song, artist)
