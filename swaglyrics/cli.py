@@ -70,13 +70,13 @@ def get_lyrics(song, artist):
 	if url_data.startswith('-') or url_data.endswith('-'):
 		return None  # url path had either song in non-latin, artist in non-latin, or both
 	if 'From' in url_data:
-		from_list = list(url_data.split("-"))  # If From present in url then convert it into list 
+		from_list = list(url_data.split("-"))  # If From present in url then convert it into list
 		for j in range(0,len(from_list)):
 			if from_list[j] == 'From':
 				while j<len(from_list):
-					from_list.remove(from_list[j])  # remove all character till lyrics from list 
+					from_list.remove(from_list[j])  # remove all character till lyrics from list
 				break
-		url_data = '-'.join(from_list)  # Finally converting into required form of url-data   
+		url_data = '-'.join(from_list)  # Finally converting into required form of url-data
 	url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
 	try:
 		page = requests.get(url)
