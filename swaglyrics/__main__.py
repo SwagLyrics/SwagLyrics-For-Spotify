@@ -6,10 +6,8 @@ import time
 from SwSpotify import spotify, SpotifyNotRunning
 from swaglyrics.cli import lyrics, clear
 from swaglyrics.tab import app
-from swaglyricsimport unsupported_txt, SameSongPlaying, __version__ as version, backend_url
-import eel
+from swaglyrics import unsupported_txt, SameSongPlaying, __version__ as version, backend_url
 
-eel.init('web')
 
 def unsupported_precheck():
 	try:
@@ -43,7 +41,7 @@ def show_tab():
 	Timer(1.25, open, args=[url]).start()
 	app.run(port=port)
 
-@eel.expose
+
 def show_cli(make_issue=False):
 	try:
 		song, artist = spotify.current()  # get currently playing song, artist
@@ -72,7 +70,6 @@ def show_cli(make_issue=False):
 			exit()
 
 
-@eel.expose
 def main():
 	# print(r"""
 	#  ____                     _               _
@@ -103,6 +100,6 @@ def main():
 	else:
 		parser.print_help()
 
-eel.start('index.html',size=(1000,600))
-# if __name__ == '__main__':
-# 	main()
+
+if __name__ == '__main__':
+	main()
