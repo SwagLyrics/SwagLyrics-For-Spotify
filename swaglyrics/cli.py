@@ -1,10 +1,12 @@
-import requests
-import re
 import os
-from swaglyrics import __version__, unsupported_txt, backend_url
+import re
+
+import requests
 from bs4 import BeautifulSoup, UnicodeDammit
-from unidecode import unidecode
 from colorama import init, Fore, Style
+from unidecode import unidecode
+
+from swaglyrics import __version__, unsupported_txt, backend_url
 
 
 def clear() -> None:
@@ -16,7 +18,7 @@ aln = re.compile(r'[^ \-a-zA-Z0-9]+')  # matches non space or - or alphanumeric 
 spc = re.compile(' *- *| +')  # matches one or more spaces
 wth = re.compile(r'(?: *\(with )([^)]+)\)')  # capture text after with
 nlt = re.compile(r'[^\x00-\x7F\x80-\xFF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]')  # match only latin characters,
-# built using latin character tables (basic, supplement, extended a,b and extended additional
+# built using latin character tables (basic, supplement, extended a,b and extended additional)
 
 
 def stripper(song: str, artist: str) -> str:
@@ -105,11 +107,11 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
 	lyrics = get_lyrics(song, artist)
 	if not lyrics:
 		lyrics = f"Couldn't get lyrics for {song} by {artist}.\n"
-		# Log song and artist for which lyrics couldn't be obtained
+		# log song and artist for which lyrics couldn't be obtained
 		with open(unsupported_txt, 'a', encoding='utf-8') as f:
 			f.write(f'{song} by {artist} \n')
-			f.close()
-		if make_issue:
+		if make_issue and re.search(aln, song + artist):
+			# only runs if non space or non alphanumeric characters are present
 			r = requests.post(f'{backend_url}/unsupported', data={
 				'song': song,
 				'artist': artist,

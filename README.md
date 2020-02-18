@@ -1,5 +1,8 @@
 <h1 align="center"><img src="https://github.com/SwagLyrics/SwagLyrics/blob/master/assets/swaglyrics_transparent.png?raw=true" alt="SwagLyrics" height=200 width=200 align="middle">SwagLyrics-For-Spotify</h1>
 <p align="center">
+  <a href="https://discord.gg/DSUZGK4">
+    <img src="https://badgen.net/badge/discord/join%20chat/7289DA?icon=discord" alt="Discord Server" />
+  </a>
   <a href="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify">
     <img src="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify.svg?branch=master" alt="Build Status" />
   </a>
@@ -8,12 +11,9 @@
   </a>
   <a href="https://codecov.io/gh/SwagLyrics/SwagLyrics-For-Spotify">
   <img src="https://codecov.io/gh/SwagLyrics/SwagLyrics-For-Spotify/branch/master/graph/badge.svg" />
-  </a>                                                                                                        
+  </a>
   <a href="https://pypi.org/project/swaglyrics/">
     <img src="https://img.shields.io/pypi/v/swaglyrics.svg" alt="PyPI" />
-  </a>
-  <a href="https://github.com/SwagLyrics/SwagLyrics-For-Spotify">
-    <img src="https://img.shields.io/github/issues-closed/SwagLyrics/swaglyrics-for-spotify.svg" alt="GitHub closed issues" />
   </a>
   <a href="https://pepy.tech/project/swaglyrics">
     <img src="https://pepy.tech/badge/swaglyrics" alt="Downloads" />
