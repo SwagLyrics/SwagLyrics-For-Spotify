@@ -1,0 +1,5 @@
+Given Genius will be accessed by you when the get_lyrics function of SwagLyrics is called, you must comply by their
+Terms of Use (https://genius.com/static/terms) if your use of SwagLyrics calls that function.
+
+They say that you should be authorized in writing by Genius except if it's content you legally uploaded there.
+You should check out their official terms that I linked above to read the official document :)
