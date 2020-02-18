@@ -6,9 +6,8 @@ function getLyrics(){
 }
 
 function setLyrics(base64){
-    if(document.getElementById("lyrics").innerHTML != ""){
 	document.getElementById("lyrics").innerHTML = base64; 
-    }
+	
 }
 
 function setArtistSong(base64){
