@@ -13,7 +13,7 @@ def clear() -> None:
 	os.system('cls' if os.name == 'nt' else 'clear')  # clear command window
 
 
-brc = re.compile(r'([(\[](feat|ft)[^)\]]*[)\]]|- .*)', re.I)  # matches braces with feat included or text after -
+brc = re.compile(r'([(\[](feat|ft|From)[^)\]]*[)\]]|- .*)', re.I)  # matches braces with feat included or text after -
 aln = re.compile(r'[^ \-a-zA-Z0-9]+')  # matches non space or - or alphanumeric characters
 spc = re.compile(' *- *| +')  # matches one or more spaces
 wth = re.compile(r'(?: *\(with )([^)]+)\)')  # capture text after with
@@ -69,14 +69,6 @@ def get_lyrics(song, artist):
 	url_data = stripper(song, artist)  # generate url path using stripper()
 	if url_data.startswith('-') or url_data.endswith('-'):
 		return None  # url path had either song in non-latin, artist in non-latin, or both
-	if 'From' in url_data:
-		FromList = list(url_data.split("-"))  # If From present in url then convert it into list
-		for j in range(0, len(FromList)):
-			if FromList[j] == 'From':
-				while j < len(FromList):
-					FromList.remove(FromList[j])  # remove all character till lyrics from list
-				break
-		url_data = '-'.join(FromList)  # Finally converting into required form of url-data
 	url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
 	try:
 		page = requests.get(url)
