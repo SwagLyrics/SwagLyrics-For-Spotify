@@ -1,0 +1,14 @@
+h2{
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+#lyrics{
+    font-size: 1em;
+}
+
+body{
+    background-color: #212121;
+    color: white;
+    font-family: 'Consolas', monospace;
+}
