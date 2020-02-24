@@ -33,6 +33,7 @@ setuptools.setup(
             'pytest',
             'pytest-cov',
             'blinker',
+            'Werkzeug==0.16.1'  # remove this once stuff's resolved
             'flask_testing'
         ]
     },
