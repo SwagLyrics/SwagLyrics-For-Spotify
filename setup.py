@@ -22,7 +22,7 @@ setuptools.setup(
     install_requires=[
         'SwSpotify==1.1.2',
         'flask==1.1.1',
-        'requests==2.22.0',
+        'requests==2.23.0',
         'unidecode==1.1.1',
         'beautifulsoup4==4.8.2',
         'colorama==0.4.3'
@@ -33,6 +33,7 @@ setuptools.setup(
             'pytest',
             'pytest-cov',
             'blinker',
+            'Werkzeug==0.16.1',  # remove this once stuff's resolved
             'flask_testing'
         ]
     },
