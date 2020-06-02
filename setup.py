@@ -20,7 +20,7 @@ setuptools.setup(
     license='MIT',
     include_package_data=True,
     install_requires=[
-        'SwSpotify==1.1.2',
+        'SwSpotify==1.2.0',
         'flask==1.1.2',
         'requests==2.23.0',
         'unidecode==1.1.1',
