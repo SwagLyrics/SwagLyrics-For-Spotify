@@ -84,19 +84,16 @@ included inside the package as well.
 Note: If you have trouble displaying Japanese/Chinese characters on the command-line, simply type `chcp 936` to change your code page. List of code pages can be found here: https://en.wikipedia.org/wiki/Code_page
 
 ## Community
-- SwagLyrics is participating in [Google Code-in 2019](https://g.co/gci) with CCExtractor Development.
+- SwagLyrics participated in [Google Code-in 2019](https://g.co/gci) with CCExtractor Development.
 - SwagLyrics participated in [Google Code-in 2018](https://g.co/gci) with CCExtractor Development.
 - SwagLyrics participated in [Google Summer of Code 2019](https://g.co/gsoc) with CCExtractor Development. 
 The selected project can be found [here](https://summerofcode.withgoogle.com/projects/#5694893526089728).
 
 ## Changelog
 
-- #### v1.0.1
-	- Refactor cli.py to fix #1682
-	- Add type annotations to cli.py
-	- Bump code coverage to 90%
-	- Fully mock backend API calls in unit tests
-	- Add integration tests
+- #### v1.2.0
+	- Add Genius A/B support
+	- Add support for Bollywood songs
 	
 See [CHANGES.md](CHANGES.md) for prior release notes.
 
