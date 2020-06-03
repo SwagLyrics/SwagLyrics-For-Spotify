@@ -39,6 +39,7 @@ class Tests(unittest.TestCase):
 		self.assertEqual(stripper(
 			'거품 안 넘치게 따라줘 [Life Is Good] (feat. Crush, Dj Friz)', 'Dynamic Duo'), 'Dynamic-Duo-Life-Is-Good')
 		self.assertEqual(stripper('Ice Hotel (ft. SZA)', 'XXXTENTACION'), 'XXXTENTACION-Ice-Hotel')
+		self.assertEqual(stripper('Zikr (From "Amavas")', 'Armaan Malik'), 'Armaan-Malik-Zikr')
 
 	# Integration test
 	def test_that_get_lyrics_works(self):
