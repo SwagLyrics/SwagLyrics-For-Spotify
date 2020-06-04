@@ -94,6 +94,8 @@ The selected project can be found [here](https://summerofcode.withgoogle.com/pro
 - #### v1.2.0
 	- Add Genius A/B support
 	- Add support for Bollywood songs
+    - Add update check only once per 24h
+    - Add parameter to force update check
 	
 See [CHANGES.md](CHANGES.md) for prior release notes.
 
