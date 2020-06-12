@@ -11,7 +11,7 @@ from swaglyrics.cli import lyrics, clear
 from swaglyrics.tab import app
 
 
-def unsupported_precheck(force=False):
+def unsupported_precheck(force: bool = False) -> None:
     """
     Checks if new version available and updates unsupported.txt from server.
     Runs only if 24h have elapsed since previous run or if forced via the -u flag.
@@ -51,7 +51,7 @@ def unsupported_precheck(force=False):
             sys.exit(1)
 
 
-def show_tab():
+def show_tab() -> None:
     from threading import Timer
     from webbrowser import open
     print('Firing up a browser tab!')
@@ -63,7 +63,7 @@ def show_tab():
     app.run(port=port)
 
 
-def show_cli(make_issue=False):
+def show_cli(make_issue: bool = False) -> None:
     try:
         song, artist = spotify.current()  # get currently playing song, artist
         print(lyrics(song, artist, make_issue))
@@ -91,7 +91,7 @@ def show_cli(make_issue=False):
             sys.exit()
 
 
-def main():
+def main() -> None:
     # print(r"""
     #  ____                     _               _
     # / ___|_      ____ _  __ _| |   _   _ _ __(_) ___ ___

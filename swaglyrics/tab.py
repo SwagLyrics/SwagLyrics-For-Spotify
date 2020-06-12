@@ -14,7 +14,7 @@ artist = None
 
 
 @app.route('/')
-def tab():
+def tab() -> str:
     # format lyrics for the browser tab template
     global song, artist
     try:
@@ -27,7 +27,7 @@ def tab():
 
 
 @app.route('/songChanged', methods=['GET'])
-def song_changed():
+def song_changed() -> str:
     # to refresh lyrics when song changed
     global song, artist
     try:

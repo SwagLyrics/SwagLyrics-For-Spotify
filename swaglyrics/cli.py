@@ -1,5 +1,6 @@
 import os
 import re
+from typing import Optional
 
 import requests
 from bs4 import BeautifulSoup, UnicodeDammit
@@ -59,7 +60,7 @@ def stripper(song: str, artist: str) -> str:
     return url_data
 
 
-def get_lyrics(song, artist):
+def get_lyrics(song: str, artist: str) -> Optional[str]:
     """
     Get lyrics from Genius given the song and artist.
     Formats the URL with the stripped url path to fetch the lyrics.
