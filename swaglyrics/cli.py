@@ -96,7 +96,7 @@ def get_lyrics(song: str, artist: str) -> Optional[str]:
             lyrics_data.append(UnicodeDammit(re.sub("<.*?>", "", str(x).replace("<br/>", "\n"))).unicode_markup)
 
         lyrics = "\n".join(lyrics_data)
-    return lyrics
+    return lyrics, url
 
 
 def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
