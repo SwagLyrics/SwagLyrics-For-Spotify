@@ -79,7 +79,7 @@ def process_json_lyrics(body):
         elif type(i) == str:
             lyrics.append(i)
         else:
-            raise Exception(f"Unknown type occurred! Type = {type(i)}")
+            raise TypeError(f"Unknown type occurred! Type = {type(i)}")
     return lyrics
 
 
