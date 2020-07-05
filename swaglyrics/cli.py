@@ -1,9 +1,11 @@
 import os
 import re
+import json
 from typing import Optional
+from html import unescape
+from ast import literal_eval
 
 import requests
-from bs4 import BeautifulSoup, UnicodeDammit
 from colorama import init, Fore, Style
 from unidecode import unidecode
 
@@ -14,13 +16,17 @@ def clear() -> None:
     os.system('cls' if os.name == 'nt' else 'clear')  # clear command window
 
 
-brc = re.compile(r'([(\[](feat|ft|From "[^"]*")[^)\]]*[)\]]|- .*)', re.I)  # matches braces with feat included or text after -
+brc = re.compile(r'([(\[](feat|ft|From "[^"]*")[^)\]]*[)\]]|- .*)',
+                 re.I)  # matches braces with feat included or text after -
 # this also adds support for Bollywood songs by matching (From "<words>")
 aln = re.compile(r'[^ \-a-zA-Z0-9]+')  # matches non space or - or alphanumeric characters
 spc = re.compile(' *- *| +')  # matches one or more spaces
 wth = re.compile(r'(?: *\(with )([^)]+)\)')  # capture text after with
 nlt = re.compile(r'[^\x00-\x7F\x80-\xFF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]')  # match only latin characters,
 # built using latin character tables (basic, supplement, extended a,b and extended additional)
+json_regex = re.compile(r"window\.__PRELOADED_STATE__ = JSON\.parse\((.*)\);")  # get lyrics from react-UI genius
+meta_regex = re.compile(r"<meta content=\"(.*)\" itemprop=\"page_data\"></meta>")  # get lyrics from legacy-UI genius
+html_strip_regex = re.compile(r"<[\s\S]*?>")  # strip all html tags
 
 
 def stripper(song: str, artist: str) -> str:
@@ -60,6 +66,23 @@ def stripper(song: str, artist: str) -> str:
     return url_data
 
 
+def process_json_lyrics(body):
+    lyrics = []
+    for i in body:
+        if type(i) == dict:
+            if i['tag'] in ['p', 'i', 'a', 'b', 'u']:
+                lyrics += process_json_lyrics(i['children'])
+            elif i['tag'] in ['br', 'inread-ad']:
+                lyrics.append("\n")
+        elif type(i) == list:
+            lyrics += process_json_lyrics(i)
+        elif type(i) == str:
+            lyrics.append(i)
+        else:
+            raise Exception(f"Unknown type occurred! Type = {type(i)}")
+    return lyrics
+
+
 def get_lyrics(song: str, artist: str) -> Optional[str]:
     """
     Get lyrics from Genius given the song and artist.
@@ -84,19 +107,21 @@ def get_lyrics(song: str, artist: str) -> Optional[str]:
         url = 'https://genius.com/{}-lyrics'.format(url_data)
         page = requests.get(url)
 
-    html = BeautifulSoup(page.text, "html.parser")
-    lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
-    if lyrics_path:
-        lyrics = UnicodeDammit(lyrics_path.get_text().strip()).unicode_markup
+    json_data = json_regex.findall(page.text)
+    if len(json_data) == 0:
+        meta_data = meta_regex.findall(page.text)
+        assert len(meta_data) == 1
+        data = json.loads(unescape(meta_data[0]))
+        lyrics_html = data['lyrics_data']['body']['html']
+        lyrics = html_strip_regex.sub("", lyrics_html).strip()
     else:
-        # hotfix!
-        lyrics_path = html.find_all("div", class_=re.compile("^Lyrics__Container"))
-        lyrics_data = []
-        for x in lyrics_path:
-            lyrics_data.append(UnicodeDammit(re.sub("<.*?>", "", str(x).replace("<br/>", "\n"))).unicode_markup)
-
-        lyrics = "\n".join(lyrics_data)
-    return lyrics, url
+        json_data = json_data[0]
+        json_data = literal_eval(json_data)
+        json_data = json_data.replace("\\$", "$")
+        data = json.loads(json_data)
+        lyrics = process_json_lyrics(data['songPage']['lyricsData']['body']['children'])
+        lyrics = "".join(lyrics)
+    return lyrics
 
 
 def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
