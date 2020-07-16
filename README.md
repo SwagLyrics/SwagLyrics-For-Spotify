@@ -1,5 +1,8 @@
 <h1 align="center"><img src="https://github.com/SwagLyrics/SwagLyrics/blob/master/assets/swaglyrics_transparent.png?raw=true" alt="SwagLyrics" height=200 width=200 align="middle">SwagLyrics-For-Spotify</h1>
 <p align="center">
+  <a href="https://discord.gg/DSUZGK4">
+    <img src="https://badgen.net/badge/discord/join%20chat/7289DA?icon=discord" alt="Discord Server" />
+  </a>
   <a href="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify">
     <img src="https://travis-ci.com/SwagLyrics/SwagLyrics-For-Spotify.svg?branch=master" alt="Build Status" />
   </a>
@@ -8,12 +11,9 @@
   </a>
   <a href="https://codecov.io/gh/SwagLyrics/SwagLyrics-For-Spotify">
   <img src="https://codecov.io/gh/SwagLyrics/SwagLyrics-For-Spotify/branch/master/graph/badge.svg" />
-  </a>                                                                                                        
+  </a>
   <a href="https://pypi.org/project/swaglyrics/">
     <img src="https://img.shields.io/pypi/v/swaglyrics.svg" alt="PyPI" />
-  </a>
-  <a href="https://github.com/SwagLyrics/SwagLyrics-For-Spotify">
-    <img src="https://img.shields.io/github/issues-closed/SwagLyrics/swaglyrics-for-spotify.svg" alt="GitHub closed issues" />
   </a>
   <a href="https://pepy.tech/project/swaglyrics">
     <img src="https://pepy.tech/badge/swaglyrics" alt="Downloads" />
@@ -84,19 +84,18 @@ included inside the package as well.
 Note: If you have trouble displaying Japanese/Chinese characters on the command-line, simply type `chcp 936` to change your code page. List of code pages can be found here: https://en.wikipedia.org/wiki/Code_page
 
 ## Community
-- SwagLyrics is participating in [Google Code-in 2019](https://g.co/gci) with CCExtractor Development.
+- SwagLyrics participated in [Google Code-in 2019](https://g.co/gci) with CCExtractor Development.
 - SwagLyrics participated in [Google Code-in 2018](https://g.co/gci) with CCExtractor Development.
 - SwagLyrics participated in [Google Summer of Code 2019](https://g.co/gsoc) with CCExtractor Development. 
 The selected project can be found [here](https://summerofcode.withgoogle.com/projects/#5694893526089728).
 
 ## Changelog
 
-- #### v1.0.1
-	- Refactor cli.py to fix #1682
-	- Add type annotations to cli.py
-	- Bump code coverage to 90%
-	- Fully mock backend API calls in unit tests
-	- Add integration tests
+- #### v1.2.0
+	- Add Genius A/B support
+	- Add support for Bollywood songs
+    - Add update check only once per 24h
+    - Add parameter to force update check
 	
 See [CHANGES.md](CHANGES.md) for prior release notes.
 

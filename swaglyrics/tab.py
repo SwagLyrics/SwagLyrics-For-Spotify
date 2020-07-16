@@ -1,8 +1,10 @@
 import os
-from swaglyrics.cli import lyrics
-from swaglyrics import SameSongPlaying
-from flask import Flask, render_template
+
 from SwSpotify import spotify, SpotifyNotRunning
+from flask import Flask, render_template
+
+from swaglyrics import SameSongPlaying
+from swaglyrics.cli import lyrics
 
 app = Flask(__name__, template_folder=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates'))
 # use relative path of the template folder
@@ -12,7 +14,7 @@ artist = None
 
 
 @app.route('/')
-def tab():
+def tab() -> str:
     # format lyrics for the browser tab template
     global song, artist
     try:
@@ -25,7 +27,7 @@ def tab():
 
 
 @app.route('/songChanged', methods=['GET'])
-def song_changed():
+def song_changed() -> str:
     # to refresh lyrics when song changed
     global song, artist
     try:
