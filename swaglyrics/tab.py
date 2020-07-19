@@ -22,8 +22,8 @@ def tab() -> str:
         current_lyrics = lyrics(song, artist)
     except SpotifyNotRunning:
         current_lyrics = 'Nothing playing at the moment.'
-    current_lyrics = current_lyrics.split('\n')  # break lyrics line by line
-    return render_template('lyrics.html', lyrics=current_lyrics, song=song, artist=artist)
+    lyrics_lines = current_lyrics.split('\n')  # break lyrics line by line
+    return render_template('lyrics.html', lyrics=lyrics_lines, song=song, artist=artist)
 
 
 @app.route('/songChanged', methods=['GET'])
