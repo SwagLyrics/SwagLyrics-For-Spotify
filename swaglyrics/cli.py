@@ -73,16 +73,16 @@ def get_lyrics(song: str, artist: str) -> Optional[str]:
         return None  # url path had either song in non-latin, artist in non-latin, or both
     url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
     try:
-        page = requests.get(url)
+        page = requests.get(url, timeout=20)
         page.raise_for_status()
     except requests.exceptions.HTTPError:
         url_data = requests.get(f'{backend_url}/stripper', data={
             'song': song,
-            'artist': artist}).text
+            'artist': artist}, timeout=10).text
         if not url_data:
             return None
         url = 'https://genius.com/{}-lyrics'.format(url_data)
-        page = requests.get(url)
+        page = requests.get(url, timeout=20)
 
     html = BeautifulSoup(page.text, "html.parser")
     lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
@@ -127,7 +127,7 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
                 'song': song,
                 'artist': artist,
                 'version': __version__
-            })
+            }, timeout=10)
             if r.status_code == 200:
                 lyrics += r.text
     return lyrics

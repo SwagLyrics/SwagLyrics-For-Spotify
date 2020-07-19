@@ -34,7 +34,8 @@ setuptools.setup(
             'pytest-cov',
             'blinker',
             'Werkzeug==1.0.1',  # remove this once stuff's resolved
-            'flask_testing'
+            'flask_testing',
+            'mypy'
         ]
     },
     python_requires='>=3.6',
