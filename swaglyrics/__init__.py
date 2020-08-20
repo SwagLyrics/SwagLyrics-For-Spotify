@@ -40,7 +40,7 @@ genius_timeout = 20
 unsupported_txt = user_data_dir("unsupported.txt")
 
 # create unsupported.txt if it doesn't exist
-unsupported_txt.mkdir(parents=True, exist_ok=True)
+unsupported_txt.touch(exist_ok=True)
 
 
 class SameSongPlaying(Exception):
