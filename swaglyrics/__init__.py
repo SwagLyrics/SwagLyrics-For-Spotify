@@ -7,14 +7,15 @@ from pathlib import Path
 # doc: https://github.com/ActiveState/appdirs/blob/master/appdirs.py#L44 derivative
 def user_data_dir(file_name):
     r"""
-        Return full path to the user-specific data dir for SwagLyrics.
+    Get OS specific data directory path for SwagLyrics.
 
-        :param file_name: file to be fetched from the data dir
-        Typical user data directories are:
-            macOS:    ~/Library/Application Support/SwagLyrics
-            Unix:     ~/.local/share/SwagLyrics   # or in $XDG_DATA_HOME, if defined
-            Win 10:   C:\Users\<username>\AppData\Local\SwagLyrics
-        For Unix, we follow the XDG spec and support $XDG_DATA_HOME if defined.
+    Typical user data directories are:
+        macOS:    ~/Library/Application Support/SwagLyrics
+        Unix:     ~/.local/share/SwagLyrics   # or in $XDG_DATA_HOME, if defined
+        Win 10:   C:\Users\<username>\AppData\Local\SwagLyrics
+    For Unix, we follow the XDG spec and support $XDG_DATA_HOME if defined.
+    :param file_name: file to be fetched from the data dir
+    :return: full path to the user-specific data dir
     """
     # get os specific path
     if sys.platform.startswith("win"):
