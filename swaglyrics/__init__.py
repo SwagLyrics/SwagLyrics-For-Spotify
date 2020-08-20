@@ -1,12 +1,43 @@
-import os
+import sys
+from os import getenv
+from pathlib import Path
+
+
+# create unsupported.txt in os specific user directory
+# doc: https://github.com/ActiveState/appdirs/blob/master/appdirs.py#L44 derivative
+def user_data_dir(file_name):
+    r"""
+        Return full path to the user-specific data dir for SwagLyrics.
+
+        :param file_name: file to be fetched from the data dir
+        Typical user data directories are:
+            macOS:    ~/Library/Application Support/SwagLyrics
+            Unix:     ~/.local/share/SwagLyrics   # or in $XDG_DATA_HOME, if defined
+            Win 10:   C:\Users\<username>\AppData\Local\SwagLyrics
+        For Unix, we follow the XDG spec and support $XDG_DATA_HOME if defined.
+    """
+    # get os specific path
+    if sys.platform.startswith("win"):
+        os_path = getenv("LOCALAPPDATA")
+    elif sys.platform.startswith("darwin"):
+        os_path = "~/Library/Application Support"
+    else:
+        # linux
+        os_path = getenv("XDG_DATA_HOME", "~/.local/share")
+
+    # join with SwagLyrics dir
+    path = Path(os_path) / "SwagLyrics"
+
+    return path.expanduser() / file_name
+
 
 name = 'swaglyrics'
 __version__ = '1.2.0'
-unsupported_txt = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'unsupported.txt')
 backend_url = 'https://api.swaglyrics.dev'
 api_timeout = 10
 genius_timeout = 20
+unsupported_txt = user_data_dir("unsupported.txt")
 
 
 class SameSongPlaying(Exception):
-	pass
+    pass
