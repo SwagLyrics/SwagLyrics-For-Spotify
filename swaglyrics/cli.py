@@ -5,6 +5,7 @@ from typing import Optional
 import requests
 from bs4 import BeautifulSoup, UnicodeDammit
 from colorama import init, Fore, Style
+from html import unescape
 from unidecode import unidecode
 
 from swaglyrics import __version__, unsupported_txt, backend_url, api_timeout, genius_timeout
@@ -95,7 +96,7 @@ def get_lyrics(song: str, artist: str) -> Optional[str]:
         for x in lyrics_path:
             lyrics_data.append(UnicodeDammit(re.sub("<.*?>", "", str(x).replace("<br/>", "\n"))).unicode_markup)
 
-        lyrics = "\n".join(lyrics_data)
+        lyrics = "\n".join(unescape(lyrics_data))  # also convert escaped characters to symbols
     return lyrics
 
 
