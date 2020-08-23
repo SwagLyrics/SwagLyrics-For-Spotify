@@ -20,9 +20,9 @@ setuptools.setup(
     license='MIT',
     include_package_data=True,
     install_requires=[
-        'SwSpotify==1.2.0',
+        'SwSpotify>=1.2.0',
         'flask==1.1.2',
-        'requests==2.24.0',
+        'requests>=2.24.0',
         'unidecode==1.1.1',
         'beautifulsoup4==4.9.1',
         'colorama==0.4.3'
