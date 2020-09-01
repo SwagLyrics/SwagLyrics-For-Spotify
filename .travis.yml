@@ -1,16 +1,16 @@
 dist: bionic   # required for Python >= 3.7
 language: python
+python:
+  - "3.6"
+  - "3.7"
+  - "3.8-dev"
+  - "nightly"
 
-# run integration tests only once, after unittests and deploy to PyPI if passing
+# run integration tests only once, after unittests and deploy to PyPI
 jobs:
   include:
-    - stage: "Unit Tests"
-      python:
-        - "3.6"
-        - "3.7"
-        - "3.8-dev"
-        - "nightly"
     - stage: "Integration Tests"
+      name: "Integration Tests"
       python: "3.8"
       script:
         - pytest --cov-config=.coveragerc --cov=swaglyrics tests/integration.py
