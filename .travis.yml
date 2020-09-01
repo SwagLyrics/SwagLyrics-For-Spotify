@@ -1,6 +1,6 @@
 dist: bionic   # required for Python >= 3.7
 language: python
-name: "Unit Tests"
+stage: "Unit Tests"
 python:
   - "3.6"
   - "3.7"
