@@ -1,10 +1,29 @@
 dist: bionic   # required for Python >= 3.7
 language: python
-python:
-  - "3.6"
-  - "3.7"
-  - "3.8-dev"
-  - "nightly"
+
+# run integration tests only once, after unittests and deploy to PyPI if passing
+jobs:
+  include:
+    - stage: "Unit Tests"
+      python:
+        - "3.6"
+        - "3.7"
+        - "3.8-dev"
+        - "nightly"
+    - stage: "Integration Tests"
+      python: "3.8"
+      script:
+        - pytest --cov-config=.coveragerc --cov=swaglyrics tests/integration.py
+        - python tests/lssts/lssts_runner.py
+      deploy:
+        provider: pypi
+        user: aadibajpai
+        password:
+          secure: iTTl7XGXhsfSbzT3ZcP2VUqqVm4P49HtfB3EEgd8qUSXhwlnd2Fasiber3OfWP9jTwYF/HLjPNSFptNUc7fJDPEik12OEU9Z/6+GJU6m83tlS1YpgGRdIO+bI59l7m9DzDW1WsE30bvkif1ttUq6Jb8FFE0kb6el7ubZZdNK3pjwp+TcLYdXkvQXZNIFtPajbWw/h6qbYITYUA4JF1EE2bbKIj7MkysNeF9//m2rB6M0uu1ucWxoiUGTQ9jFRnGFOhSrSCmwC/CW8PWVeJZUhQ2podv5rTw3dEo40sMHePey82q/SjJ0GjYdmha+pDu92TileeWxNbcI9qEfAl7decKiaC2cluFZT0Kmiki4w009/JF9ZtQH0ZspHtWlZBknpLp1rx1RIInoXhOC2enIBdL5JLQDkAIN/+Run0V7ZVV4qqcQpVkSKzF5d/6DBoCSKFDOXjhHgMfYkldqNSRNIVVrttxYE35ISrsH/CJ1pBfzzi7tlZjbTvZm54agiIx9Q6fnyVqUmVsv4hQkWSP81nvJ62GU36zBknP/lnzvoUuRS1NpAcq6s1ecsXQA40hhNhuqR/HjB3R/8x8+sOzRPuunzurROODErhDxRLgLRhK3l2ur9CQwtVwDN9nHWfr6IXL1dsBpU+pp6IYcLa9yTzhKQpdE2HvkNJczyjLqWz8=
+        skip_existing: true
+        distributions: "sdist bdist_wheel"
+        on:
+          tags: true
 # command to install dependencies
 install:
   - pip install .[dev]
@@ -16,12 +35,3 @@ script:
 after_success:
 - bash <(curl -s https://codecov.io/bash) -Z
 
-deploy:
-  provider: pypi
-  user: aadibajpai
-  password:
-    secure: iTTl7XGXhsfSbzT3ZcP2VUqqVm4P49HtfB3EEgd8qUSXhwlnd2Fasiber3OfWP9jTwYF/HLjPNSFptNUc7fJDPEik12OEU9Z/6+GJU6m83tlS1YpgGRdIO+bI59l7m9DzDW1WsE30bvkif1ttUq6Jb8FFE0kb6el7ubZZdNK3pjwp+TcLYdXkvQXZNIFtPajbWw/h6qbYITYUA4JF1EE2bbKIj7MkysNeF9//m2rB6M0uu1ucWxoiUGTQ9jFRnGFOhSrSCmwC/CW8PWVeJZUhQ2podv5rTw3dEo40sMHePey82q/SjJ0GjYdmha+pDu92TileeWxNbcI9qEfAl7decKiaC2cluFZT0Kmiki4w009/JF9ZtQH0ZspHtWlZBknpLp1rx1RIInoXhOC2enIBdL5JLQDkAIN/+Run0V7ZVV4qqcQpVkSKzF5d/6DBoCSKFDOXjhHgMfYkldqNSRNIVVrttxYE35ISrsH/CJ1pBfzzi7tlZjbTvZm54agiIx9Q6fnyVqUmVsv4hQkWSP81nvJ62GU36zBknP/lnzvoUuRS1NpAcq6s1ecsXQA40hhNhuqR/HjB3R/8x8+sOzRPuunzurROODErhDxRLgLRhK3l2ur9CQwtVwDN9nHWfr6IXL1dsBpU+pp6IYcLa9yTzhKQpdE2HvkNJczyjLqWz8=
-  skip_existing: true
-  distributions: "sdist bdist_wheel"
-  on:
-    tags: true
