@@ -41,18 +41,6 @@ class Tests(unittest.TestCase):
 		self.assertEqual(stripper('Ice Hotel (ft. SZA)', 'XXXTENTACION'), 'XXXTENTACION-Ice-Hotel')
 		self.assertEqual(stripper('Zikr (From "Amavas")', 'Armaan Malik'), 'Armaan-Malik-Zikr')
 
-	# Integration test
-	def test_that_get_lyrics_works(self):
-		"""
-		Test that get_lyrics function works
-		"""
-		self.assertEqual(get_lyrics('果てるまで', 'ハゼ馳せる'), None)  # song and artist non-latin
-		self.assertEqual(get_lyrics('Hello', 'ハゼ馳せる'), None)  # artist non-latin
-		self.assertEqual(get_lyrics('ハゼ馳せる果てるまで', 'ZUTOMAYO'), None)  # song non-latin
-		self.assertEqual(get_lyrics("Faded", "Alan Walker")[:9], "[Verse 1]")
-		self.assertEqual(get_lyrics("Radioactive", "Imagine Dragons")[:7], "[Intro]")
-		self.assertEqual(get_lyrics("Battle Symphony", "Linkin Park")[:9], "[Verse 1]")
-
 	@patch('swaglyrics.cli.requests.get')
 	def test_that_get_lyrics_does_not_break_with_wrong_data(self, fake_get):
 		"""
@@ -100,14 +88,6 @@ class Tests(unittest.TestCase):
 		os.rename(unsupported_txt, "unsupported2.txt")
 		resp = lyrics("Pixel2XL", "Elgoog", False)
 		self.assertEqual(resp, "Couldn't get lyrics for Pixel2XL by Elgoog.\n")
-
-	# Integration test
-	def test_database_for_unsupported_song(self):
-		"""
-		test that the database set on pythonanywhere is working and giving strippers for unsupported songs
-		"""
-		self.assertEqual(get_lyrics("Bitch Lasagna", "Party in Backyard")[:7], "[Intro]")
-		self.assertEqual(get_lyrics("Let Me Hold You (Turn Me On)", "Cheat Codes")[:9], "[Verse 1]")
 
 	@patch('swaglyrics.cli.requests.post', return_value=R())
 	@patch('swaglyrics.cli.get_lyrics', return_value=None)
