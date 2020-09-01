@@ -1,20 +1,25 @@
 dist: bionic   # required for Python >= 3.7
 language: python
+name: "Unit Tests"
 python:
   - "3.6"
   - "3.7"
   - "3.8-dev"
   - "nightly"
 
-# run integration tests only once, after unittests and deploy to PyPI
 jobs:
   include:
+    - stage: "LSSTS"
+      name: "Large Scale Stripper Test Suite"
+      python: "3.8"
+      script: python tests/lssts/lssts_runner.py  # run large scale stripper test suite
+    # run integration tests once after unittests
     - stage: "Integration Tests"
       name: "Integration Tests"
       python: "3.8"
       script:
         - pytest --cov-config=.coveragerc --cov=swaglyrics tests/integration.py
-        - python tests/lssts/lssts_runner.py
+      # deploy to PyPI if successful
       deploy:
         provider: pypi
         user: aadibajpai
