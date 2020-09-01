@@ -1,8 +1,11 @@
 import csv
+import os
 
 from swaglyrics.cli import stripper
 
-with open("./lssts_dataset.tsv", newline='', encoding="utf-8") as csvfile:
+dataset = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lssts_dataset.tsv')
+
+with open(dataset, newline='', encoding="utf-8") as csvfile:
     f = csv.reader(csvfile, delimiter="\t")
     for row in f:
         # print(row)
