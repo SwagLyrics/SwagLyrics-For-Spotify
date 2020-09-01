@@ -1,11 +1,14 @@
+"""
+large scale stripper test suite
+"""
 import csv
-import os
+from pathlib import Path
 
 from swaglyrics.cli import stripper
 
-dataset = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'lssts_dataset.tsv')
+dataset = Path(__file__).parent / 'lssts_dataset.tsv'
 
-with open(dataset, newline='', encoding="utf-8") as csvfile:
+with open(dataset.resolve(), newline='', encoding="utf-8") as csvfile:
     f = csv.reader(csvfile, delimiter="\t")
     for row in f:
         # print(row)
