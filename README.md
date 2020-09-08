@@ -15,6 +15,9 @@
   <a href="https://pypi.org/project/swaglyrics/">
     <img src="https://img.shields.io/pypi/v/swaglyrics.svg" alt="PyPI" />
   </a>
+  <a href="https://aur.archlinux.org/packages/swaglyrics/">
+    <img src="https://img.shields.io/aur/version/swaglyrics" alt="Arch User Repository" />
+  </a>
   <a href="https://pepy.tech/project/swaglyrics">
     <img src="https://pepy.tech/badge/swaglyrics" alt="Downloads" />
   </a>
@@ -62,6 +65,13 @@ Requires Python 3.6+. Use pip or pip3 depending on your installation. You might 
 avoid using pip as root.
 ```
 pip install swaglyrics
+```
+
+### Arch Linux
+
+Arch Linux users can directly install SwagLyrics from AUR ([swaglyrics<sup>AUR</sup>](https://aur.archlinux.org/packages/swaglyrics/)). Using `yay`:
+```
+yay -S swaglyrics
 ```
 
 ## Usage
