@@ -64,6 +64,13 @@ avoid using pip as root.
 pip install swaglyrics
 ```
 
+### Arch Linux
+
+Arch Linux users can directly install SwagLyrics from the AUR. Using `yay`:
+```
+yay -S swaglyrics
+```
+
 ## Usage
 `usage: swaglyrics [-h] [-t] [-c] [-n]`
 
