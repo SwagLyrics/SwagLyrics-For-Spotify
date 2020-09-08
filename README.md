@@ -69,7 +69,7 @@ pip install swaglyrics
 
 ### Arch Linux
 
-Arch Linux users can directly install SwagLyrics from the AUR ([swaglyrics<sup>AUR</sup>](https://aur.archlinux.org/packages/swaglyrics/)). Using `yay`:
+Arch Linux users can directly install SwagLyrics from AUR ([swaglyrics<sup>AUR</sup>](https://aur.archlinux.org/packages/swaglyrics/)). Using `yay`:
 ```
 yay -S swaglyrics
 ```
