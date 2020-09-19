@@ -5,17 +5,18 @@ from typing import Optional
 import requests
 from bs4 import BeautifulSoup, UnicodeDammit
 from colorama import init, Fore, Style
+from html import unescape
 from unidecode import unidecode
 
-from swaglyrics import __version__, unsupported_txt, backend_url
+from swaglyrics import __version__, unsupported_txt, backend_url, api_timeout, genius_timeout
 
 
 def clear() -> None:
     os.system('cls' if os.name == 'nt' else 'clear')  # clear command window
 
 
-brc = re.compile(r'([(\[](feat|ft|From "[^"]*")[^)\]]*[)\]]|- .*)', re.I)  # matches braces with feat included or text after -
-# this also adds support for Bollywood songs by matching (From "<words>")
+# matches braces with feat included or text after -, also adds support for Bollywood songs by matching (From "<words>")
+brc = re.compile(r'([(\[](feat|ft|From "[^"]*")[^)\]]*[)\]]|- .*)', re.I)
 aln = re.compile(r'[^ \-a-zA-Z0-9]+')  # matches non space or - or alphanumeric characters
 spc = re.compile(' *- *| +')  # matches one or more spaces
 wth = re.compile(r'(?: *\(with )([^)]+)\)')  # capture text after with
@@ -73,16 +74,16 @@ def get_lyrics(song: str, artist: str) -> Optional[str]:
         return None  # url path had either song in non-latin, artist in non-latin, or both
     url = f'https://genius.com/{url_data}-lyrics'  # format the url with the url path
     try:
-        page = requests.get(url)
+        page = requests.get(url, timeout=genius_timeout)
         page.raise_for_status()
     except requests.exceptions.HTTPError:
         url_data = requests.get(f'{backend_url}/stripper', data={
             'song': song,
-            'artist': artist}).text
+            'artist': artist}, timeout=api_timeout).text
         if not url_data:
             return None
         url = 'https://genius.com/{}-lyrics'.format(url_data)
-        page = requests.get(url)
+        page = requests.get(url, timeout=genius_timeout)
 
     html = BeautifulSoup(page.text, "html.parser")
     lyrics_path = html.find("div", class_="lyrics")  # finding div on Genius containing the lyrics
@@ -95,7 +96,7 @@ def get_lyrics(song: str, artist: str) -> Optional[str]:
         for x in lyrics_path:
             lyrics_data.append(UnicodeDammit(re.sub("<.*?>", "", str(x).replace("<br/>", "\n"))).unicode_markup)
 
-        lyrics = "\n".join(lyrics_data)
+        lyrics = "\n".join(unescape(lyrics_data))  # also convert escaped characters to symbols
     return lyrics
 
 
@@ -127,7 +128,7 @@ def lyrics(song: str, artist: str, make_issue: bool = True) -> str:
                 'song': song,
                 'artist': artist,
                 'version': __version__
-            })
+            }, timeout=api_timeout)
             if r.status_code == 200:
                 lyrics += r.text
     return lyrics

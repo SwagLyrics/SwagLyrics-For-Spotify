@@ -6,7 +6,7 @@ import time
 import requests
 from SwSpotify import spotify, SpotifyNotRunning
 
-from swaglyrics import unsupported_txt, SameSongPlaying, __version__ as version, backend_url
+from swaglyrics import unsupported_txt, SameSongPlaying, __version__ as version, backend_url, api_timeout
 from swaglyrics.cli import lyrics, clear
 from swaglyrics.tab import app
 
@@ -39,7 +39,7 @@ def unsupported_precheck(force: bool = False) -> None:
     print('Updating unsupported.txt from server.')
     with open(unsupported_txt, 'w', encoding='utf-8') as f:
         try:
-            unsupported_songs = requests.get(f'{backend_url}/master_unsupported')
+            unsupported_songs = requests.get(f'{backend_url}/master_unsupported', timeout=api_timeout)
             last_updated = time.time()
             f.write(f'{last_updated}\n')
             f.write(unsupported_songs.text)
