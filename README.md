@@ -23,7 +23,7 @@
   </a>
 </p>
 
-Fetches the currently playing song from Spotify on Windows, Linux and macOS and displays the lyrics in the command-line or in a browser tab.
+Fetches the currently playing song from Spotify on Windows, Linux and macOS and displays the lyrics in the command-line, browser tab or in a [desktop application](https://github.com/SwagLyrics/SwagLyricsGUI).
 Refreshes automatically when song changes. The lyrics are fetched from Genius.
 Turns out Deezer already has this feature in-built but with `swaglyrics`, you can have it in Spotify as well.
 
