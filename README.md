@@ -74,6 +74,14 @@ Arch Linux users can directly install SwagLyrics from AUR ([swaglyrics<sup>AUR</
 yay -S swaglyrics
 ```
 
+### Nix
+
+Nix users on any Linux distro and NixOS can install SwagLyrics from Nixpkgs.
+
+```
+nix-env -i swaglyrics
+```
+
 ## Usage
 `usage: swaglyrics [-h] [-t] [-c] [-n]`
 
