@@ -61,7 +61,7 @@ def stripper(song: str, artist: str) -> str:
     return url_data
 
 
-def get_lyrics(song: str, artist: str, sources = ["Genius", "Musixmatch"]) -> Optional[str]:
+def get_lyrics(song: str, artist: str, sources=["Genius", "Musixmatch"]) -> Optional[str]:
     """
     Get lyrics from given the song and artist.
     Default lyrics source is Genius
@@ -71,13 +71,14 @@ def get_lyrics(song: str, artist: str, sources = ["Genius", "Musixmatch"]) -> Op
     :return: song lyrics or None if lyrics unavailable
     """
     get_lyrics_from = {
-        "Genius"     : get_lyrics_from_genius,
-        "Musixmatch" : get_lyrics_from_musixmatch,
+        "Genius": get_lyrics_from_genius,
+        "Musixmatch": get_lyrics_from_musixmatch,
     }
     for source in sources:
         try:
             lyrics = get_lyrics_from[source](song, artist)
-            if lyrics: return lyrics
+            if lyrics:
+                return lyrics
         except KeyError:
             raise ValueError(f'"{source}" is invalid source')
     return None
@@ -131,7 +132,12 @@ def get_lyrics_from_musixmatch(song: str, artist: str) -> Optional[str]:
     :return: song lyrics or None if lyrics unavailable
     """
     # fake legitimate browser lookup with custom header
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+    headers = {'User-Agent': 'Mozilla/5.0 \
+                              (Macintosh; Intel Mac OS X 10_10_1) \
+                              AppleWebKit/537.36 \
+                              (KHTML, like Gecko) \
+                              Chrome/39.0.2171.95 \
+                              Safari/537.36'}
 
     # get search page from Musixmatch
     search_url = f'https://www.musixmatch.com/search/{artist}%20{song}/tracks'
