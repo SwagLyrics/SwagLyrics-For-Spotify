@@ -144,8 +144,11 @@ def get_lyrics_from_musixmatch(song: str, artist: str) -> Optional[str]:
     search_page = requests.get(search_url, headers=headers, timeout=musixmatch_timeout)
 
     # get first track page from search page
-    html = BeautifulSoup(search_page.content, "html.parser")
-    track_url = 'https://www.musixmatch.com' + html.find("a", {'class': "title"})['href']
+    try:
+        html = BeautifulSoup(search_page.content, "html.parser")
+        track_url = 'https://www.musixmatch.com' + html.find("a", {'class': "title"})['href']
+    except TypeError:
+        return None
     first_track_page = requests.get(track_url, headers=headers, timeout=musixmatch_timeout)
 
     # get lyrics from paragraphs
