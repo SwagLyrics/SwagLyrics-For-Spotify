@@ -8,7 +8,7 @@ from colorama import init, Fore, Style
 from html import unescape
 from unidecode import unidecode
 
-from swaglyrics import __version__, unsupported_txt, backend_url, api_timeout, genius_timeout
+from swaglyrics import __version__, unsupported_txt, backend_url, api_timeout, genius_timeout, musixmatch_timeout
 
 
 def clear() -> None:
@@ -61,7 +61,29 @@ def stripper(song: str, artist: str) -> str:
     return url_data
 
 
-def get_lyrics(song: str, artist: str) -> Optional[str]:
+def get_lyrics(song: str, artist: str, sources = ["Genius", "Musixmatch"]) -> Optional[str]:
+    """
+    Get lyrics from given the song and artist.
+    Default lyrics source is Genius
+    :param song: currently playing song
+    :param artist: song artist
+    :param sources: ordered list of lyrics sources to attempt to query
+    :return: song lyrics or None if lyrics unavailable
+    """
+    get_lyrics_from = {
+        "Genius"     : get_lyrics_from_genius,
+        "Musixmatch" : get_lyrics_from_musixmatch,
+    }
+    for source in sources:
+        try:
+            lyrics = get_lyrics_from[source](song, artist)
+            if lyrics: return lyrics
+        except KeyError:
+            raise ValueError(f'"{source}" is invalid source')
+    return None
+
+
+def get_lyrics_from_genius(song: str, artist: str) -> Optional[str]:
     """
     Get lyrics from Genius given the song and artist.
     Formats the URL with the stripped url path to fetch the lyrics.
@@ -97,6 +119,35 @@ def get_lyrics(song: str, artist: str) -> Optional[str]:
             lyrics_data.append(UnicodeDammit(re.sub("<.*?>", "", str(x).replace("<br/>", "\n"))).unicode_markup)
 
         lyrics = "\n".join(unescape(lyrics_data))  # also convert escaped characters to symbols
+    return lyrics
+
+
+def get_lyrics_from_musixmatch(song: str, artist: str) -> Optional[str]:
+    """
+    Get lyrics from Musixmatch given the song and artist.
+    Formats the URL with the stripped url path to fetch the lyrics.
+    :param song: currently playing song
+    :param artist: song artist
+    :return: song lyrics or None if lyrics unavailable
+    """
+    # fake legitimate browser lookup with custom header
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+
+    # get search page from Musixmatch
+    search_url = f'https://www.musixmatch.com/search/{artist}%20{song}/tracks'
+    search_page = requests.get(search_url, headers=headers, timeout=musixmatch_timeout)
+
+    # get first track page from search page
+    html = BeautifulSoup(search_page.content, "html.parser")
+    track_url = 'https://www.musixmatch.com' + html.find("a", {'class': "title"})['href']
+    first_track_page = requests.get(track_url, headers=headers, timeout=musixmatch_timeout)
+
+    # get lyrics from paragraphs
+    html = BeautifulSoup(first_track_page.content, "html.parser")
+    lyrics = ""
+    for p in html.find_all("p", {'class': "mxm-lyrics__content"}):
+        lyrics += p.text
+
     return lyrics
 
 
