@@ -1,14 +1,6 @@
-function songChanged() {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "/songChanged", true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                if (xhr.responseText === 'yes') {
-                    location.reload(true)
-                }
-                setTimeout(songChanged, 5000)
-            }
-        };
-        xhr.send();
-    }
-    songChanged();
+const songChanged = async () => {
+    const resp = await fetch("/songChanged")
+    if (resp.ok && await resp.text() === "yes") location.reload(true) 
+}
+
+setInterval(songChanged, 5000);
