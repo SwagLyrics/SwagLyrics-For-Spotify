@@ -23,7 +23,7 @@ setuptools.setup(
         'SwSpotify>=1.2.0',
         'flask==1.1.2',
         'requests>=2.24.0',
-        'unidecode==1.1.1',
+        'unidecode==1.2.0',
         'beautifulsoup4==4.9.3',
         'colorama==0.4.4'
     ],
