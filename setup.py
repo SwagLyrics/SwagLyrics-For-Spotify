@@ -21,7 +21,7 @@ setuptools.setup(
     include_package_data=True,
     install_requires=[
         'SwSpotify>=1.2.0',
-        'flask==1.1.2',
+        'flask==2.0.1',
         'requests>=2.24.0',
         'unidecode==1.2.0',
         'beautifulsoup4==4.9.3',
@@ -33,7 +33,7 @@ setuptools.setup(
             'pytest',
             'pytest-cov',
             'blinker',
-            'Werkzeug==1.0.1',  # remove this once stuff's resolved
+            'Werkzeug==2.0.1',  # remove this once stuff's resolved
             'flask_testing',
             'mypy'
         ]

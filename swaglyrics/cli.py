@@ -52,8 +52,7 @@ def stripper(song: str, artist: str) -> str:
     # replace /, !, _ with space to support more songs
     url_data = url_data.replace('/', ' ').replace('!', ' ').replace('_', ' ')
     for ch in ['Ø', 'ø']:
-        if ch in url_data:
-            url_data = url_data.replace(ch, '')
+        url_data = url_data.replace(ch, '')
     url_data = re.sub(nlt, '', url_data)  # remove non-latin characters before unidecode
     url_data = unidecode(url_data)  # convert accents and other diacritics
     url_data = re.sub(aln, '', url_data)  # remove punctuation and other characters
