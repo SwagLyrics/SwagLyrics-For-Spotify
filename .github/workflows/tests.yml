@@ -2,7 +2,7 @@ name: Test
 
 on:
   push:
-    branches: master
+    branches: poetry
   pull_request:
     branches: master
 
@@ -10,18 +10,8 @@ jobs:
   Test:
     strategy: 
       matrix:
-        python-version: ['3.7', '3.9', '3.10', '3.11-dev']
+        python-version: ['3.7', '3.8', '3.9', '3.10']
         os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
-        experimental: [false]
-        include:
-          - os: windows-latest
-            test: WindowsTests
-          - os: ubuntu-latest
-            test: LinuxTests
-          - os: macos-latest
-            test: DarwinTests
-          - python-version: 3.11-dev
-            experimental: true
     runs-on: ${{ matrix.os }}
     steps:
       - name: Setup Python
@@ -55,8 +45,7 @@ jobs:
         run: poetry install --no-interaction
       - name: Test with pytest
         working-directory: ${{ github.workspace }}
-        continue-on-error: ${{ matrix.experimental }}
-        run: poetry run pytest --cov-config=.coveragerc --cov-report=xml tests/test_spotify.py::${{ matrix.test }}
+        run: poetry run pytest --cov-config=.coveragerc --cov-report=xml tests/
       - name: Upload coverage
         uses: codecov/codecov-action@v2
         with:
