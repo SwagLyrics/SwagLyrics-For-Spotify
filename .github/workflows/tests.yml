@@ -1,0 +1,63 @@
+name: Test
+
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+
+jobs:
+  Test:
+    strategy: 
+      matrix:
+        python-version: ['3.7', '3.9', '3.10', '3.11-dev']
+        os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
+        experimental: [false]
+        include:
+          - os: windows-latest
+            test: WindowsTests
+          - os: ubuntu-latest
+            test: LinuxTests
+          - os: macos-latest
+            test: DarwinTests
+          - python-version: 3.11-dev
+            experimental: true
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Install Linux deps
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install python3-pip libdbus-glib-1-dev
+          sudo pip3 install --upgrade pip
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+      - name: Install library
+        run: poetry install --no-interaction
+      - name: Test with pytest
+        working-directory: ${{ github.workspace }}
+        continue-on-error: ${{ matrix.experimental }}
+        run: poetry run pytest --cov-config=.coveragerc --cov-report=xml tests/test_spotify.py::${{ matrix.test }}
+      - name: Upload coverage
+        uses: codecov/codecov-action@v2
+        with:
+          fail_ci_if_error: true
