@@ -2,24 +2,21 @@
 name = "swaglyrics"
 version = "1.2.2"
 description = "Fetch the currently playing song from Spotify and display the lyrics in terminal or a browser tab. Very fast."
-readme = "README.md"
 authors = ["Aadi Bajpai <clash@swaglyrics.dev>"]
 license = "MIT"
+readme = "README.md"
+include = ["swaglyrics/static/*", "swaglyrics/templates/*", "swaglyrics/unsupported.txt", "swaglyrics/USING.txt"]
+
 packages = [
     { include = "swaglyrics" },
 ]
+
 repository = "https://github.com/SwagLyrics/SwagLyrics-For-Spotify"
 documentation = "https://github.com/SwagLyrics/SwagLyrics-For-Spotify/blob/master/README.md"
 
-keywords = ['spotify', 'lyrics', 'python', 'genius']
+keywords = ['spotify', 'swaglyrics', 'python', 'lyrics']
 classifiers= [
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
         "Framework :: Flask",
-        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Intended Audience :: End Users/Desktop",
 ]
@@ -28,21 +25,21 @@ classifiers= [
 swaglyrics = 'swaglyrics.__main__:main'
 
 [tool.poetry.dependencies]
-python = "^3.6"
-SwSpotify = "^1.2.0"
-Flask = "^2.0.1"
-requests = "^2.25.1"
-Unidecode = "^1.2.0"
-beautifulsoup4 = "^4.9.3"
+python = "^3.7"
+requests = "^2.27.1"
+beautifulsoup4 = "^4.10.0"
 colorama = "^0.4.4"
+Flask = "^2.0.2"
+swspotify = "^1.2.2"
+Unidecode = "^1.3.2"
 
 [tool.poetry.dev-dependencies]
 mock = "^4.0.3"
-pytest = "^6.2.4"
-pytest-cov = "^2.12.1"
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
 blinker = "^1.4"
 Flask-Testing = "^0.8.1"
-mypy = "^0.902"
+mypy = "^0.931"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
