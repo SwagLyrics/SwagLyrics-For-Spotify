@@ -7,23 +7,16 @@ on:
     branches: master
 
 jobs:
-  Non-Matrix-Tests:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup Python
-        uses: actions/setup-python@v2
-          with:
-            python-version: 3.8
-            architecture: x64
-      - name: Large Scale Stripper Test Suite
-        run: python tests/lssts/lssts_runner.py
-      - name: Integration Tests
-        run: pytest --cov-config=.coveragerc --cov=swaglyrics tests/integration.py
-  Matrix-Tests:
+  Tests:
     strategy:
+      fail-fast: false
       matrix:
         python-version: ['3.7', '3.8', '3.9', '3.10']
         os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
+        include:
+          - python-version: 3.8
+            os: ubuntu-latest
+            special: true
     runs-on: ${{ matrix.os }}
     steps:
       - name: Setup Python
@@ -58,6 +51,14 @@ jobs:
       - name: Test with pytest
         working-directory: ${{ github.workspace }}
         run: poetry run pytest --cov-config=.coveragerc --cov-report=xml tests/
+      - name: Large Scale Stripper Test Suite
+        if: matrix.special
+        working-directory: ${{ github.workspace }}
+        run: poetry run python3 tests/lssts/lssts_runner.py
+      - name: Integration Tests
+        if: matrix.special
+        working-directory: ${{ github.workspace }}
+        run: poetry run pytest --cov-config=.coveragerc --cov=swaglyrics tests/integration.py
       - name: Upload coverage
         uses: codecov/codecov-action@v2
         with:
