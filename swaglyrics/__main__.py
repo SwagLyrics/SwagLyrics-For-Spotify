@@ -58,7 +58,7 @@ def show_tab() -> None:
     app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
     app.static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
     port = 5042  # random
-    url = f"http://127.0.0.1:{port}"
+    url = f"http://0.0.0.0:{port}"
     Timer(1.25, open, args=[url]).start()
     app.run(port=port)
 
