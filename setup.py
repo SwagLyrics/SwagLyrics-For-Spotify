@@ -21,7 +21,7 @@ setuptools.setup(
     include_package_data=True,
     install_requires=[
         'SwSpotify>=1.2.0',
-        'flask==2.0.1',
+        'flask==2.0.3',
         'requests>=2.24.0',
         'unidecode==1.2.0',
         'beautifulsoup4==4.9.3',
