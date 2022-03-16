@@ -18,7 +18,7 @@ def unsupported_precheck(force: bool = False) -> None:
     """
     if not force:
         # check 24h has elapsed since last update check
-        with open(unsupported_txt, 'r', encoding='utf-8') as f:
+        with open(unsupported_txt, "r", encoding="utf-8") as f:
             try:
                 last_updated = float(f.readline())
                 if time.time() - last_updated < 86400:  # 86400 seconds in a day
@@ -29,19 +29,19 @@ def unsupported_precheck(force: bool = False) -> None:
                 print("You should install SwagLyrics as --user or use sudo to access unsupported.txt.", e)
                 sys.exit(1)
     try:
-        v = requests.get(f'{backend_url}/version')
+        v = requests.get(f"{backend_url}/version")
         ver = v.text
         if ver > version:
             print("New version of SwagLyrics available: v{ver}\nPlease update :)".format(ver=ver))
             print("To update, execute pip install -U swaglyrics")
     except requests.exceptions.RequestException:
         pass
-    print('Updating unsupported.txt from server.')
-    with open(unsupported_txt, 'w', encoding='utf-8') as f:
+    print("Updating unsupported.txt from server.")
+    with open(unsupported_txt, "w", encoding="utf-8") as f:
         try:
-            unsupported_songs = requests.get(f'{backend_url}/master_unsupported', timeout=api_timeout)
+            unsupported_songs = requests.get(f"{backend_url}/master_unsupported", timeout=api_timeout)
             last_updated = time.time()
-            f.write(f'{last_updated}\n')
+            f.write(f"{last_updated}\n")
             f.write(unsupported_songs.text)
             print("Updated unsupported.txt successfully.")
         except requests.exceptions.RequestException as e:
@@ -54,24 +54,28 @@ def unsupported_precheck(force: bool = False) -> None:
 def show_tab() -> None:
     from threading import Timer
     from webbrowser import open
-    print('Firing up a browser tab!')
-    app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
-    app.static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+
+    print("Firing up a browser tab!")
+    app.template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
+    app.static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
     port = 5042  # random
     url = f"http://127.0.0.1:{port}"
     Timer(1.25, open, args=[url]).start()
     app.run(port=port)
 
 
-def show_cli(make_issue: bool = False) -> None:
+def show_cli(make_issue: bool = False, single: bool = False) -> None:
     try:
         song, artist = spotify.current()  # get currently playing song, artist
         print(lyrics(song, artist, make_issue))
-        print('\n(Press Ctrl+C to quit)')
     except SpotifyNotRunning as e:
         print(e)
-        print('\n(Press Ctrl+C to quit)')
         song, artist = None, None
+
+    if single:
+        sys.exit(0)  # exit if just a single run requested
+    print("\n(Press Ctrl+C to quit)")
+
     while True:
         # refresh every 5s to check whether song changed
         # if changed, display the new lyrics
@@ -83,12 +87,12 @@ def show_cli(make_issue: bool = False) -> None:
                     song, artist = spotify.current()
                     clear()
                     print(lyrics(song, artist, make_issue))
-                    print('\n(Press Ctrl+C to quit)')
+                    print("\n(Press Ctrl+C to quit)")
             except (SpotifyNotRunning, SameSongPlaying):
                 time.sleep(5)
         except KeyboardInterrupt:
-            print('\nSure boss, exiting.')
-            sys.exit()
+            print("\nSure boss, exiting.")
+            sys.exit(0)
 
 
 def main() -> None:
@@ -103,12 +107,14 @@ def main() -> None:
     # print('\n')
 
     parser = argparse.ArgumentParser(
-        description="Get lyrics for the currently playing song on Spotify. Either --tab or --cli is required.")
+        description="Get lyrics for the currently playing song on Spotify with auto refresh as song changes. Either --tab or --cli is required."
+    )
 
-    parser.add_argument('-t', '--tab', action='store_true', help='Display lyrics in a browser tab.')
-    parser.add_argument('-c', '--cli', action='store_true', help='Display lyrics in the command-line.')
-    parser.add_argument('-n', '--no-issue', action='store_false', help='Disable issue-making on cli.')
-    parser.add_argument('-u', '--update-check', action='store_true', help='Force check for updates.')
+    parser.add_argument("-t", "--tab", action="store_true", help="Display lyrics in a browser tab.")
+    parser.add_argument("-c", "--cli", action="store_true", help="Display lyrics in the command-line.")
+    parser.add_argument("-s", "--single", action="store_true", help="Display lyrics for current song and exit.")
+    parser.add_argument("-n", "--no-issue", action="store_false", help="Disable issue-making on cli.")
+    parser.add_argument("-u", "--update-check", action="store_true", help="Force check for updates.")
     args = parser.parse_args()
 
     if args.tab:
@@ -118,10 +124,11 @@ def main() -> None:
     elif args.cli:
         unsupported_precheck(args.update_check)
         make_issue = args.no_issue
-        show_cli(make_issue)
+        single = args.single
+        show_cli(make_issue, args.single)
     else:
         parser.print_help()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

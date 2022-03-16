@@ -32,9 +32,9 @@ def user_data_dir(file_name):
     return path.expanduser() / file_name
 
 
-name = 'swaglyrics'
-__version__ = '1.2.2'
-backend_url = 'https://api.swaglyrics.dev'
+name = "swaglyrics"
+__version__ = "1.2.2"
+backend_url = "https://api.swaglyrics.dev"
 api_timeout = 10
 genius_timeout = 20
 unsupported_txt = user_data_dir("unsupported.txt")
