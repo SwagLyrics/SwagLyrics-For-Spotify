@@ -143,3 +143,6 @@ dmypy.json
 \.idea/
 
 swaglyrics/unsupported.txt
+
+# Flake
+result
