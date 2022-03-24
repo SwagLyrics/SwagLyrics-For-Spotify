@@ -1,0 +1,65 @@
+name: Tests
+
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+
+jobs:
+  Tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.7', '3.8', '3.9', '3.10']
+        os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
+        include:
+          - python-version: 3.8
+            os: ubuntu-latest
+            special: true
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Install Linux deps
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install python3-pip libdbus-glib-1-dev
+          sudo pip3 install --upgrade pip
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+      - name: Install library
+        run: poetry install --no-interaction
+      - name: Test with pytest
+        working-directory: ${{ github.workspace }}
+        run: poetry run pytest --cov-config=.coveragerc --cov-report=xml tests/
+      - name: Large Scale Stripper Test Suite
+        if: matrix.special
+        working-directory: ${{ github.workspace }}
+        run: poetry run python3 tests/lssts/lssts_runner.py
+      - name: Integration Tests
+        if: matrix.special
+        working-directory: ${{ github.workspace }}
+        run: poetry run pytest --cov-config=.coveragerc --cov=swaglyrics tests/integration.py
+      - name: Upload coverage
+        uses: codecov/codecov-action@v2
+        with:
+          fail_ci_if_error: true
