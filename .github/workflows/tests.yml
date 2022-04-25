@@ -50,7 +50,7 @@ jobs:
         run: poetry install --no-interaction
       - name: Test with pytest
         working-directory: ${{ github.workspace }}
-        run: poetry run pytest --cov-config=.coveragerc --cov-report=xml tests/
+        run: poetry run pytest --cov-config=.coveragerc --cov=swaglyrics --cov-report=xml tests/
       - name: Large Scale Stripper Test Suite
         if: matrix.special
         working-directory: ${{ github.workspace }}

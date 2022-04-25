@@ -1,7 +1,7 @@
 """
 Contains unit tests for cli.py
 """
-import os
+import shutil
 import unittest
 
 import requests
@@ -85,7 +85,7 @@ class Tests(unittest.TestCase):
 		test that lyrics function does not break if unsupported.txt is not found
 		"""
 		fake_get_lyrics.return_value = None
-		os.rename(unsupported_txt, "unsupported2.txt")
+		shutil.move(unsupported_txt, "unsupported2.txt")
 		resp = lyrics("Pixel2XL", "Elgoog", False)
 		self.assertEqual(resp, "Couldn't get lyrics for Pixel2XL by Elgoog.\n")
 
