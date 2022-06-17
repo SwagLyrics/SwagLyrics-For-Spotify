@@ -25,7 +25,7 @@ setuptools.setup(
         'requests>=2.24.0',
         'unidecode==1.2.0',
         'beautifulsoup4==4.9.3',
-        'colorama==0.4.4'
+        'colorama==0.4.5'
     ],
     extras_require={
         'dev': [
