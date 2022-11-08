@@ -39,7 +39,7 @@ pytest = "^6.2.5"
 pytest-cov = "^3.0.0"
 blinker = "^1.4"
 Flask-Testing = "^0.8.1"
-mypy = "^0.931"
+mypy = "^0.990"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
