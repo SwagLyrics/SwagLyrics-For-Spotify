@@ -24,7 +24,7 @@ setuptools.setup(
         'flask==2.0.1',
         'requests>=2.24.0',
         'unidecode==1.2.0',
-        'beautifulsoup4==4.9.3',
+        'beautifulsoup4==4.11.2',
         'colorama==0.4.4'
     ],
     extras_require={
